@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dargons of Kir", "Dargons of Kir\Dargons of Kir.csproj", "{1F54B46D-9676-4AF9-A1EF-52E30E783EAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1F54B46D-9676-4AF9-A1EF-52E30E783EAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F54B46D-9676-4AF9-A1EF-52E30E783EAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F54B46D-9676-4AF9-A1EF-52E30E783EAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F54B46D-9676-4AF9-A1EF-52E30E783EAB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
