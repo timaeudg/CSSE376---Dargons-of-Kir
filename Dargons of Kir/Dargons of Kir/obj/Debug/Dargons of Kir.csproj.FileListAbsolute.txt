@@ -8,3 +8,11 @@ C:\Users\guilfoej\Documents\School\Spring-2013\CSSE376\Project\CSSE376---Dargons
 C:\Users\guilfoej\Documents\School\Spring-2013\CSSE376\Project\CSSE376---Dargons-of-Kir\Dargons of Kir\Dargons of Kir\obj\Debug\Dargons of Kir.csproj.GenerateResource.Cache
 C:\Users\guilfoej\Documents\School\Spring-2013\CSSE376\Project\CSSE376---Dargons-of-Kir\Dargons of Kir\Dargons of Kir\obj\Debug\Dargons of Kir.exe
 C:\Users\guilfoej\Documents\School\Spring-2013\CSSE376\Project\CSSE376---Dargons-of-Kir\Dargons of Kir\Dargons of Kir\obj\Debug\Dargons of Kir.pdb
+C:\Users\timaeudg\Documents\GitHub\CSSE376-Dargons\Dargons of Kir\Dargons of Kir\bin\Debug\Dargons of Kir.exe
+C:\Users\timaeudg\Documents\GitHub\CSSE376-Dargons\Dargons of Kir\Dargons of Kir\bin\Debug\Dargons of Kir.pdb
+C:\Users\timaeudg\Documents\GitHub\CSSE376-Dargons\Dargons of Kir\Dargons of Kir\obj\Debug\Dargons of Kir.csprojResolveAssemblyReference.cache
+C:\Users\timaeudg\Documents\GitHub\CSSE376-Dargons\Dargons of Kir\Dargons of Kir\obj\Debug\Dargons_of_Kir.Form1.resources
+C:\Users\timaeudg\Documents\GitHub\CSSE376-Dargons\Dargons of Kir\Dargons of Kir\obj\Debug\Dargons_of_Kir.Properties.Resources.resources
+C:\Users\timaeudg\Documents\GitHub\CSSE376-Dargons\Dargons of Kir\Dargons of Kir\obj\Debug\Dargons of Kir.csproj.GenerateResource.Cache
+C:\Users\timaeudg\Documents\GitHub\CSSE376-Dargons\Dargons of Kir\Dargons of Kir\obj\Debug\Dargons of Kir.exe
+C:\Users\timaeudg\Documents\GitHub\CSSE376-Dargons\Dargons of Kir\Dargons of Kir\obj\Debug\Dargons of Kir.pdb
