@@ -8,10 +8,16 @@ namespace Dargons_of_Kir
     class Dragon
     {
         private int dragondID;
-
-        public Dragon(int id)
+        private int xPosition;
+        private int yposition;
+        private int orientation;
+        public Dragon(int id, int xPos, int yPos, int rotation)
         {
             this.dragondID = id;
+            this.xPosition = xPos;
+            this.yposition = yPos;
+            this.orientation = rotation;
+
         }
 
     }
