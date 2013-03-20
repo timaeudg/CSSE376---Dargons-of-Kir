@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Dargons_of_Kir
 {
-    static class Program
+    static class MainRunner
     {
         /// <summary>
         /// The main entry point for the application.
