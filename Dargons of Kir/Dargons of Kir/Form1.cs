@@ -18,7 +18,6 @@ namespace Dargons_of_Kir
         public Form1()
         {
             InitializeComponent();
-            
         }
 
  

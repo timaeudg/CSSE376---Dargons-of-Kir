@@ -9,7 +9,7 @@ namespace Dargons_of_Kir
 {
     class Player
     {
-        ArrayList tiles = new ArrayList();
+       Tile[] tiles = new Tile[4];
         public Player()
         {
             this.drawTile();

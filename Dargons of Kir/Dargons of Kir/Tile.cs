@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Dargons_of_Kir
 {
-    public class Tile
+    public interface Tile
     {
         private System.Drawing.Image TilePicture;
+        private Board.orientation orientation;
+        private Board.location location;
 
         public Tile(System.Drawing.Image pic)
         {
@@ -18,6 +20,11 @@ namespace Dargons_of_Kir
         public System.Drawing.Image getPicture()
         {
             return this.TilePicture;
+        }
+
+        public bool callback()
+        {
+            return true;
         }
 
     }
