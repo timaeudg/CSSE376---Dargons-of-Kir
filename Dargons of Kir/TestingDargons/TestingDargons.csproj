@@ -51,6 +51,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Testing\TestDragon.cs" />
     <Compile Include="Testing\TestGameInfo.cs" />
     <Compile Include="Testing\TestPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
