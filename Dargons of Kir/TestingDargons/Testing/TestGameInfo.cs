@@ -23,50 +23,59 @@ namespace TestingDargons
         [Test]
         public void testGameInfoGetPile()
         {
-
+            GameInfo game = new GameInfo();
+            Assert.NotNull(game.getTilePile());
 
         }
 
+        [Test]
+        public void testGameInfoDragons()
+        {
+            GameInfo game = new GameInfo();
+            Assert.NotNull(game.getDragons());
+        }
+
+        [Test]
+        public void testGameInfoTileBoard()
+        {
+            GameInfo game = new GameInfo();
+            Assert.NotNull(game.getTileBoard());
+        }
+
+        [Test]
+        public void testGameInfoTileBoardClearAtStart()
+        {
+            GameInfo game = new GameInfo();
+            Tile[,] board = game.getTileBoard();
+            for (int k = 0; k < 8; k++)
+            {
+                for (int i = 0; i < 8; i++)
+                {
+                    Assert.Null(board[k, i]);
+                }
+            }
+        }
+
+        [Test]
+        public void testGameInfoDragonsNullAtStart(){
+            GameInfo game = new GameInfo();
+            LinkedList<Dragon> dragons = game.getDragons();
+            foreach (Dragon drag in dragons){
+                Assert.Null(drag);
+            }
+        }
+
+        [Test]
+        public void testGameInfoPileNullAtStart()
+        {
+            GameInfo game = new GameInfo();
+            List<Tile> pile = game.getTilePile();
+            foreach (Tile t in pile)
+            {
+                Assert.Null(t);
+            }
+        }
 
     }
-    /*
-    [TestFixture]
-    class TestPlayer
-    {
-        [Test]
-        public void playersAreCreatable()
-        {
-            Player player = new Player();
-            Assert.NotNull(player);
-        }
-        [Test]
-        public void playersAreThemSelves()
-        {
-            Player player1 = new Player();
-            Player player2 = new Player();
-            Assert.AreEqual(player1, player1);
-            Assert.AreEqual(player2, player2);
-            Assert.AreNotEqual(player1, player2);
-        }
-        [Test]
-        public void playerDrawTileDoesNotError()
-        {
-            Player player = new Player();
-            player.drawTile();
-        }
-        [Test]
-        public void playerTakeTurns()
-        {
-            Player player = new Player();
-            try
-            {
-                player.takeTurn();
-            }
-            catch (NotImplementedException e)
-            {
-                Assert.IsTrue(true);
-            }
-        }
-
-    }*/
+    
 }
