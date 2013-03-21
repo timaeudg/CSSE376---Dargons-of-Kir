@@ -9,13 +9,11 @@ namespace Dargons_of_Kir
 
     class Effect
     {
-        private BoardLocation endingLocation;
-        private int endingOrientation;
-        private int distancFromParentTile;
+        private Board.location destination;
+        private Board.orientation orientation;
+        private int distance;
         private int priority;
-        private int startingOrientation;
-        private BoardLocation startingLocation;
         private int parentTileID;
-
+        private Func<bool> callback;
     }
 }
