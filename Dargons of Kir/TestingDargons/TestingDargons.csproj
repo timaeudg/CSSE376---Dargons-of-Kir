@@ -55,6 +55,7 @@
     <Compile Include="Testing\TestGameInfo.cs" />
     <Compile Include="Testing\TestPlayer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Testing\TestMonkTile.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dargons of Kir\Dargons of Kir.csproj">

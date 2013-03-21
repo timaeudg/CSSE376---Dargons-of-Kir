@@ -33,19 +33,7 @@ namespace TestingDargons
             Player player = new Player(game);
             player.drawTile();
         }
-        [Test]
-        public void playerTakeTurns()
-        {
-            Player player = new Player(game);
-            try
-            {
-                player.takeTurn();
-            }
-            catch (NotImplementedException e)
-            {
-                Assert.IsTrue(true);
-            }
-        }
+      
 
     }
 }

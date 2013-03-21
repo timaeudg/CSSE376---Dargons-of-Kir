@@ -19,10 +19,7 @@ namespace Dargons_of_Kir
             this.drawTile();
             this.drawTile();
         }
-        public void takeTurn()
-        {
-            throw new NotImplementedException();
-        }
+
         public void drawTile()
         {
             // tiles.Add(pile.draw());

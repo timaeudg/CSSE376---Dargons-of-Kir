@@ -51,7 +51,7 @@
     <Compile Include="Effect.cs" />
     <Compile Include="GameInfo.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="ImpactTile.cs" />
+    <Compile Include="MonkTile.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
