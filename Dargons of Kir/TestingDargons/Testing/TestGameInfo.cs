@@ -14,11 +14,19 @@ namespace TestingDargons
     class TestGameInfo
     {
         [Test]
-        public void testInit()
+        public void testGameInfoCreate()
         {
             GameInfo game = new GameInfo();
             Assert.NotNull(game);
         }
+
+        [Test]
+        public void testGameInfoGetPile()
+        {
+
+
+        }
+
 
     }
     /*

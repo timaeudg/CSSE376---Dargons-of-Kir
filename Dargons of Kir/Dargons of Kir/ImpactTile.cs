@@ -8,9 +8,12 @@ namespace Dargons_of_Kir
 {
     public class ImpactTile: Tile
     {
+
+        override public bool callback()
+        {
+            return true;
+        }
         
-
-
       
     }
 }

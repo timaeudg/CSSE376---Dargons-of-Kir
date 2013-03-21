@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dargons_of_Kir
 {
-    class Board
+    public class Board
     {
         public enum orientation { LEFT, UP, RIGHT, DOWN };
         public struct location { int x; int y; };

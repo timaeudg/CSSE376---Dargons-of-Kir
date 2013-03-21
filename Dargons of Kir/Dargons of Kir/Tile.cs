@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Dargons_of_Kir
 {
-    abstract class Tile
+    public abstract class Tile
     {
         protected System.Drawing.Image TilePicture;
         protected Board.orientation orientation;
@@ -26,12 +26,9 @@ namespace Dargons_of_Kir
             return this.TilePicture;
         }
 
-        public bool callback()
-        {
-            return true;
-        }
+        public abstract bool callback();
 
-        public void place(Board.location location, Board.orientation orientation,  
+        public void place(Board.location location, Board.orientation orientation) { return; }
 
     }
 }

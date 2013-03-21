@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Dargons_of_Kir
 {
-    class Player
+    public class Player
     {
         private Tile[] tiles = new Tile[4];
         private GameInfo gameInfo;
@@ -19,11 +19,11 @@ namespace Dargons_of_Kir
             this.drawTile();
             this.drawTile();
         }
-        internal void takeTurn()
+        public void takeTurn()
         {
             throw new NotImplementedException();
         }
-        internal void drawTile()
+        public void drawTile()
         {
             // tiles.Add(pile.draw());
             // this will be fixed when devon tells me what frack is storing our tiles.
