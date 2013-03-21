@@ -9,9 +9,11 @@ namespace Dargons_of_Kir
 {
     class Player
     {
-       Tile[] tiles = new Tile[4];
-        public Player()
+        private Tile[] tiles = new Tile[4];
+        private GameInfo gameInfo;
+        public Player(GameInfo game)
         {
+            this.gameInfo = game;
             this.drawTile();
             this.drawTile();
             this.drawTile();
@@ -25,6 +27,10 @@ namespace Dargons_of_Kir
         {
             // tiles.Add(pile.draw());
             // this will be fixed when devon tells me what frack is storing our tiles.
+
+            List<Tile> pile = this.gameInfo.getTilePile();
+
+
         }
 
     }
