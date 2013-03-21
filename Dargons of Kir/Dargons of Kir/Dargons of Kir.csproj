@@ -47,16 +47,11 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="TestPlayer.cs" />
-=======
->>>>>>> 1f20b3c3adf1c181dc8e335b3e6f49b8f5da7eba
     <Compile Include="Dragon.cs" />
     <Compile Include="Effect.cs" />
     <Compile Include="GameInfo.cs" />
-<<<<<<< HEAD
     <Compile Include="Player.cs" />
-=======
     <Compile Include="ImpactTile.cs" />
->>>>>>> 1f20b3c3adf1c181dc8e335b3e6f49b8f5da7eba
     <Compile Include="Tile.cs" />
     <Compile Include="Form1.cs" />
     <Compile Include="Form1.Designer.cs">
