@@ -6,19 +6,11 @@ using System.Threading.Tasks;
 
 namespace Dargons_of_Kir
 {
-    public class Tile
+    class ProximityTile : Tile
     {
-        private System.Drawing.Image TilePicture;
-
-        public Tile(System.Drawing.Image pic)
-        {
-            this.TilePicture = pic;
-        }
-
         public System.Drawing.Image getPicture()
         {
-            return this.TilePicture;
+            return base.getPicture();
         }
-
     }
 }
