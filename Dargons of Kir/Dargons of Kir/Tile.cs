@@ -11,6 +11,7 @@ namespace Dargons_of_Kir
         protected System.Drawing.Image TilePicture;
         protected Board.orientation orientation;
         protected Board.location location;
+        protected int Priority;
 
         public Tile()
         {

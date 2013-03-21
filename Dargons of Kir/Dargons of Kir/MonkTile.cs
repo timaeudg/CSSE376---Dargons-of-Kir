@@ -10,7 +10,7 @@ namespace Dargons_of_Kir
     public class MonkTile: Tile
     {
         private static Image getPic(){
-             return Image.FromFile(".\\Game Piece Images\\monk.jpg");
+             return Image.FromFile("..\\..\\..\\..\\images\\monk.JPG");
         }
         public MonkTile() : base(getPic())
         {
