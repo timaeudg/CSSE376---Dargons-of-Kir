@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dargons_of_Kir
 {
-    class Dragon
+    public class Dragon
     {
         private int dragondID;
         private BoardLocation currentPosition;

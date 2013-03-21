@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Dargons_of_Kir
 {
-    class BoardLocation
+    public class BoardLocation
     {
     }
 }

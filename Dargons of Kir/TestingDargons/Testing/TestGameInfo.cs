@@ -23,8 +23,23 @@ namespace TestingDargons
         [Test]
         public void testGameInfoGetPile()
         {
+            GameInfo game = new GameInfo();
+            Assert.NotNull(game.getTilePile());
 
+        }
 
+        [Test]
+        public void testGameInfoDragons()
+        {
+            GameInfo game = new GameInfo();
+            Assert.NotNull(game.getDragons());
+        }
+
+        [Test]
+        public void testGameInfoTileBoard()
+        {
+            GameInfo game = new GameInfo();
+            Assert.NotNull(game.getTileBoard());
         }
 
 
