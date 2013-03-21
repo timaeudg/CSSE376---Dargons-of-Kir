@@ -6,11 +6,15 @@ using System.Threading.Tasks;
 
 namespace Dargons_of_Kir
 {
-    public interface Tile
+    abstract class Tile
     {
-        private System.Drawing.Image TilePicture;
-        private Board.orientation orientation;
-        private Board.location location;
+        protected System.Drawing.Image TilePicture;
+        protected Board.orientation orientation;
+        protected Board.location location;
+
+        public Tile()
+        {
+        }
 
         public Tile(System.Drawing.Image pic)
         {

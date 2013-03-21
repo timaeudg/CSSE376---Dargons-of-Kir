@@ -11,6 +11,10 @@ namespace Dargons_of_Kir
         public enum orientation { LEFT, UP, RIGHT, DOWN };
         public struct location { int x; int y; };
 
-        public bool addPiece(Tile tile, orientation orientation);
+        public bool addPiece(Tile tile, orientation orientation)
+        {
+
+            return true;
+        }
     }
 }

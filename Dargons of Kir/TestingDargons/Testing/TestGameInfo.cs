@@ -5,11 +5,14 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 
-namespace Dargons_of_Kir.Testing
+
+
+namespace TestingDargons
 {
     [TestFixture]
     class TestGameInfo
     {
+       
 
     }
     /*

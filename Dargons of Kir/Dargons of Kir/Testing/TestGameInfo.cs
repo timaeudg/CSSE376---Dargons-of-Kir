@@ -4,18 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
-using Dargons_of_Kir;
 
-namespace TestingDargons
+
+
+namespace Dargons_of_Kir.Test
 {
     [TestFixture]
     class TestGameInfo
     {
         [Test]
-        public void testGameCreate(){
+        public void testGameInfoCreate()
+        {
             GameInfo game = new GameInfo();
             Assert.NotNull(game);
         }
+
     }
     /*
     [TestFixture]
