@@ -19,6 +19,14 @@ namespace Dargons_of_Kir.Test
             Assert.NotNull(game);
         }
 
+        [Test]
+        public void testGameInfoGetPile()
+        {
+
+
+        }
+
+
     }
     /*
     [TestFixture]

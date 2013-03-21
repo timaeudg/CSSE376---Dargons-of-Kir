@@ -31,5 +31,7 @@ namespace Dargons_of_Kir
             return true;
         }
 
+        public void place(Board.location location, Board.orientation orientation,  
+
     }
 }

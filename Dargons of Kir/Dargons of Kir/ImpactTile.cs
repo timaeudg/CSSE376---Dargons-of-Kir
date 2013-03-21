@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Dargons_of_Kir
 {
-    class ImpactTile: Tile
+    public class ImpactTile: Tile
     {
-      
+        
 
 
       
