@@ -52,8 +52,6 @@
     <Compile Include="GameInfo.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="ImpactTile.cs" />
-    <Compile Include="Testing\TestGameInfo.cs" />
-    <Compile Include="Testing\TestPlayer.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
