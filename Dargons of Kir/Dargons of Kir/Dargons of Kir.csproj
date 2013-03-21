@@ -44,8 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BoardLocation.cs" />
     <Compile Include="Dragon.cs" />
+    <Compile Include="Effect.cs" />
     <Compile Include="GameInfo.cs" />
+    <Compile Include="ImpactTile.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
