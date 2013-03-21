@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using Dargons_of_Kir;
 
 
 
@@ -12,7 +13,12 @@ namespace TestingDargons
     [TestFixture]
     class TestGameInfo
     {
-       
+        [Test]
+        public void testInit()
+        {
+            GameInfo game = new GameInfo();
+            Assert.NotNull(game);
+        }
 
     }
     /*

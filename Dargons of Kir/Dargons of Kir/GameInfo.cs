@@ -10,7 +10,7 @@ namespace Dargons_of_Kir
 {
      
     
-    class GameInfo
+    public class GameInfo
     {
         private List<Tile> pileOfTiles;
         private Tile[,] tileBoard = new Tile[8,8];
