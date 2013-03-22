@@ -46,12 +46,12 @@ namespace TestingDargons
         public void testGameInfoTileBoardClearAtStart()
         {
             GameInfo game = new GameInfo();
-            Tile[,] board = game.getTileBoard();
+            Board board = game.getTileBoard();
             for (int k = 0; k < 8; k++)
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    Assert.Null(board[k, i]);
+                    Assert.Null(board.getBoard()[k,i]);
                 }
             }
         }

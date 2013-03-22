@@ -22,5 +22,15 @@ namespace Dargons_of_Kir
             this.location = location;
         }
 
+        public Tile getTile()
+        {
+            return this.tile;
+        }
+
+        public Tile setTile(Tile toSet)
+        {
+            this.tile = toSet;
+        }
+
     }
 }

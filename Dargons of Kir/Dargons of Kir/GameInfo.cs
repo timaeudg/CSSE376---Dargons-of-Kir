@@ -13,13 +13,14 @@ namespace Dargons_of_Kir
     public class GameInfo
     {
         private List<Tile> pileOfTiles;
-        private Tile[,] tileBoard;
+        private Board tileBoard;
         private LinkedList<Dragon> dragons;
+
 
         public GameInfo()
         {
             this.pileOfTiles = new List<Tile>();
-            this.tileBoard = new Tile[8, 8];
+            this.tileBoard = new Board();
             this.dragons = new LinkedList<Dragon>();
 
         }
@@ -34,7 +35,7 @@ namespace Dargons_of_Kir
             return this.dragons;
         }
 
-        public Tile[,] getTileBoard()
+        public Board getTileBoard()
         {
             return this.tileBoard;
         }

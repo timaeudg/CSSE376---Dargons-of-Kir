@@ -43,5 +43,10 @@ namespace Dargons_of_Kir
             return this.ID;
         }
 
+        public void setOrientation(Board.orientation rot)
+        {
+            this.orientation = rot;
+        }
+
     }
 }
