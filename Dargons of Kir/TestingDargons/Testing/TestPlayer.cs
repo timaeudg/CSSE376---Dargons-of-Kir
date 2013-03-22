@@ -33,7 +33,51 @@ namespace TestingDargons
             Player player = new Player(game);
             player.drawTile();
         }
-      
+
+        [Test]
+        public void playerCanRemoveTile()
+        {
+            Player player = new Player(game);
+            player.takeTileFromHand(0);
+            bool removed = false;
+            Tile[] hand = player.getHand();
+            for (int k = 0; k < 4; k++)
+            {
+                if (hand[k] == null)
+                {
+                    removed = true;
+                }
+            }
+            Assert.True(removed);
+
+
+        }
+
+        [Test]
+        public void playerCanRemoveThenRedrawHand()
+        {
+            Player player = new Player(game);
+            for (int k = 0; k < 4; k++)
+            {
+                player.takeTileFromHand(k);
+                player.drawTile();
+            }
+            for (int k = 0; k < 4; k++)
+            {
+                Assert.NotNull(player.getHand()[k]);
+            }
+            Assert.AreEqual(48, game.getTilePile().Count);
+        }
+
+        [Test]
+        public void twoPlayersInOneGame()
+        {
+            GameInfo twoGame = new GameInfo();
+            Player player1 = new Player(twoGame);
+            Player player2 = new Player(twoGame);
+
+            Assert.AreEqual(48, twoGame.getTilePile().Count);
+        }
 
     }
 }
