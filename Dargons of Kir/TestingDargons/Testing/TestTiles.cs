@@ -92,5 +92,12 @@ namespace TestingDargons.Testing
             DragonBreathTile tile = new DragonBreathTile();
             Assert.NotNull(tile);
         }
+        [Test]
+        public void TestInitWarTent()
+        {
+            Player player = new Player();
+            WarTentTile tile = new WarTentTile();
+            Assert.NotNull(tile);
+        }
     }
 }
