@@ -1,6 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 using Dargons_of_Kir;
+using Dargons_of_Kir.Tiles;
 
 namespace TestingDargons.Testing
 {
@@ -10,31 +11,31 @@ namespace TestingDargons.Testing
         [Test]
         public void TestInitSingleRiver()
         {
-            MonkTile tile = new SingleRiverTile();
+            SingleRiverTile tile = new SingleRiverTile();
             Assert.NotNull(tile);
         }
         [Test]
         public void TestInitTwoRivers()
         {
-            MonkTile tile = new TwoRiversTile();
+            TwoRiversTile tile = new TwoRiversTile();
             Assert.NotNull(tile);
         }
         [Test]
         public void TestInitThreeRivers()
         {
-            MonkTile tile = new ThreeRiversTile();
+            ThreeRiversTile tile = new ThreeRiversTile();
             Assert.NotNull(tile);
         }
         [Test]
         public void TestInitSamurai()
         {
-            MonkTile tile = new SamuraiTile();
+            SamuraiTile tile = new SamuraiTile();
             Assert.NotNull(tile);
         }
         [Test]
         public void TestInitRonin()
         {
-            MonkTile tile = new RoninTile();
+            RoninTile tile = new RoninTile();
             Assert.NotNull(tile);
         }
         [Test]
@@ -46,49 +47,49 @@ namespace TestingDargons.Testing
         [Test]
         public void TestInitWatchfire()
         {
-            MonkTile tile = new WatchfireTile();
+            WatchfireTile tile = new WatchfireTile();
             Assert.NotNull(tile);
         }
         [Test]
         public void TestInitWildfire()
         {
-            MonkTile tile = new MonkTile();
+            WildfireTile tile = new WildfireTile();
             Assert.NotNull(tile);
         }
         [Test]
         public void TestInitLotusFlower()
         {
-            MonkTile tile = new LotusFlowerTile();
+            LotusFlowerTile tile = new LotusFlowerTile();
             Assert.NotNull(tile);
         }
         [Test]
         public void TestInitLotusPond()
         {
-            MonkTile tile = new LotusPondTile();
+            LotusPondTile tile = new LotusPondTile();
             Assert.NotNull(tile);
         }
         [Test]
         public void TestInitWind()
         {
-            MonkTile tile = new WindTile();
+            WindTile tile = new WindTile();
             Assert.NotNull(tile);
         }
         [Test]
         public void TestInitStorm()
         {
-            MonkTile tile = new StormTile();
+            StormTile tile = new StormTile();
             Assert.NotNull(tile);
         }
         [Test]
         public void TestInitDragonsLair()
         {
-            MonkTile tile = new DragonsLairTile();
+            DragonsLairTile tile = new DragonsLairTile();
             Assert.NotNull(tile);
         }
         [Test]
         public void TestInitDragonBreath()
         {
-            MonkTile tile = new DragonBreathTile();
+            DragonBreathTile tile = new DragonBreathTile();
             Assert.NotNull(tile);
         }
     }
