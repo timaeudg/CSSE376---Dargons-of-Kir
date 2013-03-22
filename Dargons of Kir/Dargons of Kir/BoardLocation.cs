@@ -27,7 +27,7 @@ namespace Dargons_of_Kir
             return this.tile;
         }
 
-        public Tile setTile(Tile toSet)
+        public void setTile(Tile toSet)
         {
             this.tile = toSet;
         }

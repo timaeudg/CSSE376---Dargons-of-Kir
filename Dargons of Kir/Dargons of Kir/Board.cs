@@ -15,7 +15,13 @@ namespace Dargons_of_Kir
         public Board()
         {
             board = new BoardLocation[8, 8];
-
+            for (int i = 0; i < 8; i++)
+            {
+                for (int k = 0; k < 8; k++)
+                {
+                    board[i, k] = new BoardLocation();
+                }
+            }
         }
 
         public BoardLocation[,] getBoard()
