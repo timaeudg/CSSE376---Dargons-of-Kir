@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Dargons_of_Kir;
+using Dargons_of_Kir.Tiles;
+
 namespace TestingDargons.Testing
 {
     [TestFixture]

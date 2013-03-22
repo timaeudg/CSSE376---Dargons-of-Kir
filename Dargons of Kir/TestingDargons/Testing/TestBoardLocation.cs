@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using Dargons_of_Kir.Tiles;
 using Dargons_of_Kir;
 
 namespace TestingDargons
