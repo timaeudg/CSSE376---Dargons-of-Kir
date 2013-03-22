@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Dargons_of_Kir;
 using Dargons_of_Kir.Tiles;
+using System.Drawing;
 
 namespace TestingDargons.Testing
 {
@@ -19,6 +20,7 @@ namespace TestingDargons.Testing
         public void TestInitSingleRiver()
         {
             SingleRiverTile tile = new SingleRiverTile();
+            Assert.NotNull(tile.getPicture());
             Assert.NotNull(tile);
         }
         [Test]

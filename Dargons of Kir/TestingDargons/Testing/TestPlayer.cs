@@ -65,6 +65,7 @@ namespace TestingDargons
             for (int k = 0; k < 4; k++)
             {
                 Assert.NotNull(player.getHand()[k]);
+                Assert.NotNull(player.getHand()[k].getPicture());
             }
             Assert.AreEqual(48, game.getTilePile().Count);
         }
