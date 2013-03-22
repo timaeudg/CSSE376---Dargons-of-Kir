@@ -16,6 +16,10 @@ namespace Dargons_of_Kir
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            GameInfo game = new GameInfo();
+            Player playerOne = new Player(game);
+            Player playerTwo = new Player(game);
+            GameScreen windowToRun = new GameScreen(game);
             Application.Run(new GameScreen());
         }
     }
