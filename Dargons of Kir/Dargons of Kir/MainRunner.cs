@@ -19,6 +19,10 @@ namespace Dargons_of_Kir
             GameInfo game = new GameInfo();
             Player playerOne = new Player(game);
             Player playerTwo = new Player(game);
+            List<Player> playerList = new List<Player>();
+            playerList.Add(playerOne);
+            playerList.Add(playerTwo);
+            game.setPlayerList(playerList);
             GameScreen windowToRun = new GameScreen(game);
             Application.Run(new GameScreen());
         }

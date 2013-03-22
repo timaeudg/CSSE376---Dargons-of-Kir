@@ -16,7 +16,8 @@ namespace Dargons_of_Kir
         private List<Tile> pileOfTiles;
         private Board tileBoard;
         private LinkedList<Dragon> dragons;
-
+        private List<Player> players;
+        private Player currentPlayerTurn;
 
         public GameInfo()
         {
@@ -24,7 +25,8 @@ namespace Dargons_of_Kir
             this.tileBoard = new Board();
             this.dragons = new LinkedList<Dragon>();
             this.makePile();
-
+            this.players = new List<Player>();
+            this.currentPlayerTurn = null;
         }
 
         public List<Tile> getTilePile()
@@ -56,6 +58,26 @@ namespace Dargons_of_Kir
                 counter++;
             }
            return types;
+        }
+
+        public void setPlayerList(List<Player> plyrs)
+        {
+            this.players = plyrs;
+        }
+
+        public Player getNextPlayer()
+        {
+            Player toReturn;
+            
+            if(this.currentPlayerTurn == null){
+                toReturn = this.players[0];
+            }
+            else{
+                toReturn = this.players[this.players.IndexOf(this.currentPlayerTurn)];
+            }
+
+
+            return toReturn;
         }
 
     }
