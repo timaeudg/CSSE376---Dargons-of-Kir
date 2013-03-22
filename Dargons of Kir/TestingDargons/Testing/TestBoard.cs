@@ -27,8 +27,16 @@ namespace TestingDargons.Testing
         }
 
         [Test]
-        public void testPlaceTile(){
+        public void testPlaceTile()
+        {
             Board b = new Board();
+            MonkTile monk = new MonkTile();
+            Board.location loc = new Board.location();
+            loc.x = 4;
+            loc.y = 2;
+            b.addPiece(monk, Board.orientation.UP, loc);
+            Assert.NotNull(b.getTileAt(4, 2));
+        }
 
 
 

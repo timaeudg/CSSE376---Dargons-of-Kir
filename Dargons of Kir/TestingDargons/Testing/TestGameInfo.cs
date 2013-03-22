@@ -51,7 +51,7 @@ namespace TestingDargons
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    Assert.Null(board.getBoard()[k,i]);
+                    Assert.Null(board.getBoard()[k,i].getTile());
                 }
             }
         }
