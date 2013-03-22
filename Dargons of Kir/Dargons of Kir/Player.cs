@@ -14,10 +14,10 @@ namespace Dargons_of_Kir
         public Player(GameInfo game)
         {
             this.gameInfo = game;
-            this.drawTile();
-            this.drawTile();
-            this.drawTile();
-            this.drawTile();
+            for (int i = 0; i < 4; i++)
+            {
+                this.drawTile();
+            }
         }
 
         public void drawTile()
@@ -38,6 +38,18 @@ namespace Dargons_of_Kir
                 }
             }
 
+        }
+
+        public Tile takeTileFromHand(int index)
+        {
+            Tile toReturn = tiles[index];
+            tiles[index] = null;
+            return toReturn;
+        }
+
+        public Tile[] getHand()
+        {
+            return this.tiles;
         }
 
     }

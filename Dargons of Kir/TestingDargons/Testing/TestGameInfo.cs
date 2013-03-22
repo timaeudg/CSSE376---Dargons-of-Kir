@@ -70,10 +70,8 @@ namespace TestingDargons
         [Test]
         public void testMakePile()
         {
-            GameInfo game = new GameInfo();
-            List<Type> classes = game.makePile();
-            Type ty = classes.ElementAt(0);            
-            Assert.True(ty.Name == "MonkTile");
+            GameInfo game = new GameInfo();       
+            Assert.NotNull(game.getTilePile());
             
         }
 
@@ -88,9 +86,8 @@ namespace TestingDargons
             foreach (Tile t in pile)
             {
                 Assert.NotNull(t);
-                Assert.True(t.getID() == ID);
-                ID++;
             }
+            Assert.True(56 == pile.Count);
         }
 
     }
