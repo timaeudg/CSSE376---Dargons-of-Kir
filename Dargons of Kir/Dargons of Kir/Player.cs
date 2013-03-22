@@ -31,7 +31,7 @@ namespace Dargons_of_Kir
             {
                 if (tiles[i] == null)
                 {
-                    Tile toRemove = pile[generator.Next(0, pile.Count)];
+                    Tile toRemove = pile[generator.Next(0, pile.Count-1)];
                     pile.Remove(toRemove);
                     tiles[i] = toRemove;
                     break;
