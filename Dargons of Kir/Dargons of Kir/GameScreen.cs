@@ -16,7 +16,7 @@ namespace Dargons_of_Kir
         private Image selected;
         private PictureBox[,] boardPictures = new PictureBox[8,8];
         private PictureBox[] handPictures = new PictureBox[4];
-        private GameInfo game {set;}
+        private GameInfo game;
 
         public GameScreen(GameInfo newGame):this()
         {
@@ -73,14 +73,10 @@ namespace Dargons_of_Kir
             selected = ((PictureBox)sender).Image;
         }
 
-        private void cell_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-           ((PictureBox) sender).Image = selected;
-        }
-
         private void setPicture(object sender, MouseEventArgs e)
         {
-            ((PictureBox)sender).Image = selected;
+            if (selected != null) { ((PictureBox)sender).Image = selected; }
+            selected = null;
         }
 
         private void rotatePicture(object sender, MouseEventArgs e)

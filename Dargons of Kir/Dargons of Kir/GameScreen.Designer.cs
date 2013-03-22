@@ -61,7 +61,7 @@
             this.GameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.GameGrid.Size = new System.Drawing.Size(800, 800);
             this.GameGrid.TabIndex = 0;
-            this.GameGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.cell_MouseDoubleClick);
+            this.GameGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.setPicture);
             // 
             // PlayerHand
             // 
