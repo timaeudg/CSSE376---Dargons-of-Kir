@@ -31,15 +31,15 @@ namespace Dargons_of_Kir
 
         public Tile getTileAt(int x, int y)
         {
-            return this.board[x,y].getTile();
+            return this.board[x,y].tile;
         }
 
         public bool addPiece(Tile tile)
         {
             
-            if (board[tile.location.x, tile.location.y].getTile() == null)
+            if (board[tile.location.x, tile.location.y].tile == null)
             {
-                board[tile.location.x, tile.location.y].setTile(tile);
+                board[tile.location.x, tile.location.y].tile = tile;
             }
             else
             {

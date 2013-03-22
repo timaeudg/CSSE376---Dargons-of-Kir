@@ -33,8 +33,20 @@ namespace TestingDargons.Testing
             MonkTile monk = new MonkTile();
             monk.location.x = 4;
             monk.location.y = 2;
-            b.addPiece(monk);
+            Assert.IsTrue(b.addPiece(monk));
             Assert.NotNull(b.getTileAt(4, 2));
+        }
+
+        [Test]
+        public void testPlaceTileFailure()
+        {
+            Board b = new Board();
+            MonkTile monk = new MonkTile();
+            monk.location.x = 4;
+            monk.location.y = 5;
+            Assert.IsTrue(b.addPiece(monk));
+            Assert.NotNull(b.getTileAt(4, 5));
+            Assert.IsFalse(b.addPiece(monk));
         }
 
 
