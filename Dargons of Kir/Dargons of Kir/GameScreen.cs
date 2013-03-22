@@ -41,6 +41,8 @@ namespace Dargons_of_Kir
                     boardPictures[i, j].SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
                     boardPictures[i, j].TabIndex = 0;
                     boardPictures[i, j].TabStop = false;
+                    boardPictures[i, j].MouseClick += new MouseEventHandler(setPicture);
+                    boardPictures[i, j].MouseDoubleClick += new MouseEventHandler(rotatePicture);
                     this.GameGrid.Controls.Add(boardPictures[i,j], i, j);
                     ((System.ComponentModel.ISupportInitialize)(boardPictures[i, j])).EndInit();
 
@@ -52,13 +54,14 @@ namespace Dargons_of_Kir
                 handPictures[i] = new PictureBox();
                 ((System.ComponentModel.ISupportInitialize)(handPictures[i])).BeginInit();
                 handPictures[i].Dock = System.Windows.Forms.DockStyle.Fill;
-                handPictures[i].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
+                handPictures[i].Image = Image.FromFile("..\\..\\..\\..\\images\\monk.JPG");
                 handPictures[i].Location = new System.Drawing.Point(1, 1 * (i + 1) + 200 * i);
                 handPictures[i].Name = "cell" + i.ToString();
                 handPictures[i].Size = new System.Drawing.Size(200, 200);
                 handPictures[i].SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
                 handPictures[i].TabIndex = 0;
                 handPictures[i].TabStop = false;
+                handPictures[i].MouseClick += new MouseEventHandler(hand_tile_click);
                 this.PlayerHand.Controls.Add(handPictures[i]);
                 ((System.ComponentModel.ISupportInitialize)(handPictures[i])).EndInit();
             }
