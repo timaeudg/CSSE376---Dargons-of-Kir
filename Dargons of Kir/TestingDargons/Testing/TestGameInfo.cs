@@ -90,6 +90,36 @@ namespace TestingDargons
             Assert.True(56 == pile.Count);
         }
 
+        [Test]
+        public void testGetNextPlayer()
+        {
+            GameInfo game = new GameInfo();
+            Player p1 = new Player(game);
+            Player p2 = new Player(game);
+            Player p3 = new Player(game);
+
+            List<Player> pList = new List<Player>();
+            pList.Add(p1);
+            pList.Add(p2);
+            pList.Add(p3);
+
+            game.setPlayerList(pList);
+            Player pTest;
+            for (int k = 0; k < 100; k++)
+            {
+                pTest = game.getNextPlayer();
+                Assert.AreEqual(p1, pTest);
+
+                pTest = game.getNextPlayer();
+                Assert.AreEqual(p2, pTest);
+
+                pTest = game.getNextPlayer();
+                Assert.AreEqual(p3, pTest);
+            }
+
+        }
+
+
     }
     
 }

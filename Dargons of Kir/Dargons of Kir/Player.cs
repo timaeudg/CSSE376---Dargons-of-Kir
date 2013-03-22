@@ -11,6 +11,10 @@ namespace Dargons_of_Kir
     {
         private Tile[] tiles = new Tile[4];
         private GameInfo gameInfo;
+        public int PlayerID;
+        private static int IDSEED=0;
+
+
         public Player(GameInfo game)
         {
             this.gameInfo = game;
@@ -18,6 +22,13 @@ namespace Dargons_of_Kir
             {
                 this.drawTile();
             }
+            this.PlayerID = IDSEED;
+            IDSEED++;
+        }
+
+        public bool Equals(Player ply)
+        {
+            return ply.PlayerID == this.PlayerID;
         }
 
         public void drawTile()

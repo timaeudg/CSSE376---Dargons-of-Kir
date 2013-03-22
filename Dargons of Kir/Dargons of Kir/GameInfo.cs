@@ -71,9 +71,11 @@ namespace Dargons_of_Kir
             
             if(this.currentPlayerTurn == null){
                 toReturn = this.players[0];
+                this.currentPlayerTurn = this.players[0];
             }
             else{
-                toReturn = this.players[this.players.IndexOf(this.currentPlayerTurn)];
+                toReturn = this.players[(this.players.IndexOf(this.currentPlayerTurn)+1)%(this.players.Count)];
+                this.currentPlayerTurn = toReturn;
             }
 
 
