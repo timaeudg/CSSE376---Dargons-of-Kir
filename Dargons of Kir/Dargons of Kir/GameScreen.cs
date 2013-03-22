@@ -13,15 +13,20 @@ namespace Dargons_of_Kir
     public partial class GameScreen : Form
     {
 
-        private Image selected;
         private PictureBox[,] boardPictures = new PictureBox[8,8];
         private PictureBox[] handPictures = new PictureBox[4];
         private GameInfo game;
+        private Tile selected;
+        private int selectedIndex;
+        private Player currentPlayer;
+        private bool placed = false;
+        private Image checkMark = Image.FromFile("..\\..\\..\\..\\images\\checkMark.png");
 
         public GameScreen(GameInfo newGame):this()
         {
             this.game = newGame;
-
+            currentPlayer = game.getNextPlayer();
+            for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.getHand()[i].getPicture();
         }
 
         public GameScreen()
@@ -45,7 +50,6 @@ namespace Dargons_of_Kir
                     boardPictures[i, j].MouseDoubleClick += new MouseEventHandler(rotatePicture);
                     this.GameGrid.Controls.Add(boardPictures[i,j], i, j);
                     ((System.ComponentModel.ISupportInitialize)(boardPictures[i, j])).EndInit();
-
                 }
             }
 
@@ -70,13 +74,43 @@ namespace Dargons_of_Kir
 
         private void hand_tile_click(object sender, EventArgs e)
         {
-            selected = ((PictureBox)sender).Image;
+            if (((PictureBox)sender).Image == checkMark) 
+            {
+                ((PictureBox)sender).Image = selected.getPicture();
+                selected = null;
+                return;
+            }
+            if (selected != null) return;
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (((PictureBox)sender).Image == handPictures[i].Image)
+                {
+                    selected = currentPlayer.getHand()[i];
+                    selectedIndex = i;
+                }
+            }
+            ((PictureBox)sender).Image = checkMark;
+            placed = false;
         }
 
         private void setPicture(object sender, MouseEventArgs e)
         {
-            if (selected != null) { ((PictureBox)sender).Image = selected; }
-            selected = null;
+
+            if (!placed)
+            {
+                if (selected == null) return;
+                ((PictureBox)sender).Image = selected.getPicture();
+                placed = !placed;
+            }
+            else
+            {
+                if (((PictureBox)sender).Image == selected.getPicture())
+                {
+                    ((PictureBox)sender).Image = Image.FromFile("..\\..\\..\\..\\images\\back.jpg");
+                    placed = !placed;
+                }
+            }
         }
 
         private void rotatePicture(object sender, MouseEventArgs e)

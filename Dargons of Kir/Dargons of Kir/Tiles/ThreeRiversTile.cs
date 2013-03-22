@@ -17,11 +17,6 @@ namespace Dargons_of_Kir
             this.Priority = 0;
         }
 
-        public ThreeRiversTile(int id)
-        {
-            this.ID = id;
-        }
-
         override public bool callback()
         {
             return true;

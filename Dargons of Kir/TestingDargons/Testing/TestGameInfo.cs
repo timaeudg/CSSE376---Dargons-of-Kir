@@ -91,6 +91,14 @@ namespace TestingDargons
         }
 
         [Test]
+        public void uniqueTileIDs()
+        {
+            GameInfo game = new GameInfo();
+            List<Tile> pile = game.getTilePile();
+            Assert.That(pile, Is.Unique);
+        }
+
+        [Test]
         public void testGetNextPlayer()
         {
             GameInfo game = new GameInfo();

@@ -9,6 +9,13 @@ namespace TestingDargons.Testing
     public class TestTiles
     {
         [Test]
+        public void testIDs()
+        {
+            SingleRiverTile tile = new SingleRiverTile();
+            SingleRiverTile tile2 = new SingleRiverTile();
+            Assert.AreEqual(tile.getID(), tile2.getID() - 1);
+        }
+        [Test]
         public void TestInitSingleRiver()
         {
             SingleRiverTile tile = new SingleRiverTile();

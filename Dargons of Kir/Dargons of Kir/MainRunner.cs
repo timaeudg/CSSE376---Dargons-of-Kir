@@ -24,7 +24,7 @@ namespace Dargons_of_Kir
             playerList.Add(playerTwo);
             game.setPlayerList(playerList);
             GameScreen windowToRun = new GameScreen(game);
-            Application.Run(new GameScreen());
+            Application.Run(windowToRun);
         }
     }
 }
