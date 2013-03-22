@@ -18,6 +18,7 @@ namespace Dargons_of_Kir
         public Tile()
         {
             ID = Tile.genID();
+            orientation = Board.orientation.UP;
         }
 
         public Tile(System.Drawing.Image pic):this()

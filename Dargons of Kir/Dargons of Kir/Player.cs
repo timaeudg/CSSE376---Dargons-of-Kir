@@ -55,6 +55,7 @@ namespace Dargons_of_Kir
         {
             Tile toReturn = tiles[index];
             tiles[index] = null;
+            drawTile();
             return toReturn;
         }
 

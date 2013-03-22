@@ -34,12 +34,12 @@ namespace Dargons_of_Kir
             return this.board[x,y].getTile();
         }
 
-        public bool addPiece(Tile tile, orientation orientation, location loc)
+        public bool addPiece(Tile tile)
         {
-            tile.setOrientation(orientation);
-            if (board[loc.x, loc.y].getTile() == null)
+            
+            if (board[tile.location.x, tile.location.y].getTile() == null)
             {
-                board[loc.x, loc.y].setTile(tile);
+                board[tile.location.x, tile.location.y].setTile(tile);
             }
             else
             {
