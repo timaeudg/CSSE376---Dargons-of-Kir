@@ -51,7 +51,7 @@ namespace TestingDargons
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    Assert.Null(board.getBoard()[k,i]);
+                    Assert.Null(board.getBoard()[k,i].getTile());
                 }
             }
         }
@@ -65,14 +65,31 @@ namespace TestingDargons
             }
         }
 
+       
+
         [Test]
-        public void testGameInfoPileNullAtStart()
+        public void testMakePile()
+        {
+            GameInfo game = new GameInfo();
+            List<Type> classes = game.makePile();
+            Type ty = classes.ElementAt(0);            
+            Assert.True(ty.Name == "MonkTile");
+            
+        }
+
+        [Test]
+        public void testMakePileStarting()
         {
             GameInfo game = new GameInfo();
             List<Tile> pile = game.getTilePile();
+
+            int ID = 0;
+
             foreach (Tile t in pile)
             {
-                Assert.Null(t);
+                Assert.NotNull(t);
+                Assert.True(t.getID() == ID);
+                ID++;
             }
         }
 

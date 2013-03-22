@@ -26,7 +26,17 @@ namespace Dargons_of_Kir
             // this will be fixed when devon tells me what frack is storing our tiles.
 
             List<Tile> pile = this.gameInfo.getTilePile();
-
+            Random generator = new Random();
+            for (int i = 0; i < 4; i++)
+            {
+                if (tiles[i] == null)
+                {
+                    Tile toRemove = pile[generator.Next(0, pile.Count-1)];
+                    pile.Remove(toRemove);
+                    tiles[i] = toRemove;
+                    break;
+                }
+            }
 
         }
 
