@@ -61,10 +61,7 @@
             this.GameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
             this.GameGrid.Size = new System.Drawing.Size(800, 800);
             this.GameGrid.TabIndex = 0;
-            this.GameGrid.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragOver);
-            this.GameGrid.DragEnter += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragOver);
-            this.GameGrid.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
-            this.GameGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.tableLayoutPanel1_MouseDoubleClick);
+            this.GameGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.cell_MouseDoubleClick);
             // 
             // PlayerHand
             // 
@@ -74,8 +71,8 @@
             this.PlayerHand.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.PlayerHand.ForeColor = System.Drawing.Color.OrangeRed;
             this.PlayerHand.Location = new System.Drawing.Point(818, 12);
-            this.PlayerHand.MaximumSize = new System.Drawing.Size(200, 800);
-            this.PlayerHand.MinimumSize = new System.Drawing.Size(200, 800);
+            this.PlayerHand.MaximumSize = new System.Drawing.Size(200, 812);
+            this.PlayerHand.MinimumSize = new System.Drawing.Size(200, 812);
             this.PlayerHand.Name = "PlayerHand";
             this.PlayerHand.RowCount = 8;
             this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
@@ -87,9 +84,8 @@
             this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
             this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.PlayerHand.Size = new System.Drawing.Size(200, 800);
+            this.PlayerHand.Size = new System.Drawing.Size(200, 812);
             this.PlayerHand.TabIndex = 0;
-            this.PlayerHand.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel2_Paint);
             // 
             // GameScreen
             // 
@@ -101,7 +97,6 @@
             this.Controls.Add(this.GameGrid);
             this.Name = "GameScreen";
             this.Text = "Dargons of Kir";
-            this.DragDrop += new System.Windows.Forms.DragEventHandler(this.pictureBox1_DragOver);
             this.ResumeLayout(false);
 
         }
