@@ -17,10 +17,16 @@ namespace Dargons_of_Kir
             this.Priority = 0;
         }
 
+        public MonkTile(int id)
+        {
+            this.ID = id;
+        }
+
         override public bool callback()
         {
             return true;
         }
+
         
       
     }

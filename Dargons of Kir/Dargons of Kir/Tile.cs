@@ -12,10 +12,17 @@ namespace Dargons_of_Kir
         protected Board.orientation orientation;
         protected Board.location location;
         protected int Priority;
+        protected int ID;
 
         public Tile()
         {
         }
+
+        public Tile(int id)
+        {
+            this.ID = id;
+        }
+
 
         public Tile(System.Drawing.Image pic)
         {
@@ -30,6 +37,11 @@ namespace Dargons_of_Kir
         public abstract bool callback();
 
         public void place(Board.location location, Board.orientation orientation) { return; }
+
+        public int getID()
+        {
+            return this.ID;
+        }
 
     }
 }

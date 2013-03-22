@@ -8,10 +8,10 @@ namespace Dargons_of_Kir
     public class Dragon
     {
         private int dragondID;
-        private BoardLocation currentPosition;
+        private Board.location currentPosition;
         private Board.orientation orientation;
         private int previousEffectTileId;
-        public Dragon(int id, BoardLocation startingLocation, Board.orientation rotation)
+        public Dragon(int id, Board.location startingLocation, Board.orientation rotation)
         {
             this.dragondID = id;
             this.currentPosition = startingLocation;
@@ -24,6 +24,25 @@ namespace Dargons_of_Kir
             return this.dragondID;
         }
 
+        public Board.orientation getOrientation()
+        {
+            return this.orientation;
+        }
 
+
+        public void setPreviousTile(int id)
+        {
+            this.previousEffectTileId = id ;
+        }
+
+        public int getPreviousTile()
+        {
+            return this.previousEffectTileId;
+        }
+
+        public Board.location getCurrentPosition()
+        {
+            return this.currentPosition;
+        }
     }
 }
