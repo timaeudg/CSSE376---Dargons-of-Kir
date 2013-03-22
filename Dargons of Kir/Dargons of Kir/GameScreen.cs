@@ -16,7 +16,14 @@ namespace Dargons_of_Kir
         private Image selected;
         private PictureBox[,] boardPictures = new PictureBox[8,8];
         private PictureBox[] handPictures = new PictureBox[4];
-        
+        private GameInfo game;
+
+        public GameScreen(GameInfo newGame):this()
+        {
+            this.game = newGame;
+
+        }
+
         public GameScreen()
         {
             InitializeComponent();
@@ -27,76 +34,49 @@ namespace Dargons_of_Kir
                     boardPictures[i, j] = new PictureBox();
                     ((System.ComponentModel.ISupportInitialize)(boardPictures[i,j])).BeginInit();
                     boardPictures[i, j].Dock = System.Windows.Forms.DockStyle.Fill;
-                    boardPictures[i, j].Image = Image.FromFile("..\\..\\..\\..\\images\\monk.JPG");
-                    boardPictures[i, j].Location = new System.Drawing.Point(3 + 200 * i, 3 + 200 * j);
+                    boardPictures[i, j].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
+                    boardPictures[i, j].Location = new System.Drawing.Point(3*(i+1) + 100 * i, 3*(j+1) + 100 * j);
                     boardPictures[i, j].Name = "cell" + i.ToString() + j.ToString();
-                    boardPictures[i, j].Size = new System.Drawing.Size(200, 200);
+                    boardPictures[i, j].Size = new System.Drawing.Size(100, 100);
                     boardPictures[i, j].SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
                     boardPictures[i, j].TabIndex = 0;
                     boardPictures[i, j].TabStop = false;
+                    boardPictures[i, j].MouseClick += new MouseEventHandler(setPicture);
+                    boardPictures[i, j].MouseDoubleClick += new MouseEventHandler(rotatePicture);
                     this.GameGrid.Controls.Add(boardPictures[i,j], i, j);
                     ((System.ComponentModel.ISupportInitialize)(boardPictures[i, j])).EndInit();
 
                 }
             }
 
+            for (int i = 0; i < handPictures.Length; i++)
+            {
+                handPictures[i] = new PictureBox();
+                ((System.ComponentModel.ISupportInitialize)(handPictures[i])).BeginInit();
+                handPictures[i].Dock = System.Windows.Forms.DockStyle.Fill;
+                handPictures[i].Image = Image.FromFile("..\\..\\..\\..\\images\\monk.JPG");
+                handPictures[i].Location = new System.Drawing.Point(1, 1 * (i + 1) + 200 * i);
+                handPictures[i].Name = "cell" + i.ToString();
+                handPictures[i].Size = new System.Drawing.Size(200, 200);
+                handPictures[i].SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+                handPictures[i].TabIndex = 0;
+                handPictures[i].TabStop = false;
+                handPictures[i].MouseClick += new MouseEventHandler(hand_tile_click);
+                this.PlayerHand.Controls.Add(handPictures[i]);
+                ((System.ComponentModel.ISupportInitialize)(handPictures[i])).EndInit();
+            }
+
         }
 
-
-
-        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void tableLayoutPanel2_Paint(object sender, PaintEventArgs e)
-        {
-            
-        }
-
-        private void pictureBox1_DragLeave(object sender, EventArgs e)
-        {
-            Console.Write("Herp teh Derp\n");
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void hand_tile_click(object sender, EventArgs e)
         {
             selected = ((PictureBox)sender).Image;
         }
 
-        private void pictureBox1_DragOver(object sender, DragEventArgs e)
-        {
-            if(e.Data.GetDataPresent(DataFormats.FileDrop)) {
-                 e.Effect = DragDropEffects.Copy;
-        }
-        }
-
-        private void pictureBox1_MouseDown(object sender, MouseEventArgs e)
-        {
-           
-        }
-
-        private void pictureBox5_DragDrop(object sender, DragEventArgs e)
-        {
-            Panel dest = (Panel)sender;
-            Console.Write("Dropped");
-            dest.BackColor =((Panel) e.Data.GetData(typeof(Panel))).BackColor;
-        }
-
-        private void panel1_MouseClick(object sender, MouseEventArgs e)
-        {
-            Console.Write("STring");
-
-        }
-
-        private void tableLayoutPanel1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-           ((PictureBox) sender).Image = selected;
-        }
-
         private void setPicture(object sender, MouseEventArgs e)
         {
-            ((PictureBox)sender).Image = selected;
+            if (selected != null) { ((PictureBox)sender).Image = selected; }
+            selected = null;
         }
 
         private void rotatePicture(object sender, MouseEventArgs e)
@@ -106,9 +86,12 @@ namespace Dargons_of_Kir
             ((PictureBox)sender).Image = temp;
         }
 
-        private void pictureBox9_Click(object sender, EventArgs e)
+        private void load_hand(Tile[] tiles)
         {
-
+            for (int i = 0; i < 4; i++)
+            {
+                handPictures[i].Image = tiles[i].getPicture();
+            }
         }
 
     }
