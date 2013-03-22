@@ -27,9 +27,10 @@ namespace TestingDargons.Testing
         }
 
         [Test]
-        public void testPlaceTile(){
+        public void testPlaceTile()
+        {
             Board b = new Board();
-
+        }
 
 
     }
