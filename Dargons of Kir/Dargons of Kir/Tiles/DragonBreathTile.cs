@@ -10,7 +10,7 @@ namespace Dargons_of_Kir.Tiles
     public class DragonBreathTile: Tile
     {
         private static Image getPic(){
-             return Image.FromFile("..\\..\\..\\..\\images\\.JPG");
+             return Image.FromFile("..\\..\\..\\..\\images\\dragonbreath.JPG");
         }
         public DragonBreathTile() : base(getPic())
         {
