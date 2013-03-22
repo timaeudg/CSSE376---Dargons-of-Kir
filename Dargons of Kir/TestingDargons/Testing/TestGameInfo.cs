@@ -86,6 +86,7 @@ namespace TestingDargons
             foreach (Tile t in pile)
             {
                 Assert.NotNull(t);
+                Assert.NotNull(t.getPicture());
             }
             Assert.True(56 == pile.Count);
         }

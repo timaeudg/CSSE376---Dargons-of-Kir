@@ -14,7 +14,8 @@ namespace Dargons_of_Kir.Tiles
         }
         public DragonBreathTile() : base(getPic())
         {
-            this.Priority = 0;
+            this.Priority = 5;
+            this.TilePicture = Image.FromFile("..\\..\\..\\..\\images\\dragonbreath.JPG");
         }
 
         public DragonBreathTile(int id)
