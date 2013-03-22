@@ -16,7 +16,7 @@ namespace Dargons_of_Kir
         private Image selected;
         private PictureBox[,] boardPictures = new PictureBox[8,8];
         private PictureBox[] handPictures = new PictureBox[4];
-        private GameInfo game;
+        private GameInfo game {set;}
 
         public GameScreen(GameInfo newGame):this()
         {
@@ -88,6 +88,14 @@ namespace Dargons_of_Kir
             Image temp = ((PictureBox)sender).Image;
             temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
             ((PictureBox)sender).Image = temp;
+        }
+
+        private void load_hand(Tile[] tiles)
+        {
+            for (int i = 0; i < 4; i++)
+            {
+                handPictures[i].Image = tiles[i].getPicture();
+            }
         }
 
     }
