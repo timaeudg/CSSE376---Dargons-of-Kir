@@ -8,9 +8,9 @@ namespace Dargons_of_Kir
     public class BoardLocation
     {
         private List<Effect> effectList;
-        private Tile tile;
-        private Board.location location;
-
+        public Tile tile { get; set; }
+        public Board.location location { get; private set; }
+        
         public BoardLocation()
         {
             this.effectList = new List<Effect>();
@@ -20,16 +20,6 @@ namespace Dargons_of_Kir
         {
             this.effectList = new List<Effect>();
             this.location = location;
-        }
-
-        public Tile getTile()
-        {
-            return this.tile;
-        }
-
-        public void setTile(Tile toSet)
-        {
-            this.tile = toSet;
         }
 
     }

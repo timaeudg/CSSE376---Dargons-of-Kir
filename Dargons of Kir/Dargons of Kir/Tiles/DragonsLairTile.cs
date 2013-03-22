@@ -17,11 +17,6 @@ namespace Dargons_of_Kir.Tiles
             this.Priority = 0;
         }
 
-        public DragonsLairTile(int id)
-        {
-            this.ID = id;
-        }
-
         override public bool callback()
         {
             return true;

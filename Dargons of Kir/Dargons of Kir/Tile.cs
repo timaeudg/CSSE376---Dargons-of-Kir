@@ -8,23 +8,20 @@ namespace Dargons_of_Kir
 {
     public abstract class Tile
     {
-        protected System.Drawing.Image TilePicture;
-        protected Board.orientation orientation;
-        protected Board.location location;
-        protected int Priority;
+        public System.Drawing.Image TilePicture;
+        public Board.orientation orientation;
+        public Board.location location;
+        public int Priority;
         protected int ID;
+        private static int nextID;
 
         public Tile()
         {
+            ID = Tile.genID();
+            orientation = Board.orientation.UP;
         }
 
-        public Tile(int id)
-        {
-            this.ID = id;
-        }
-
-
-        public Tile(System.Drawing.Image pic)
+        public Tile(System.Drawing.Image pic):this()
         {
             this.TilePicture = pic;
         }
@@ -46,6 +43,13 @@ namespace Dargons_of_Kir
         public void setOrientation(Board.orientation rot)
         {
             this.orientation = rot;
+        }
+
+        protected static int genID()
+        {
+            int ret = Tile.nextID;
+            Tile.nextID = Tile.nextID + 1;
+            return ret;
         }
 
     }

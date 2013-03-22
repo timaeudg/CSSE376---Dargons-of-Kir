@@ -13,15 +13,20 @@ namespace Dargons_of_Kir
     public partial class GameScreen : Form
     {
 
-        private Image selected;
         private PictureBox[,] boardPictures = new PictureBox[8,8];
         private PictureBox[] handPictures = new PictureBox[4];
         private GameInfo game;
+        private Tile selected;
+        private int selectedIndex;
+        private Player currentPlayer;
+        private bool placed = false;
+        private Image checkMark = Image.FromFile("..\\..\\..\\..\\images\\checkMark.png");
 
         public GameScreen(GameInfo newGame):this()
         {
             this.game = newGame;
-
+            currentPlayer = game.getNextPlayer();
+            for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.getHand()[i].getPicture();
         }
 
         public GameScreen()
@@ -42,10 +47,9 @@ namespace Dargons_of_Kir
                     boardPictures[i, j].TabIndex = 0;
                     boardPictures[i, j].TabStop = false;
                     boardPictures[i, j].MouseClick += new MouseEventHandler(setPicture);
-                    boardPictures[i, j].MouseDoubleClick += new MouseEventHandler(rotatePicture);
+                    boardPictures[i, j].MouseDown += new MouseEventHandler(rotatePicture);
                     this.GameGrid.Controls.Add(boardPictures[i,j], i, j);
                     ((System.ComponentModel.ISupportInitialize)(boardPictures[i, j])).EndInit();
-
                 }
             }
 
@@ -70,20 +74,76 @@ namespace Dargons_of_Kir
 
         private void hand_tile_click(object sender, EventArgs e)
         {
-            selected = ((PictureBox)sender).Image;
+            if (((PictureBox)sender).Image == checkMark && !placed) 
+            {
+                ((PictureBox)sender).Image = selected.getPicture();
+                selected = null;
+                return;
+            }
+            if (((PictureBox)sender).Image == checkMark && placed)
+            {
+                if(game.getTileBoard().addPiece(selected))
+                {
+                    
+                    placed = false;
+                    selected = null;
+                    ((PictureBox)sender).Image = null;
+                    currentPlayer.takeTileFromHand(selectedIndex);
+                    selectedIndex = 0;
+                    currentPlayer = game.getNextPlayer();
+                    for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.getHand()[i].getPicture();
+                    return;
+                }
+            }
+            if (selected != null) return;
+
+            for (int i = 0; i < 4; i++)
+            {
+                if (((PictureBox)sender).Image == handPictures[i].Image)
+                {
+                    selected = currentPlayer.getHand()[i];
+                    selectedIndex = i;
+                }
+            }
+            ((PictureBox)sender).Image = checkMark;
+            placed = false;
         }
 
         private void setPicture(object sender, MouseEventArgs e)
         {
-            if (selected != null) { ((PictureBox)sender).Image = selected; }
-            selected = null;
+            if (e.Button != System.Windows.Forms.MouseButtons.Left) return;
+            if (!placed)
+            {
+                if (selected == null) return;
+                ((PictureBox)sender).Image = selected.getPicture();
+                selected.location = new Board.location();
+                selected.location.x = GameGrid.GetColumn((PictureBox)sender);
+                selected.location.y = GameGrid.GetRow((PictureBox)sender);
+                placed = !placed;
+               
+            }
+            else
+            {
+                if (GameGrid.GetColumn((PictureBox)sender) == selected.location.x &&
+                GameGrid.GetRow((PictureBox)sender) == selected.location.y)
+                {
+                    ((PictureBox)sender).Image = Image.FromFile("..\\..\\..\\..\\images\\back.jpg");
+                    placed = !placed;
+                }
+            }
         }
 
         private void rotatePicture(object sender, MouseEventArgs e)
         {
-            Image temp = ((PictureBox)sender).Image;
-            temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-            ((PictureBox)sender).Image = temp;
+            if (e.Button != System.Windows.Forms.MouseButtons.Right) return;
+            if (GameGrid.GetColumn((PictureBox)sender) == selected.location.x &&
+                GameGrid.GetRow((PictureBox)sender) == selected.location.y)
+            {
+                Image temp = ((PictureBox)sender).Image;
+                temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                selected.orientation = ((selected.orientation + 1) > Board.orientation.DOWN) ? (selected.orientation - 3) : (selected.orientation + 1);
+                ((PictureBox)sender).Image = temp;
+            }
         }
 
         private void load_hand(Tile[] tiles)

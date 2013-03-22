@@ -38,17 +38,10 @@ namespace TestingDargons
         public void playerCanRemoveTile()
         {
             Player player = new Player(game);
+            Tile[] oldHand = (Tile[])player.getHand().Clone();
             player.takeTileFromHand(0);
-            bool removed = false;
             Tile[] hand = player.getHand();
-            for (int k = 0; k < 4; k++)
-            {
-                if (hand[k] == null)
-                {
-                    removed = true;
-                }
-            }
-            Assert.True(removed);
+            Assert.AreNotEqual(oldHand,hand);
 
 
         }
@@ -65,6 +58,7 @@ namespace TestingDargons
             for (int k = 0; k < 4; k++)
             {
                 Assert.NotNull(player.getHand()[k]);
+                Assert.NotNull(player.getHand()[k].getPicture());
             }
             Assert.AreEqual(48, game.getTilePile().Count);
         }

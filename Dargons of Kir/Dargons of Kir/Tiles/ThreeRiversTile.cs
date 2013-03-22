@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
 
-namespace Dargons_of_Kir
+namespace Dargons_of_Kir.Tiles
 {
     public class ThreeRiversTile: Tile
     {
@@ -15,11 +15,6 @@ namespace Dargons_of_Kir
         public ThreeRiversTile() : base(getPic())
         {
             this.Priority = 0;
-        }
-
-        public ThreeRiversTile(int id)
-        {
-            this.ID = id;
         }
 
         override public bool callback()

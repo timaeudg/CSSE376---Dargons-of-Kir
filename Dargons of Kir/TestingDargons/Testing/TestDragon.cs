@@ -47,7 +47,7 @@ namespace TestingDargons.Testing
         {
             Board.location loc = new Board.location();
             Dragon drag = new Dragon(0,loc, Board.orientation.LEFT);
-            Tile tester = new MonkTile(18);
+            Tile tester = new MonkTile();
             drag.setPreviousTile(tester.getID());
             Assert.True(drag.getPreviousTile() == tester.getID());
 

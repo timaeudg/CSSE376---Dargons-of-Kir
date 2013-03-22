@@ -50,7 +50,13 @@ namespace Dargons_of_Kir
             foreach(Type c in Assembly.GetAssembly(typeof(Tile)).GetTypes().Where(myType=> myType.IsClass && myType.IsSubclassOf(typeof(Tile)))){
                 types.Add(c);
                 for(int k = 0; k<4; k++){
+<<<<<<< HEAD
                     pileOfTiles.Add((Tile)Activator.CreateInstance(c,null));
+=======
+                    Object[] args = null;
+                    Tile newTile = (Tile)Activator.CreateInstance(c, args);
+                    pileOfTiles.Add(newTile);
+>>>>>>> e3124bc0dac13b0f1b90dd61c8b37601efe72773
                     counter++;
                 }
                 counter++;

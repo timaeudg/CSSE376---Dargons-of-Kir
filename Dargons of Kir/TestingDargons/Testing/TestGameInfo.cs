@@ -51,7 +51,7 @@ namespace TestingDargons
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    Assert.Null(board.getBoard()[k,i].getTile());
+                    Assert.Null(board.getBoard()[k,i].tile);
                 }
             }
         }
@@ -86,9 +86,48 @@ namespace TestingDargons
             foreach (Tile t in pile)
             {
                 Assert.NotNull(t);
+                Assert.NotNull(t.getPicture());
             }
             Assert.True(56 == pile.Count);
         }
+
+        [Test]
+        public void uniqueTileIDs()
+        {
+            GameInfo game = new GameInfo();
+            List<Tile> pile = game.getTilePile();
+            Assert.That(pile, Is.Unique);
+        }
+
+        [Test]
+        public void testGetNextPlayer()
+        {
+            GameInfo game = new GameInfo();
+            Player p1 = new Player(game);
+            Player p2 = new Player(game);
+            Player p3 = new Player(game);
+
+            List<Player> pList = new List<Player>();
+            pList.Add(p1);
+            pList.Add(p2);
+            pList.Add(p3);
+
+            game.setPlayerList(pList);
+            Player pTest;
+            for (int k = 0; k < 100; k++)
+            {
+                pTest = game.getNextPlayer();
+                Assert.AreEqual(p1, pTest);
+
+                pTest = game.getNextPlayer();
+                Assert.AreEqual(p2, pTest);
+
+                pTest = game.getNextPlayer();
+                Assert.AreEqual(p3, pTest);
+            }
+
+        }
+
 
     }
     
