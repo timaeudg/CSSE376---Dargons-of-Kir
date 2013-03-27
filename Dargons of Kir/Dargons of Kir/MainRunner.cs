@@ -6,25 +6,56 @@ using System.Windows.Forms;
 
 namespace Dargons_of_Kir
 {
-    static class MainRunner
+    public static class MainRunner
     {
+
+        public static GameInfo game;
+        public static Player p1;
+        public static Player p2;
+        public static GameScreen screen;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            GameInfo game = new GameInfo();
-            Player playerOne = new Player(game);
-            Player playerTwo = new Player(game);
-            List<Player> playerList = new List<Player>();
-            playerList.Add(playerOne);
-            playerList.Add(playerTwo);
-            game.setPlayerList(playerList);
-            GameScreen windowToRun = new GameScreen(game);
-            Application.Run(windowToRun);
+            MainRunner.createGame();
+            MainRunner.createPlayers();
+            MainRunner.addPlayersToGame();
+            MainRunner.makeScreen();
+            Application.Run(screen);
         }
+
+        public static void createGame()
+        {
+            game = new GameInfo();
+
+        }
+
+        public static void createPlayers()
+        {
+            p1 = new Player(game);
+            p2 = new Player(game);
+        }
+
+        public static void addPlayersToGame()
+        {
+            List<Player> pList = new List<Player>();
+            pList.Add(p1);
+            pList.Add(p2);
+            game.setPlayerList(pList);
+        }
+
+
+        public static void makeScreen()
+        {
+            screen = new GameScreen(game);
+
+        }
+
     }
 }

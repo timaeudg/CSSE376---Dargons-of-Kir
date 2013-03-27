@@ -33,7 +33,11 @@ namespace Dargons_of_Kir
 
         public abstract bool callback();
 
-        public void place(Board.location location, Board.orientation orientation) { return; }
+        public void place(Board.location location, Board.orientation orientation) {
+            this.location = location;
+            this.setOrientation(orientation);
+        
+        }
 
         public int getID()
         {
