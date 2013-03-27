@@ -73,5 +73,24 @@ namespace TestingDargons
             Assert.AreEqual(48, twoGame.getTilePile().Count);
         }
 
+        [Test]
+        public void testPlayersFoundEqual()
+        {
+            Player play = new Player(new GameInfo());
+
+            Assert.True(play.Equals(play));
+
+        }
+
+        [Test]
+        public void testPlayersFoundNotEqual()
+        {
+            GameInfo game = new GameInfo();
+            Player play1 = new Player(game);
+            Player play2 = new Player(game);
+            Assert.False(play1.Equals(play2));
+
+        }
+
     }
 }

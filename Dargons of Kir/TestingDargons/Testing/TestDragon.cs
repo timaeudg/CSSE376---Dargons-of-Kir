@@ -65,5 +65,70 @@ namespace TestingDargons.Testing
             Assert.True((dragLoc.x == loc.x) && (dragLoc.y == loc.y));
 
         }
+
+
+        [Test]
+        public void testSetOrientation()
+        {
+            Board.location loc = new Board.location();
+
+            loc.x = 6;
+            loc.y = 6;
+            Dragon drag = new Dragon(0, loc, Board.orientation.RIGHT);
+            Assert.AreEqual(drag.getOrientation(), Board.orientation.RIGHT);
+            drag.setOrientation(Board.orientation.LEFT);
+            Assert.AreEqual(drag.getOrientation(), Board.orientation.LEFT);
+
+
+        }
+
+        [Test]
+        public void testDragonMovement()
+        {
+            Board.location loc = new Board.location();
+            loc.x = 4;
+            loc.y = 4;
+            Dragon drag = new Dragon(0, loc, Board.orientation.UP);
+            Assert.AreEqual(drag.getCurrentPosition(), loc);
+            drag.move();
+            loc = new Board.location();
+            loc.x = 4;
+            loc.y = 3;
+            Assert.AreEqual(drag.getCurrentPosition(), loc);
+            drag.setOrientation(Board.orientation.LEFT);
+            drag.move();
+            loc.x = 3;
+            Assert.AreEqual(drag.getCurrentPosition(), loc);
+
+        }
+
+        [Test]
+        public void testDragonWraparound()
+        {
+            Board.location loc = new Board.location();
+            loc.x = 7;
+            loc.y = 0;
+            Dragon drag = new Dragon(0, loc, Board.orientation.RIGHT);
+            drag.move();
+            Board.location check = new Board.location();
+            check.x = 0;
+            check.y = 0;
+            Assert.AreEqual(drag.getCurrentPosition(), check);
+
+            drag.setOrientation(Board.orientation.UP);
+            drag.move();
+            check.y = 7;
+            Assert.AreEqual(drag.getCurrentPosition(), check);
+
+            drag.setOrientation(Board.orientation.DOWN);
+            drag.move();
+            check.y = 0;
+            Assert.AreEqual(drag.getCurrentPosition(), check);
+            drag.setOrientation(Board.orientation.LEFT);
+            drag.move();
+            check.x = 7;
+            Assert.AreEqual(drag.getCurrentPosition(), check);
+
+        }
     }
 }

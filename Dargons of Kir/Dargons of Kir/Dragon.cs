@@ -29,6 +29,12 @@ namespace Dargons_of_Kir
             return this.orientation;
         }
 
+        public void setOrientation(Board.orientation newOrient)
+        {
+            this.orientation = newOrient;
+
+        }
+
 
         public void setPreviousTile(int id)
         {
@@ -43,6 +49,28 @@ namespace Dargons_of_Kir
         public Board.location getCurrentPosition()
         {
             return this.currentPosition;
+        }
+
+        public void move()
+        {
+            switch (this.orientation)
+            {
+                case Board.orientation.UP: 
+                    this.currentPosition.y = (this.currentPosition.y-1)%8;
+                    if (this.currentPosition.y == -1) this.currentPosition.y = 7;
+                    break;
+                case Board.orientation.RIGHT:
+                    this.currentPosition.x = (this.currentPosition.x + 1) % 8;
+                    break;
+                case Board.orientation.DOWN:
+                    this.currentPosition.y = (this.currentPosition.y + 1) % 8;
+                    break;
+                case Board.orientation.LEFT:
+                    this.currentPosition.x = (this.currentPosition.x - 1) % 8;
+                    if (this.currentPosition.x == -1) this.currentPosition.x = 7;
+                    break;
+            }
+
         }
     }
 }
