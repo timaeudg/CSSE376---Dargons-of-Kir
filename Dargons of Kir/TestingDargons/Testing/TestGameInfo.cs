@@ -132,7 +132,7 @@ namespace TestingDargons
         public void testMakeAndSetDragons()
         {
             GameInfo game = new GameInfo();
-
+            game.makeDragonsAndSetPositions();
             LinkedList<Dragon> drags = game.getDragons();
             bool enteredLoop = false;
 

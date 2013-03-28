@@ -63,6 +63,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Testing\TestTiles.cs" />
     <Compile Include="Testing\TestBoardLocation.cs" />
+    <Compile Include="Testing\TestWarTent.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Dargons of Kir\Dargons of Kir.csproj">

@@ -71,6 +71,7 @@
     <Compile Include="MainRunner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tiles\TwoRiversTile.cs" />
+    <Compile Include="WarTentTile.cs" />
     <Compile Include="Tiles\WatchfireTile.cs" />
     <Compile Include="Tiles\WildfireTile.cs" />
     <Compile Include="Tiles\WindTile.cs" />

@@ -17,6 +17,7 @@ namespace Dargons_of_Kir
         private Board tileBoard;
         private LinkedList<Dragon> dragons;
         private List<Player> players;
+        private List<WarTentTile> tents;
         private Player currentPlayerTurn;
 
         public GameInfo()
@@ -27,7 +28,6 @@ namespace Dargons_of_Kir
             this.makePile();
             this.players = new List<Player>();
             this.currentPlayerTurn = null;
-            this.makeDragonsAndSetPositions();
         }
 
         public List<Tile> getTilePile()
@@ -62,6 +62,22 @@ namespace Dargons_of_Kir
         public void setPlayerList(List<Player> plyrs)
         {
             this.players = plyrs;
+        }
+
+        public void setPlayersAndTents(List<Player> players)
+        {
+            this.setPlayerList(players);
+            Board.location loc = new Board.location();
+            loc.x=0;
+            loc.y=0;
+            WarTentTile tent = new WarTentTile(players[0], loc);
+            this.tents.Add(tent);
+            loc = new Board.location();
+            loc.x = 7;
+            loc.y = 7;
+            tent = new WarTentTile(players[1], loc);
+            this.tents.Add(tent);
+            
         }
 
         public Player getNextPlayer()

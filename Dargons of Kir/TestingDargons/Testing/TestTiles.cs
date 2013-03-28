@@ -106,14 +106,7 @@ namespace TestingDargons.Testing
             Assert.True(tile.callback());
             Assert.NotNull(tile);
         }
-        [Test]
-        public void TestInitWarTent()
-        {
-            GameInfo game = new GameInfo();
-            Player player = new Player(game);
-            WarTentTile tile = new WarTentTile(player);
-            Assert.NotNull(tile);
-        }
+        
 
         [Test]
         public void TestSetOrientation()
