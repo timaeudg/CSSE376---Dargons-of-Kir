@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using Dargons_of_Kir;
+using Dargons_of_Kir.Tiles;
 
 
 
@@ -145,6 +146,44 @@ namespace TestingDargons
                 enteredLoop = true;
             }
             Assert.True(enteredLoop);
+        }
+
+        [Test]
+        public void testPlaceTileAtPosition()
+        {
+            Tile toPlace = new DragonsLairTile();
+            GameInfo game = new GameInfo();
+            Assert.Null(game.getTileBoard().getTileAt(3, 3));
+            Board.location loc = new Board.location();
+            loc.x =3;
+            loc.y=3;
+            game.placeTileAtPosition(loc, Board.orientation.LEFT, toPlace);
+            Assert.AreSame(toPlace, game.getTileBoard().getTileAt(3, 3));
+            Assert.AreEqual(Board.orientation.LEFT, game.getTileBoard().getTileAt(3, 3).orientation);
+
+        }
+
+        [Test]
+        public void testCanPlace()
+        {
+            GameInfo game = new GameInfo();
+            Player p1 = new Player(game);
+            Player p2 = new Player(game);
+            List<Player> pList = new List<Player>();
+            pList.Add(p1);
+            pList.Add(p2);
+            game.setPlayerList(pList);
+            Board.location loc = new Board.location();
+            loc.x =0;
+            loc.y=0;
+            Assert.True(game.canPlace(loc));
+
+            Player next = game.getNextPlayer();
+            Tile toPlay = next.takeTileFromHand(0);
+            game.placeTileAtPosition(loc, Board.orientation.DOWN, toPlay);
+            Assert.AreSame(toPlay, game.getTileBoard().getTileAt(0, 0));
+
+
         }
 
 

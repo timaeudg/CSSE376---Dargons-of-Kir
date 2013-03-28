@@ -125,6 +125,26 @@ namespace Dargons_of_Kir
 
         }
 
+        public bool canPlace(Board.location loc){
+            if (this.tileBoard.getTileAt(loc.x, loc.y) == null)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public void placeTileAtPosition(Board.location place, Board.orientation orient, Tile tile)
+        {
+            tile.place(place, orient);
+            this.tileBoard.addPiece(tile);
+
+        }
+
 
     }
 }
