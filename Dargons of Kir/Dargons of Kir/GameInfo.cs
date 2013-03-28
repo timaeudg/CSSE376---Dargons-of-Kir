@@ -27,6 +27,7 @@ namespace Dargons_of_Kir
             this.makePile();
             this.players = new List<Player>();
             this.currentPlayerTurn = null;
+            this.makeDragonsAndSetPositions();
         }
 
         public List<Tile> getTilePile()
@@ -79,6 +80,35 @@ namespace Dargons_of_Kir
 
             return toReturn;
         }
+
+
+        public void makeDragonsAndSetPositions()
+        {
+            Board.location loc = new Board.location();
+            loc.x = 2;
+            loc.y = 2;
+            Dragon dragTopLeft = new Dragon(0, loc, Board.orientation.DOWN);
+            loc = new Board.location();
+            loc.x = 5;
+            loc.y = 2;
+            Dragon dragTopRight = new Dragon(1, loc, Board.orientation.LEFT);
+            loc = new Board.location();
+            loc.x = 2;
+            loc.y = 5;
+            Dragon dragBotLeft = new Dragon(2, loc, Board.orientation.RIGHT);
+            loc = new Board.location();
+            loc.x = 5;
+            loc.y = 5;
+            Dragon dragBotRight = new Dragon(3, loc, Board.orientation.UP);
+
+            this.dragons.AddLast(dragTopLeft);
+            this.dragons.AddLast(dragTopRight);
+            this.dragons.AddLast(dragBotLeft);
+            this.dragons.AddLast(dragBotRight);
+
+
+        }
+
 
     }
 }

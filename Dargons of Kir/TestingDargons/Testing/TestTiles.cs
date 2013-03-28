@@ -111,8 +111,8 @@ namespace TestingDargons.Testing
         {
             GameInfo game = new GameInfo();
             Player player = new Player(game);
-            //WarTentTile tile = new WarTentTile(player);
-            //Assert.NotNull(tile);
+            WarTentTile tile = new WarTentTile(player);
+            Assert.NotNull(tile);
         }
 
         [Test]

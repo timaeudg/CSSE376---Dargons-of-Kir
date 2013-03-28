@@ -128,6 +128,25 @@ namespace TestingDargons
 
         }
 
+        [Test]
+        public void testMakeAndSetDragons()
+        {
+            GameInfo game = new GameInfo();
+
+            LinkedList<Dragon> drags = game.getDragons();
+            bool enteredLoop = false;
+
+            foreach (Dragon d in drags)
+            {
+                Assert.NotNull(d);
+                Assert.NotNull(d.getCurrentPosition());
+                Assert.NotNull(d.getOrientation());
+                Assert.NotNull(d.getDragonID());
+                enteredLoop = true;
+            }
+            Assert.True(enteredLoop);
+        }
+
 
     }
     
