@@ -27,6 +27,7 @@ namespace Dargons_of_Kir
             this.makePile();
             this.players = new List<Player>();
             this.currentPlayerTurn = null;
+            this.makeDragonsAndSetPositions();
         }
 
         public List<Tile> getTilePile()
@@ -75,9 +76,11 @@ namespace Dargons_of_Kir
             Board.location loc = new Board.location();
             loc.x=0;
             loc.y=0;
+            tileBoard.addPiece(new WarTentTile(players[0], loc));
             loc = new Board.location();
             loc.x = 7;
             loc.y = 7;
+            tileBoard.addPiece(new WarTentTile(players[1], loc));
         }
 
         public Player getNextPlayer()

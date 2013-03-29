@@ -2,26 +2,36 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace Dargons_of_Kir
 {
     public class Dragon
     {
-        private int dragondID;
-        private Board.location currentPosition;
-        private Board.orientation orientation;
+        private int dragonID;
+        public Board.location currentPosition {get; private set; }
+        public Board.orientation orientation {get; private set; }
         private int previousEffectTileId;
+        public Image image { get; set; }
+
         public Dragon(int id, Board.location startingLocation, Board.orientation rotation)
         {
-            this.dragondID = id;
-            this.currentPosition = startingLocation;
+            this.dragonID = id;
+            switch(dragonID % 4) {
+                case (0) : { image = Image.FromFile("..\\..\\..\\..\\images\\bluedragon.jpg"); break; }
+                case (1) : { image = Image.FromFile("..\\..\\..\\..\\images\\reddragon.jpg"); break; }
+                case (2) : { image = Image.FromFile("..\\..\\..\\..\\images\\greendragon.jpg"); break; }
+                case (3) : { image = Image.FromFile("..\\..\\..\\..\\images\\yellowdragon.jpg"); break; }
+                default  : { image = Image.FromFile("..\\..\\..\\..\\images\\blue.png"); break; }
+            }
+            currentPosition = startingLocation;
             this.orientation = rotation;
             this.previousEffectTileId = -1;
         }
 
         public int getDragonID()
         {
-            return this.dragondID;
+            return this.dragonID;
         }
 
         public Board.orientation getOrientation()
@@ -56,8 +66,8 @@ namespace Dargons_of_Kir
             switch (this.orientation)
             {
                 case Board.orientation.UP: 
-                    this.currentPosition.y = (this.currentPosition.y-1)%8;
-                    if (this.currentPosition.y == -1) this.currentPosition.y = 7;
+                   currentPosition.y = (currentPosition.y-1)%8;
+                    if (this.currentPosition.y == -1) currentPosition.y = 7;
                     break;
                 case Board.orientation.RIGHT:
                     this.currentPosition.x = (this.currentPosition.x + 1) % 8;

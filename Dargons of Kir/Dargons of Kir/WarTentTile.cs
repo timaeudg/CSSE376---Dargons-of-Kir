@@ -14,9 +14,15 @@ namespace Dargons_of_Kir
         public Board.location pos { get; private set; }
         new public static bool Drawable { get; private set; }
 
+        private static int x = 0;
         public static Image getPic()
         {
-            return Image.FromFile("..\\..\\..\\..\\images\\Tent.png");
+            if(x++ == 0)
+            {
+                return Image.FromFile("..\\..\\..\\..\\images\\bluetent.jpg");
+            } else {
+                return Image.FromFile("..\\..\\..\\..\\images\\redtent.jpg");
+            }
         }
  
         public WarTentTile(Player player, Board.location pos): base(getPic())
