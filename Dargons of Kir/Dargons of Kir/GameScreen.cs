@@ -27,7 +27,7 @@ namespace Dargons_of_Kir
             this.game = newGame;
             currentPlayer = game.getNextPlayer();
             for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.getHand()[i].getPicture();
-            LinkedList<Dragon> allDragons = game.getDragons();
+            List<Dragon> allDragons = game.getDragons();
             foreach (Dragon dragon in allDragons)
             {
                 boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = dragon.getImage();
@@ -121,7 +121,7 @@ namespace Dargons_of_Kir
 
         private void dragonTurn()
         {
-            LinkedList<Dragon> allDragons = game.getDragons();
+            List<Dragon> allDragons = game.getDragons();
             
             foreach (Dragon dragon in allDragons)
             {

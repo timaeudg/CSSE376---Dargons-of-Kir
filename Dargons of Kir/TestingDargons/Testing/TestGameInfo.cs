@@ -57,6 +57,7 @@ namespace TestingDargons
             }
         }
 
+        /*
         [Test]
         public void testGameInfoDragonsNullAtStart(){
             GameInfo game = new GameInfo();
@@ -65,6 +66,7 @@ namespace TestingDargons
                 Assert.Null(drag);
             }
         }
+        */
 
        
 
@@ -132,7 +134,7 @@ namespace TestingDargons
         {
             GameInfo game = new GameInfo();
             game.makeDragonsAndSetPositions();
-            LinkedList<Dragon> drags = game.getDragons();
+            List<Dragon> drags = game.getDragons();
             bool enteredLoop = false;
 
             foreach (Dragon d in drags)
@@ -194,6 +196,27 @@ namespace TestingDargons
             pList.Add(p1);
             pList.Add(p2);
             game.setPlayersAndTents(pList);
+
+        }
+
+        [Test]
+        public void testMoveDragons()
+        {
+            GameInfo game = new GameInfo();
+
+            Assert.AreEqual(Board.makeBoardLocation(2, 2), game.getDragons()[0].getCurrentPosition());
+            Assert.AreEqual(Board.makeBoardLocation(5, 2), game.getDragons()[1].getCurrentPosition());
+            Assert.AreEqual(Board.makeBoardLocation(2, 5), game.getDragons()[2].getCurrentPosition());
+            Assert.AreEqual(Board.makeBoardLocation(5, 5), game.getDragons()[3].getCurrentPosition());
+
+
+            game.moveDragons();
+
+            Assert.AreEqual(Board.makeBoardLocation(2, 3), game.getDragons()[0].getCurrentPosition());
+            Assert.AreEqual(Board.makeBoardLocation(4, 2), game.getDragons()[1].getCurrentPosition());
+            Assert.AreEqual(Board.makeBoardLocation(3, 5), game.getDragons()[2].getCurrentPosition());
+            Assert.AreEqual(Board.makeBoardLocation(5, 4), game.getDragons()[3].getCurrentPosition());
+
 
         }
 
