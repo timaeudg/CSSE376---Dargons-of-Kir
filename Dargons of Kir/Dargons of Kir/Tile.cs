@@ -14,9 +14,11 @@ namespace Dargons_of_Kir
         public int Priority;
         protected int ID;
         private static int nextID;
+        public static bool Drawable { get; protected set;}
 
         public Tile()
         {
+            Tile.Drawable = true;
             ID = Tile.genID();
             orientation = Board.orientation.UP;
         }

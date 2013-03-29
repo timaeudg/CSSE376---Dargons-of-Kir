@@ -8,20 +8,32 @@ using System.Drawing;
 
 namespace Dargons_of_Kir
 {
-    public class WarTentTile
+    public class WarTentTile : Tile
     {
-        private Player owner;
-        private Board.location pos;
+        public Player owner {get; private set;}
+        public Board.location pos { get; private set; }
 
         public static Image getPic()
         {
             return Image.FromFile("..\\..\\..\\..\\images\\Tent.png");
         }
  
-        public WarTentTile(Player player, Board.location pos)
+        public WarTentTile(Player player, Board.location pos): base(getPic())
         {
+            WarTentTile.Drawable = false;
             this.owner = player;
             this.pos = pos;
+        }
+
+        public WarTentTile(): base(getPic())
+        {
+            this.owner = null;
+            this.pos = new Board.location();
+        }
+
+        public override bool callback()
+        {
+            return true;
         }
 
 

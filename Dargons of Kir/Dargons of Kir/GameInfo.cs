@@ -17,7 +17,6 @@ namespace Dargons_of_Kir
         private Board tileBoard;
         private LinkedList<Dragon> dragons;
         private List<Player> players;
-        private List<WarTentTile> tents;
         private Player currentPlayerTurn;
 
         public GameInfo()
@@ -48,13 +47,17 @@ namespace Dargons_of_Kir
         public List<Type> makePile(){
             List<Type> types = new List<Type>();
             int counter = 0;
-            foreach(Type c in Assembly.GetAssembly(typeof(Tile)).GetTypes().Where(myType=> myType.IsClass && myType.IsSubclassOf(typeof(Tile)))){
-                types.Add(c);
-                for(int k = 0; k<4; k++){
-                    pileOfTiles.Add((Tile)Activator.CreateInstance(c,null));
+            foreach (Type c in Assembly.GetAssembly(typeof(Tile)).GetTypes().Where(myType => myType.IsClass && myType.IsSubclassOf(typeof(Tile))))
+            {
+                {
+                    types.Add(c);
+                    for (int k = 0; k < 4; k++)
+                    {
+                        pileOfTiles.Add((Tile)Activator.CreateInstance(c, null));
+                        counter++;
+                    }
                     counter++;
                 }
-                counter++;
             }
            return types;
         }
@@ -70,14 +73,9 @@ namespace Dargons_of_Kir
             Board.location loc = new Board.location();
             loc.x=0;
             loc.y=0;
-            WarTentTile tent = new WarTentTile(players[0], loc);
-            this.tents.Add(tent);
             loc = new Board.location();
             loc.x = 7;
             loc.y = 7;
-            tent = new WarTentTile(players[1], loc);
-            this.tents.Add(tent);
-            
         }
 
         public Player getNextPlayer()

@@ -22,6 +22,8 @@ namespace TestingDargons
             loc.y = 0;
             WarTentTile tile = new WarTentTile(player, loc);
             Assert.NotNull(tile);
+            Assert.IsFalse(WarTentTile.Drawable);
+            Assert.IsTrue(Tile.Drawable);
         }
 
         [Test]

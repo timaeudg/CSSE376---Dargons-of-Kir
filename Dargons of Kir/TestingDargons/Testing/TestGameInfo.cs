@@ -82,8 +82,6 @@ namespace TestingDargons
             GameInfo game = new GameInfo();
             List<Tile> pile = game.getTilePile();
 
-            int ID = 0;
-
             foreach (Tile t in pile)
             {
                 Assert.NotNull(t);
