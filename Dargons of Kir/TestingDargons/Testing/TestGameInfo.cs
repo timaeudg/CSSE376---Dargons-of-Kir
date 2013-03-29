@@ -180,6 +180,22 @@ namespace TestingDargons
             Tile toPlay = next.takeTileFromHand(0);
             game.placeTileAtPosition(loc, Board.orientation.DOWN, toPlay);
             Assert.AreSame(toPlay, game.getTileBoard().getTileAt(0, 0));
+            Assert.False(game.canPlace(loc));
+
+        }
+
+        [Test]
+        public void testSetPlayersAndTents()
+        {
+            GameInfo game = new GameInfo();
+            Player p1 = new Player(game);
+            Player p2 = new Player(game);
+            List<Player> pList = new List<Player>();
+            pList.Add(p1);
+            pList.Add(p2);
+            game.setPlayersAndTents(pList);
+
+            List<WarTentTile> tents = 
 
 
         }
