@@ -146,6 +146,32 @@ namespace Dargons_of_Kir
 
         }
 
+        public bool destroyTileAt(Board.location loc)
+        {
+            if (!canPlace(loc))
+            {
+                this.tileBoard.destroyTileAt(loc.x, loc.y);
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+
+        }
+
+        public void moveDragons()
+        {
+            foreach (Dragon d in this.dragons)
+            {
+                d.move();
+                Board.location loc = d.getCurrentPosition();
+                this.destroyTileAt(loc);
+
+            }
+
+        }
 
     }
 }

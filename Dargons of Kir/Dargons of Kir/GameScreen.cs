@@ -122,6 +122,7 @@ namespace Dargons_of_Kir
         private void dragonTurn()
         {
             LinkedList<Dragon> allDragons = game.getDragons();
+            
             foreach (Dragon dragon in allDragons)
             {
                 if (!game.canPlace(dragon.getCurrentPosition()))
@@ -132,9 +133,18 @@ namespace Dargons_of_Kir
                 {
                     boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
                 }
-                dragon.move();
-                boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = dragon.getImage();
+               
+                
             }
+
+            game.moveDragons();
+
+            foreach (Dragon dragon in allDragons)
+            {
+                boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = dragon.getImage();
+
+            }
+
             this.turn = (this.turn + 1) % 3;
         }
 
