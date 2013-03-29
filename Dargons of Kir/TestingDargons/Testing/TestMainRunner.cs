@@ -54,17 +54,5 @@ namespace TestingDargons.Testing
 
         }
 
-        [Test]
-        public void TestRunningMain()
-        {
-            MainRunner.screen = null;
-            MainRunner.Main();
-            Assert.NotNull(MainRunner.game);
-            Assert.NotNull(MainRunner.p2);
-            Assert.NotNull(MainRunner.p1);
-            Assert.NotNull(MainRunner.screen);
-        }
-
-
     }
 }

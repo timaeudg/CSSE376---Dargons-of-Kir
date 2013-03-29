@@ -27,6 +27,7 @@ namespace Dargons_of_Kir
             this.makePile();
             this.players = new List<Player>();
             this.currentPlayerTurn = null;
+            this.makeDragonsAndSetPositions();
         }
 
         public List<Tile> getTilePile()
