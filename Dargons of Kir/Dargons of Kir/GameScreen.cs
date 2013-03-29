@@ -31,7 +31,6 @@ namespace Dargons_of_Kir
             foreach (Dragon dragon in allDragons)
             {
                 boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = dragon.getImage();
-                Console.Write("Dragon\n\n");
             }
         }
 
@@ -125,10 +124,16 @@ namespace Dargons_of_Kir
             LinkedList<Dragon> allDragons = game.getDragons();
             foreach (Dragon dragon in allDragons)
             {
-                boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image =Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
+                if (!game.canPlace(dragon.getCurrentPosition()))
+                {
+                    boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = game.getTileBoard().getTileAt(dragon.getCurrentPosition().x, dragon.getCurrentPosition().y).getPicture();
+                }
+                else
+                {
+                    boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
+                }
                 dragon.move();
                 boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = dragon.getImage();
-                Console.Write("I AM A DRAGON!!!!!\n\n");
             }
             this.turn = (this.turn + 1) % 3;
         }
@@ -167,13 +172,16 @@ namespace Dargons_of_Kir
         private void rotatePicture(object sender, MouseEventArgs e)
         {
             if (e.Button != System.Windows.Forms.MouseButtons.Right) return;
-            if (GameGrid.GetColumn((PictureBox)sender) == selected.location.x &&
-                GameGrid.GetRow((PictureBox)sender) == selected.location.y)
+            if (selected != null)
             {
-                Image temp = ((PictureBox)sender).Image;
-                temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                selected.orientation = ((selected.orientation + 1) > Board.orientation.DOWN) ? (selected.orientation - 3) : (selected.orientation + 1);
-                ((PictureBox)sender).Image = temp;
+                if (GameGrid.GetColumn((PictureBox)sender) == selected.location.x &&
+                    GameGrid.GetRow((PictureBox)sender) == selected.location.y)
+                {
+                    Image temp = ((PictureBox)sender).Image;
+                    temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    selected.orientation = ((selected.orientation + 1) > Board.orientation.DOWN) ? (selected.orientation - 3) : (selected.orientation + 1);
+                    ((PictureBox)sender).Image = temp;
+                }
             }
         }
 
