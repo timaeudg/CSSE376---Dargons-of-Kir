@@ -27,11 +27,22 @@ namespace Dargons_of_Kir
             currentPosition = startingLocation;
             this.orientation = rotation;
             this.previousEffectTileId = -1;
+            this.image = System.Drawing.Image.FromFile("..\\..\\..\\..\\images\\reddragon.JPG");
         }
 
         public int getDragonID()
         {
             return this.dragonID;
+        }
+
+        public void setImage(System.Drawing.Image pic)
+        {
+            this.image = pic;
+        }
+
+        public System.Drawing.Image getImage()
+        {
+            return image;
         }
 
         public Board.orientation getOrientation()

@@ -54,5 +54,12 @@ namespace TestingDargons
             Assert.IsTrue(tile.callback()); //This will always take effect
         }
 
+        [Test]
+        public void TestCallback()
+        {
+            Tile wartent = new WarTentTile();
+            Assert.True(wartent.callback());
+        }
+
     }
 }

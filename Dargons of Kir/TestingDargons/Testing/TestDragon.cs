@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NUnit.Framework;
 using Dargons_of_Kir;
 using Dargons_of_Kir.Tiles;
+using System.Drawing;
 
 namespace TestingDargons.Testing
 {
@@ -129,6 +130,17 @@ namespace TestingDargons.Testing
             check.x = 7;
             Assert.AreEqual(drag.getCurrentPosition(), check);
 
+        }
+
+        [Test]
+        public void testDragonImage()
+        {
+            Board.location loc = new Board.location();
+            loc.x = 7;
+            loc.y = 0;
+            Dragon drag = new Dragon(0, loc, Board.orientation.RIGHT);
+            drag.setImage(Image.FromFile("..\\..\\..\\..\\images\\reddragon.JPG"));
+            Assert.IsNotNull(drag.image);
         }
     }
 }

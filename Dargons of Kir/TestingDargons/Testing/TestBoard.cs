@@ -52,6 +52,28 @@ namespace TestingDargons.Testing
         }
 
 
+        [Test]
+        public void testMakeBoardLocation()
+        {
+            Board.location loc = new Board.location();
+
+            loc.x = 4;
+            loc.y = 4;
+            Assert.AreEqual(loc, Board.makeBoardLocation(4, 4));
+
+        }
+
+        [Test]
+        public void testDestroyTileAt()
+        {
+            GameInfo game = new GameInfo();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(0, 0), Board.orientation.LEFT, new MonkTile());
+            Assert.True(game.destroyTileAt(Board.makeBoardLocation(0, 0)));
+            Assert.False(game.destroyTileAt(Board.makeBoardLocation(0, 0)));
+
+        }
+
     }
 
 }

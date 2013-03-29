@@ -12,7 +12,7 @@ namespace Dargons_of_Kir
 {
     public partial class GameScreen : Form
     {
-
+        private int turn = 0;
         private PictureBox[,] boardPictures = new PictureBox[8,8];
         private PictureBox[] handPictures = new PictureBox[4];
         private GameInfo game;
@@ -27,6 +27,11 @@ namespace Dargons_of_Kir
             this.game = newGame;
             currentPlayer = game.getNextPlayer();
             for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.getHand()[i].getPicture();
+            List<Dragon> allDragons = game.getDragons();
+            foreach (Dragon dragon in allDragons)
+            {
+                boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = dragon.getImage();
+            }
         }
 
         public GameScreen()
@@ -69,7 +74,7 @@ namespace Dargons_of_Kir
                 this.PlayerHand.Controls.Add(handPictures[i]);
                 ((System.ComponentModel.ISupportInitialize)(handPictures[i])).EndInit();
             }
-
+            
         }
 
         private void hand_tile_click(object sender, EventArgs e)
@@ -92,6 +97,11 @@ namespace Dargons_of_Kir
                     selectedIndex = 0;
                     currentPlayer = game.getNextPlayer();
                     for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.getHand()[i].getPicture();
+                    turn = (turn + 1) % 3;
+                    if (turn == 2)
+                    {
+                        this.dragonTurn();
+                    }
                     return;
                 }
             }
@@ -109,17 +119,53 @@ namespace Dargons_of_Kir
             placed = false;
         }
 
+        private void dragonTurn()
+        {
+            List<Dragon> allDragons = game.getDragons();
+            
+            foreach (Dragon dragon in allDragons)
+            {
+                if (!game.canPlace(dragon.getCurrentPosition()))
+                {
+                    boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = game.getTileBoard().getTileAt(dragon.getCurrentPosition().x, dragon.getCurrentPosition().y).getPicture();
+                }
+                else
+                {
+                    boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
+                }
+               
+                
+            }
+
+            game.moveDragons();
+
+            foreach (Dragon dragon in allDragons)
+            {
+                boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = dragon.getImage();
+
+            }
+
+            this.turn = (this.turn + 1) % 3;
+        }
+
         private void setPicture(object sender, MouseEventArgs e)
         {
             if (e.Button != System.Windows.Forms.MouseButtons.Left) return;
+
             if (!placed)
             {
                 if (selected == null) return;
-                ((PictureBox)sender).Image = selected.getPicture();
-                selected.location = new Board.location();
-                selected.location.x = GameGrid.GetColumn((PictureBox)sender);
-                selected.location.y = GameGrid.GetRow((PictureBox)sender);
-                placed = !placed;
+                Board.location loc = new Board.location();
+                loc.x = GameGrid.GetColumn((PictureBox)sender);
+                loc.y = GameGrid.GetRow((PictureBox)sender);
+                if (game.canPlace(loc))
+                {
+                    ((PictureBox)sender).Image = selected.getPicture();
+                    selected.location = new Board.location();
+                    selected.location.x = GameGrid.GetColumn((PictureBox)sender);
+                    selected.location.y = GameGrid.GetRow((PictureBox)sender);
+                    placed = !placed;
+                }
                
             }
             else
@@ -136,13 +182,16 @@ namespace Dargons_of_Kir
         private void rotatePicture(object sender, MouseEventArgs e)
         {
             if (e.Button != System.Windows.Forms.MouseButtons.Right) return;
-            if (GameGrid.GetColumn((PictureBox)sender) == selected.location.x &&
-                GameGrid.GetRow((PictureBox)sender) == selected.location.y)
+            if (selected != null)
             {
-                Image temp = ((PictureBox)sender).Image;
-                temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                selected.orientation = ((selected.orientation + 1) > Board.orientation.DOWN) ? (selected.orientation - 3) : (selected.orientation + 1);
-                ((PictureBox)sender).Image = temp;
+                if (GameGrid.GetColumn((PictureBox)sender) == selected.location.x &&
+                    GameGrid.GetRow((PictureBox)sender) == selected.location.y)
+                {
+                    Image temp = ((PictureBox)sender).Image;
+                    temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    selected.orientation = ((selected.orientation + 1) > Board.orientation.DOWN) ? (selected.orientation - 3) : (selected.orientation + 1);
+                    ((PictureBox)sender).Image = temp;
+                }
             }
         }
 

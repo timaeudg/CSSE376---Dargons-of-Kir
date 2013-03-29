@@ -15,7 +15,7 @@ namespace Dargons_of_Kir
     {
         private List<Tile> pileOfTiles;
         private Board tileBoard;
-        private LinkedList<Dragon> dragons;
+        private List<Dragon> dragons;
         private List<Player> players;
         private Player currentPlayerTurn;
 
@@ -23,7 +23,7 @@ namespace Dargons_of_Kir
         {
             this.pileOfTiles = new List<Tile>();
             this.tileBoard = new Board();
-            this.dragons = new LinkedList<Dragon>();
+            this.dragons = new List<Dragon>();
             this.makePile();
             this.players = new List<Player>();
             this.currentPlayerTurn = null;
@@ -35,7 +35,7 @@ namespace Dargons_of_Kir
             return this.pileOfTiles;
         }
 
-        public LinkedList<Dragon> getDragons()
+        public List<Dragon> getDragons()
         {
             return this.dragons;
         }
@@ -120,10 +120,11 @@ namespace Dargons_of_Kir
             loc.y = 5;
             Dragon dragBotRight = new Dragon(3, loc, Board.orientation.UP);
 
-            this.dragons.AddLast(dragTopLeft);
-            this.dragons.AddLast(dragTopRight);
-            this.dragons.AddLast(dragBotLeft);
-            this.dragons.AddLast(dragBotRight);
+            this.dragons.Add(dragTopLeft);
+            this.dragons.Add(dragTopRight);
+            this.dragons.Add(dragBotLeft);
+            this.dragons.Add(dragBotRight);
+     
 
 
         }
@@ -148,6 +149,32 @@ namespace Dargons_of_Kir
 
         }
 
+        public bool destroyTileAt(Board.location loc)
+        {
+            if (!canPlace(loc))
+            {
+                this.tileBoard.destroyTileAt(loc.x, loc.y);
+                return true;
+            }
+            else
+            {
+
+                return false;
+            }
+
+        }
+
+        public void moveDragons()
+        {
+            foreach (Dragon d in this.dragons)
+            {
+                d.move();
+                Board.location loc = d.getCurrentPosition();
+                this.destroyTileAt(loc);
+
+            }
+
+        }
 
     }
 }

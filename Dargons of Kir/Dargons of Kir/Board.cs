@@ -29,6 +29,14 @@ namespace Dargons_of_Kir
             return this.board;
         }
 
+        public static Board.location makeBoardLocation(int x, int y){
+            Board.location toReturn = new Board.location();
+            toReturn.x = x;
+            toReturn.y = y;
+
+            return toReturn;
+        }
+
         public Tile getTileAt(int x, int y)
         {
             return this.board[x,y].tile;
@@ -46,6 +54,12 @@ namespace Dargons_of_Kir
                 return false;
             }
             return true;
+        }
+
+        public void destroyTileAt(int x, int y)
+        {
+            this.board[x, y].tile = null;
+
         }
     }
 }
