@@ -12,6 +12,7 @@ namespace Dargons_of_Kir
     {
         public Player owner {get; private set;}
         public Board.location pos { get; private set; }
+        new public static bool Drawable { get; private set; }
 
         public static Image getPic()
         {
@@ -23,6 +24,11 @@ namespace Dargons_of_Kir
             WarTentTile.Drawable = false;
             this.owner = player;
             this.pos = pos;
+        }
+
+        override public bool getDrawable()
+        {
+            return WarTentTile.Drawable;
         }
 
         public WarTentTile(): base(getPic())

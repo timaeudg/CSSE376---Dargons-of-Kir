@@ -49,15 +49,17 @@ namespace Dargons_of_Kir
             int counter = 0;
             foreach (Type c in Assembly.GetAssembly(typeof(Tile)).GetTypes().Where(myType => myType.IsClass && myType.IsSubclassOf(typeof(Tile))))
             {
-                {
                     types.Add(c);
                     for (int k = 0; k < 4; k++)
                     {
-                        pileOfTiles.Add((Tile)Activator.CreateInstance(c, null));
-                        counter++;
+                        Tile tmp = (Tile)Activator.CreateInstance(c, null);
+                        if (tmp.getDrawable())
+                        {
+                            pileOfTiles.Add(tmp);
+                            counter++;
+                        }
                     }
                     counter++;
-                }
             }
            return types;
         }

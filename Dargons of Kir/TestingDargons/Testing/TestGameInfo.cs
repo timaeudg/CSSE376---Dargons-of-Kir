@@ -195,9 +195,6 @@ namespace TestingDargons
             pList.Add(p2);
             game.setPlayersAndTents(pList);
 
-            List<WarTentTile> tents = 
-
-
         }
 
 

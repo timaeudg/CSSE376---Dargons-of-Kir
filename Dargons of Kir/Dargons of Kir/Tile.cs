@@ -23,6 +23,10 @@ namespace Dargons_of_Kir
             orientation = Board.orientation.UP;
         }
 
+        virtual public bool getDrawable(){
+            return Tile.Drawable;
+        }
+
         public Tile(System.Drawing.Image pic):this()
         {
             this.TilePicture = pic;
