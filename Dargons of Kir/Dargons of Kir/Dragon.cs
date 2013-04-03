@@ -24,10 +24,9 @@ namespace Dargons_of_Kir
                 case (3) : { image = Image.FromFile("..\\..\\..\\..\\images\\yellowdragon.jpg"); break; }
                 default  : { image = Image.FromFile("..\\..\\..\\..\\images\\blue.png"); break; }
             }
-            currentPosition = startingLocation;
+            this.currentPosition = startingLocation;
             this.orientation = rotation;
             this.previousEffectTileId = -1;
-            this.image = System.Drawing.Image.FromFile("..\\..\\..\\..\\images\\reddragon.JPG");
         }
 
         public int getDragonID()
@@ -42,7 +41,27 @@ namespace Dargons_of_Kir
 
         public System.Drawing.Image getImage()
         {
-            return image;
+             System.Drawing.Image temp;
+
+            switch (this.orientation)
+            {
+                case(Board.orientation.UP):
+                    return this.image;
+                case(Board.orientation.LEFT):
+                    temp = (System.Drawing.Image)this.image.Clone();
+                    temp.RotateFlip(RotateFlipType.Rotate90FlipX);
+                    return temp;
+                case(Board.orientation.DOWN):
+                    temp = (System.Drawing.Image)this.image.Clone();
+                    temp.RotateFlip(RotateFlipType.RotateNoneFlipY);
+                    return temp;
+                default:
+                    temp = (System.Drawing.Image)this.image.Clone();
+                    temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
+                    return temp;
+
+            }
+
         }
 
         public Board.orientation getOrientation()
@@ -77,18 +96,18 @@ namespace Dargons_of_Kir
             switch (this.orientation)
             {
                 case Board.orientation.UP: 
-                   currentPosition.y = (currentPosition.y-1)%8;
-                    if (this.currentPosition.y == -1) currentPosition.y = 7;
+                   this.currentPosition = Board.makeBoardLocation(this.currentPosition.x, (this.currentPosition.y-1)%8);
+                    if (this.currentPosition.y == -1) this.currentPosition = Board.makeBoardLocation(this.currentPosition.x,7);
                     break;
                 case Board.orientation.RIGHT:
-                    this.currentPosition.x = (this.currentPosition.x + 1) % 8;
+                    this.currentPosition = Board.makeBoardLocation((this.currentPosition.x + 1) % 8, this.currentPosition.y);
                     break;
                 case Board.orientation.DOWN:
-                    this.currentPosition.y = (this.currentPosition.y + 1) % 8;
+                    this.currentPosition = Board.makeBoardLocation(this.currentPosition.x, (this.currentPosition.y + 1) % 8);
                     break;
                 case Board.orientation.LEFT:
-                    this.currentPosition.x = (this.currentPosition.x - 1) % 8;
-                    if (this.currentPosition.x == -1) this.currentPosition.x = 7;
+                    this.currentPosition = Board.makeBoardLocation((this.currentPosition.x - 1) % 8, this.currentPosition.y);
+                    if (this.currentPosition.x == -1) this.currentPosition = Board.makeBoardLocation(7, this.currentPosition.y);
                     break;
             }
 
