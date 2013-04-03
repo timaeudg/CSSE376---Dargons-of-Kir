@@ -32,6 +32,11 @@ namespace Dargons_of_Kir
             {
                 boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = dragon.getImage();
             }
+
+            Board board = game.getTileBoard();
+            boardPictures[0, 0].Image = board.getTileAt(0, 0).getPicture();
+            boardPictures[7, 7].Image = board.getTileAt(7, 7).getPicture();
+
         }
 
         public GameScreen()
