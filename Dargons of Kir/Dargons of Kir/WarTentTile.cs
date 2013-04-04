@@ -17,10 +17,12 @@ namespace Dargons_of_Kir
         private static int x = 0;
         public static Image getPic()
         {
-            if(x++ == 0)
+            if(x%2 == 0)
             {
+                x++;
                 return Image.FromFile("..\\..\\..\\..\\images\\bluetent.jpg");
             } else {
+                x++;
                 return Image.FromFile("..\\..\\..\\..\\images\\redtent.jpg");
             }
         }
