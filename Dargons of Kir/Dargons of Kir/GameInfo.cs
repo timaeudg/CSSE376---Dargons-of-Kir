@@ -68,6 +68,10 @@ namespace Dargons_of_Kir
         public void setPlayerList(List<Player> plyrs)
         {
             this.players = plyrs;
+            WarTentTile tent = new WarTentTile(this.players[0], Board.makeBoardLocation(0,0));
+            this.placeTileAtPosition(Board.makeBoardLocation(0, 0), Board.orientation.UP, tent);
+            tent = new WarTentTile(this.players[1], Board.makeBoardLocation(7, 7));
+            this.placeTileAtPosition(Board.makeBoardLocation(7, 7), Board.orientation.UP, tent);
         }
 
         public void setPlayersAndTents(List<Player> players)
