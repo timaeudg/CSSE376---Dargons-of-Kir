@@ -22,6 +22,13 @@ namespace Dargons_of_Kir.Tiles
             return true;
         }
 
+        public void placeEffects(Board board)
+        {
+
+
+        }
+
+
         
       
     }
