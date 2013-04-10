@@ -62,7 +62,7 @@ namespace Dargons_of_Kir
             return ret;
         }
 
-        public void placeEffects(Board board);
+        public abstract void placeEffects(Board board);
 
     }
 }

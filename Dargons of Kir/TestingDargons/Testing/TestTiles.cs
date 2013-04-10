@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Dargons_of_Kir;
 using Dargons_of_Kir.Tiles;
+using System.Collections.Generic;
 
 namespace TestingDargons.Testing
 {
@@ -128,5 +129,19 @@ namespace TestingDargons.Testing
             Assert.AreEqual(monk.orientation, Board.orientation.LEFT);
             Assert.AreEqual(monk.location, loc);
         }
+
+        [Test]
+        public void TestMonkEffectsPlacing()
+        {
+            GameInfo game = new GameInfo();
+            MonkTile monk = new MonkTile();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(4,4), Board.orientation.DOWN, monk);
+            Board board = game.getTileBoard();
+            List<Effect> e =board.getEffectAt(Board.makeBoardLocation(4, 4));
+            Assert.AreEqual(4, e.Count);
+
+        }
+
     }
 }

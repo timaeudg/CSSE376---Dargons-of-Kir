@@ -61,5 +61,10 @@ namespace Dargons_of_Kir
             this.board[x, y].tile = null;
 
         }
+
+        public List<Effect> getEffectAt(location location)
+        {
+            return this.board[location.x, location.y].getEffectList();
+        }
     }
 }

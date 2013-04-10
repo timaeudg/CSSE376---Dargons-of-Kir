@@ -21,5 +21,10 @@ namespace Dargons_of_Kir.Tiles
         {
             return true;
         }
+
+        public override void placeEffects(Board board)
+        {
+
+        }
     }
 }

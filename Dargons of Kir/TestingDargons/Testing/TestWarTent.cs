@@ -55,7 +55,7 @@ namespace TestingDargons
         }
 
         [Test]
-        public void TestCallback()
+        public void TestWartentCallback()
         {
             Tile wartent = new WarTentTile();
             Assert.True(wartent.callback());

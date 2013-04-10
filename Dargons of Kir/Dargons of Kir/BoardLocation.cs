@@ -22,5 +22,10 @@ namespace Dargons_of_Kir
             this.location = location;
         }
 
+        public List<Effect> getEffectList()
+        {
+            return this.effectList;
+        }
+
     }
 }

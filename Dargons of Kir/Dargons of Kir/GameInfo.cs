@@ -150,6 +150,7 @@ namespace Dargons_of_Kir
         {
             tile.place(place, orient);
             this.tileBoard.addPiece(tile);
+            tile.placeEffects(this.tileBoard);
 
         }
 

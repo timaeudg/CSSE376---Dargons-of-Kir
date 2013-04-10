@@ -50,6 +50,10 @@ namespace Dargons_of_Kir
             return true;
         }
 
+        public override void placeEffects(Board board)
+        {
+
+        }
 
     }
 }
