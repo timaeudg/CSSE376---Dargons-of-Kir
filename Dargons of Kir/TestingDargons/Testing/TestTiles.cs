@@ -143,5 +143,17 @@ namespace TestingDargons.Testing
 
         }
 
+        [Test]
+        public void TestSamuraiEffectsPlacing()
+        {
+            GameInfo game = new GameInfo();
+            SamuraiTile sam = new SamuraiTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4,4), Board.orientation.UP, sam);
+            Board board = game.getTileBoard();
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(4,4));
+            Assert.AreEqual(2, e.Count);
+
+        }
+
     }
 }

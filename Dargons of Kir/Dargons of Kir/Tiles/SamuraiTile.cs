@@ -24,6 +24,29 @@ namespace Dargons_of_Kir.Tiles
 
         public override void placeEffects(Board board)
         {
+            List<Effect> toAdd = new List<Effect>();
+
+            switch(this.orientation){
+                case Board.orientation.UP:
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x+1, this.location.y),Board.orientation.DOWN, Board.orientation.RIGHT, 0, 1, this.ID, this.callback));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y), Board.orientation.LEFT, Board.orientation.UP, 0, 1, this.ID, this.callback));
+                    break;
+                case Board.orientation.DOWN:
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x - 1, this.location.y), Board.orientation.UP, Board.orientation.LEFT, 0, 1, this.ID, this.callback));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y - 1), Board.orientation.RIGHT, Board.orientation.DOWN, 0, 1, this.ID, this.callback));
+                    break;
+                case Board.orientation.LEFT:
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x - 1, this.location.y), Board.orientation.DOWN, Board.orientation.LEFT, 0, 1, this.ID, this.callback));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y - 1), Board.orientation.RIGHT, Board.orientation.UP, 0, 1, this.ID, this.callback));
+                    break;
+                case Board.orientation.RIGHT:
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y - 1), Board.orientation.LEFT, Board.orientation.DOWN, 0, 1, this.ID, this.callback));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x + 1, this.location.y), Board.orientation.UP, Board.orientation.RIGHT, 0, 1, this.ID, this.callback));
+                    break;
+
+            }
+
+            board.getEffectAt(this.location).AddRange(toAdd);
 
         }
     }
