@@ -147,10 +147,56 @@ namespace TestingDargons.Testing
         public void TestSamuraiEffectsPlacing()
         {
             GameInfo game = new GameInfo();
-            SamuraiTile sam = new SamuraiTile();
-            game.placeTileAtPosition(Board.makeBoardLocation(4,4), Board.orientation.UP, sam);
+            SamuraiTile sam;
             Board board = game.getTileBoard();
-            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(4,4));
+
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(4, 4));
+            sam = new SamuraiTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4,4), Board.orientation.UP, sam);
+            Assert.AreEqual(2, e.Count);
+
+            e = board.getEffectAt(Board.makeBoardLocation(4, 3));
+            sam = new SamuraiTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 3), Board.orientation.DOWN, sam);
+            Assert.AreEqual(2, e.Count);
+
+            e = board.getEffectAt(Board.makeBoardLocation(3, 4));
+            sam = new SamuraiTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.LEFT, sam);
+            Assert.AreEqual(2, e.Count);
+
+            e = board.getEffectAt(Board.makeBoardLocation(3,3));
+            sam = new SamuraiTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, sam);
+            Assert.AreEqual(2, e.Count);
+
+        }
+
+        [Test]
+        public void TestRoninEffectsPlacing()
+        {
+            GameInfo game = new GameInfo();
+            RoninTile ron;
+            Board board = game.getTileBoard();
+
+            ron = new RoninTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 4), Board.orientation.UP, ron);
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(4, 4));
+            Assert.AreEqual(2, e.Count);
+
+            ron = new RoninTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 3), Board.orientation.DOWN, ron);
+            e = board.getEffectAt(Board.makeBoardLocation(4, 4));
+            Assert.AreEqual(2, e.Count);
+
+            ron = new RoninTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.LEFT, ron);
+            e = board.getEffectAt(Board.makeBoardLocation(4, 4));
+            Assert.AreEqual(2, e.Count);
+
+            ron = new RoninTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, ron);
+            e = board.getEffectAt(Board.makeBoardLocation(4, 4));
             Assert.AreEqual(2, e.Count);
 
         }

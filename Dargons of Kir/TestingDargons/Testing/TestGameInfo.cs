@@ -173,15 +173,13 @@ namespace TestingDargons
             pList.Add(p1);
             pList.Add(p2);
             game.setPlayerList(pList);
-            Board.location loc = new Board.location();
-            loc.x =0;
-            loc.y=0;
+            Board.location loc = Board.makeBoardLocation(1, 1);
             Assert.True(game.canPlace(loc));
 
             Player next = game.getNextPlayer();
             Tile toPlay = next.takeTileFromHand(0);
             game.placeTileAtPosition(loc, Board.orientation.DOWN, toPlay);
-            Assert.AreSame(toPlay, game.getTileBoard().getTileAt(0, 0));
+            Assert.AreSame(toPlay, game.getTileBoard().getTileAt(1, 1));
             Assert.False(game.canPlace(loc));
 
         }
@@ -197,6 +195,20 @@ namespace TestingDargons
             pList.Add(p2);
             game.setPlayersAndTents(pList);
 
+        }
+
+        [Test]
+        public void testCannotPlaceTilesOnWarTents()
+        {
+            GameInfo game = new GameInfo();
+            Player p1 = new Player(game);
+            Player p2 = new Player(game);
+            List<Player> pList = new List<Player>();
+            pList.Add(p1);
+            pList.Add(p2);
+            game.setPlayersAndTents(pList);
+            Assert.False(game.canPlace(Board.makeBoardLocation(0, 0)));
+            Assert.False(game.canPlace(Board.makeBoardLocation(7, 7)));
         }
 
         [Test]
