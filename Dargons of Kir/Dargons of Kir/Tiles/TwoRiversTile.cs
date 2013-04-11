@@ -44,6 +44,7 @@ namespace Dargons_of_Kir.Tiles
                     toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x - 1, this.location.y), Board.orientation.DOWN, Board.orientation.LEFT, 0, 1, this.ID, this.callback));
                     break;
             }
+            board.getEffectAt(this.location).AddRange(toAdd);
         }
     }
 }
