@@ -29,28 +29,28 @@ namespace Dargons_of_Kir.Tiles
             switch (this.orientation)
             {
                 case Board.orientation.UP:
-                    toAdd1.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y - 1), Board.orientation.UP, Board.orientation.RIGHT, 1, 2, this.ID, this.callback));
-                    toAdd2.Add(new Effect(Board.makeBoardLocation(this.location.x - 1, this.location.y), Board.orientation.LEFT, Board.orientation.DOWN, 1, 2, this.ID, this.callback));
-                    board.getEffectAt(Board.makeBoardLocation(this.location.x - 1, this.location.y)).AddRange(toAdd1);
-                    board.getEffectAt(Board.makeBoardLocation(this.location.x, this.location.y - 1)).AddRange(toAdd2);
+                    toAdd1.Add(new Effect(Board.makeBoardLocation(this.location.x, (this.location.y - 1) % 8), Board.orientation.UP, Board.orientation.RIGHT, 1, 2, this.ID, this.callback));
+                    toAdd2.Add(new Effect(Board.makeBoardLocation((this.location.x - 1) % 8, this.location.y), Board.orientation.LEFT, Board.orientation.DOWN, 1, 2, this.ID, this.callback));
+                    board.getEffectAt(Board.makeBoardLocation((this.location.x - 1) % 8, this.location.y)).AddRange(toAdd1);
+                    board.getEffectAt(Board.makeBoardLocation(this.location.x, (this.location.y - 1) % 8)).AddRange(toAdd2);
                     break;
                 case Board.orientation.DOWN:
-                    toAdd1.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y + 1), Board.orientation.DOWN, Board.orientation.LEFT, 1, 2, this.ID, this.callback));
-                    toAdd2.Add(new Effect(Board.makeBoardLocation(this.location.x + 1, this.location.y), Board.orientation.RIGHT, Board.orientation.UP, 1, 2, this.ID, this.callback));
-                    board.getEffectAt(Board.makeBoardLocation(this.location.x + 1, this.location.y)).AddRange(toAdd1);
-                    board.getEffectAt(Board.makeBoardLocation(this.location.x, this.location.y + 1)).AddRange(toAdd2);
+                    toAdd1.Add(new Effect(Board.makeBoardLocation(this.location.x, (this.location.y + 1) % 8), Board.orientation.DOWN, Board.orientation.LEFT, 1, 2, this.ID, this.callback));
+                    toAdd2.Add(new Effect(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y), Board.orientation.RIGHT, Board.orientation.UP, 1, 2, this.ID, this.callback));
+                    board.getEffectAt(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y)).AddRange(toAdd1);
+                    board.getEffectAt(Board.makeBoardLocation(this.location.x, (this.location.y + 1) % 8)).AddRange(toAdd2);
                     break;
                 case Board.orientation.RIGHT:
-                    toAdd1.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y - 1), Board.orientation.UP, Board.orientation.LEFT, 1, 2, this.ID, this.callback));
-                    toAdd2.Add(new Effect(Board.makeBoardLocation(this.location.x + 1, this.location.y), Board.orientation.RIGHT, Board.orientation.DOWN, 1, 2, this.ID, this.callback));
-                    board.getEffectAt(Board.makeBoardLocation(this.location.x + 1, this.location.y)).AddRange(toAdd1);
-                    board.getEffectAt(Board.makeBoardLocation(this.location.x, this.location.y - 1)).AddRange(toAdd2);
+                    toAdd1.Add(new Effect(Board.makeBoardLocation(this.location.x, (this.location.y - 1) % 8), Board.orientation.UP, Board.orientation.LEFT, 1, 2, this.ID, this.callback));
+                    toAdd2.Add(new Effect(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y), Board.orientation.RIGHT, Board.orientation.DOWN, 1, 2, this.ID, this.callback));
+                    board.getEffectAt(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y)).AddRange(toAdd1);
+                    board.getEffectAt(Board.makeBoardLocation(this.location.x, (this.location.y - 1) % 8)).AddRange(toAdd2);
                     break;
                 case Board.orientation.LEFT:
-                    toAdd1.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y + 1), Board.orientation.DOWN, Board.orientation.RIGHT, 1, 2, this.ID, this.callback));
-                    toAdd2.Add(new Effect(Board.makeBoardLocation(this.location.x - 1, this.location.y), Board.orientation.LEFT, Board.orientation.UP, 1, 2, this.ID, this.callback));
-                    board.getEffectAt(Board.makeBoardLocation(this.location.x, this.location.y + 1)).AddRange(toAdd1);
-                    board.getEffectAt(Board.makeBoardLocation(this.location.x - 1, this.location.y)).AddRange(toAdd2);
+                    toAdd1.Add(new Effect(Board.makeBoardLocation(this.location.x, (this.location.y + 1) % 8), Board.orientation.DOWN, Board.orientation.RIGHT, 1, 2, this.ID, this.callback));
+                    toAdd2.Add(new Effect(Board.makeBoardLocation((this.location.x - 1) % 8, this.location.y), Board.orientation.LEFT, Board.orientation.UP, 1, 2, this.ID, this.callback));
+                    board.getEffectAt(Board.makeBoardLocation(this.location.x, (this.location.y + 1) % 8)).AddRange(toAdd1);
+                    board.getEffectAt(Board.makeBoardLocation((this.location.x - 1) % 8, this.location.y)).AddRange(toAdd2);
                     break;
             }
         }
