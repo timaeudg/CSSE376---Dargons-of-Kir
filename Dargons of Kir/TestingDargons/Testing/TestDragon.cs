@@ -86,18 +86,19 @@ namespace TestingDargons.Testing
         [Test]
         public void testDragonMovement()
         {
+            Board board = new Board();
             Board.location loc = new Board.location();
             loc.x = 4;
             loc.y = 4;
             Dragon drag = new Dragon(0, loc, Board.orientation.UP);
             Assert.AreEqual(drag.getCurrentPosition(), loc);
-            drag.move();
+            drag.move(board);
             loc = new Board.location();
             loc.x = 4;
             loc.y = 3;
             Assert.AreEqual(drag.getCurrentPosition(), loc);
             drag.setOrientation(Board.orientation.LEFT);
-            drag.move();
+            drag.move(board);
             loc.x = 3;
             Assert.AreEqual(drag.getCurrentPosition(), loc);
 
@@ -106,31 +107,99 @@ namespace TestingDargons.Testing
         [Test]
         public void testDragonWraparound()
         {
+            Board board = new Board();
             Board.location loc = new Board.location();
             loc.x = 7;
             loc.y = 0;
             Dragon drag = new Dragon(0, loc, Board.orientation.RIGHT);
-            drag.move();
+            drag.move(board);
             Board.location check = new Board.location();
             check.x = 0;
             check.y = 0;
             Assert.AreEqual(drag.getCurrentPosition(), check);
 
             drag.setOrientation(Board.orientation.UP);
-            drag.move();
+            drag.move(board);
             check.y = 7;
             Assert.AreEqual(drag.getCurrentPosition(), check);
 
             drag.setOrientation(Board.orientation.DOWN);
-            drag.move();
+            drag.move(board);
             check.y = 0;
             Assert.AreEqual(drag.getCurrentPosition(), check);
             drag.setOrientation(Board.orientation.LEFT);
-            drag.move();
+            drag.move(board);
             check.x = 7;
             Assert.AreEqual(drag.getCurrentPosition(), check);
 
         }
+
+        [Test]
+        //Test that dragons both move and will rotate because of an effect.
+        public void testDragonsFollowEffects()
+        {
+            Board board = new Board();
+            Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.LEFT);
+            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, 0, null);
+            board.getBoard()[3, 4].getEffectList().Add(eff);
+            dragon.move(board);
+            Assert.AreEqual(2, dragon.getCurrentPosition().x);
+            Assert.AreEqual(4, dragon.getCurrentPosition().y);
+            Assert.AreEqual(Board.orientation.UP, dragon.getOrientation());
+
+        }
+
+        [Test]
+        public void testDragonsChainEffects()
+        {
+            Board board = new Board();
+            Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.LEFT);
+            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, 0, null);
+            board.getBoard()[3, 4].getEffectList().Add(eff);
+            eff = new Effect(Board.makeBoardLocation(2, 3), Board.orientation.UP, Board.orientation.UP, 0, 0, 0, null);
+            board.getBoard()[2, 4].getEffectList().Add(eff);
+            dragon.move(board);
+            Assert.AreEqual(2, dragon.getCurrentPosition().x);
+            Assert.AreEqual(3, dragon.getCurrentPosition().y);
+            Assert.AreEqual(Board.orientation.UP, dragon.getOrientation());
+        }
+
+        [Test]
+        public void testDragonsRemoveTilesAfterEffect()
+        {
+            Board board = new Board();
+            Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.LEFT);
+            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, 0, null);
+            Tile tile = new SingleRiverTile();
+            board.getBoard()[2, 4].tile = tile;
+            board.getBoard()[3, 4].getEffectList().Add(eff);
+            Assert.AreEqual(tile, dragon.move(board)[0]);
+        }
+
+        [Test]
+        public void testDragonsRemoveTilesDuringEffects()
+        {
+            Board board = new Board();
+            Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.LEFT);
+            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, 0, null);
+            board.getBoard()[3, 4].getEffectList().Add(eff);
+            eff = new Effect(Board.makeBoardLocation(2, 3), Board.orientation.UP, Board.orientation.UP, 0, 0, 0, null);
+            board.getBoard()[2, 4].getEffectList().Add(eff);
+            Tile tile = new SingleRiverTile();
+            board.getBoard()[2, 4].tile = tile;
+            Assert.AreEqual(tile, dragon.move(board)[0]);
+        }
+
+        [Test]
+        public void testDragonsRemoveTiles()
+        {
+            Board board = new Board();
+            Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.LEFT);
+            Tile tile = new SingleRiverTile();
+            board.getBoard()[3, 4].tile = tile;
+            Assert.AreEqual(tile, dragon.move(board)[0]);
+        }
+
 
         [Test]
         public void testDragonImage()
