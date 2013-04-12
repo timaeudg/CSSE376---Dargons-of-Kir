@@ -24,7 +24,7 @@ namespace Dargons_of_Kir.Tiles
 
         public override void placeEffects(Board board)
         {
-            List<Effect> toAdd = board.getEffectAt(this.location);
+            List<Effect> toAdd = new List<Effect>();
             switch (this.orientation)
             {
                 case Board.orientation.UP:

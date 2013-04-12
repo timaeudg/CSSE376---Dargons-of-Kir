@@ -201,5 +201,92 @@ namespace TestingDargons.Testing
 
         }
 
+        [Test]
+        public void TestSingleRiverEffects()
+        {
+            GameInfo game = new GameInfo();
+            SingleRiverTile riv;
+            Board board = game.getTileBoard();
+
+            riv = new SingleRiverTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 3), Board.orientation.UP, riv);
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(4, 3));
+            Assert.AreEqual(2, e.Count);
+
+            riv = new SingleRiverTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 4), Board.orientation.LEFT, riv);
+            e = board.getEffectAt(Board.makeBoardLocation(4, 4));
+            Assert.AreEqual(2, e.Count);
+
+            riv = new SingleRiverTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.DOWN, riv);
+            e = board.getEffectAt(Board.makeBoardLocation(3, 4));
+            Assert.AreEqual(2, e.Count);
+
+            riv = new SingleRiverTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, riv);
+            e = board.getEffectAt(Board.makeBoardLocation(3, 3));
+            Assert.AreEqual(2, e.Count);
+
+        }
+
+        [Test]
+        public void TestDoubleRiverEffects()
+        {
+            GameInfo game = new GameInfo();
+            TwoRiversTile riv;
+            Board board = game.getTileBoard();
+
+            riv = new TwoRiversTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 3), Board.orientation.UP, riv);
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(4, 3));
+            Assert.AreEqual(2, e.Count);
+
+            riv = new TwoRiversTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 4), Board.orientation.LEFT, riv);
+            e = board.getEffectAt(Board.makeBoardLocation(4, 4));
+            Assert.AreEqual(2, e.Count);
+
+            riv = new TwoRiversTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.DOWN, riv);
+            e = board.getEffectAt(Board.makeBoardLocation(3, 4));
+            Assert.AreEqual(2, e.Count);
+
+            riv = new TwoRiversTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, riv);
+            e = board.getEffectAt(Board.makeBoardLocation(3, 3));
+            Assert.AreEqual(2, e.Count);
+
+        }
+
+        [Test]
+        public void TestTripleRiverEffects()
+        {
+            GameInfo game = new GameInfo();
+            ThreeRiversTile riv;
+            Board board = game.getTileBoard();
+
+            riv = new ThreeRiversTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 3), Board.orientation.UP, riv);
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(4, 3));
+            Assert.AreEqual(3, e.Count);
+
+            riv = new ThreeRiversTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 4), Board.orientation.LEFT, riv);
+            e = board.getEffectAt(Board.makeBoardLocation(4, 4));
+            Assert.AreEqual(3, e.Count);
+
+            riv = new ThreeRiversTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.DOWN, riv);
+            e = board.getEffectAt(Board.makeBoardLocation(3, 4));
+            Assert.AreEqual(3, e.Count);
+
+            riv = new ThreeRiversTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, riv);
+            e = board.getEffectAt(Board.makeBoardLocation(3, 3));
+            Assert.AreEqual(3, e.Count);
+
+        }
+
     }
 }
