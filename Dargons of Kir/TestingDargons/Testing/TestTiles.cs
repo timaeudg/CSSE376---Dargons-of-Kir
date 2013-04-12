@@ -288,5 +288,201 @@ namespace TestingDargons.Testing
 
         }
 
+        [Test]
+        public void TestLotusPondEffectPlacing()
+        {
+            GameInfo game = new GameInfo();
+            LotusPondTile lot = new LotusPondTile();
+            Board b = game.getTileBoard();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 4), Board.orientation.UP, lot);
+            List<Effect> mergedList = new List<Effect>();
+
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(3, 4)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(2, 4)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(5, 4)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(6, 4)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 5)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 6)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 2)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 3)));
+
+            Assert.AreEqual(mergedList.Count, 24);
+        }
+
+        [Test]
+        public void TestStormEffectPlacing()
+        {
+            GameInfo game = new GameInfo();
+            StormTile lot = new StormTile();
+            Board b = game.getTileBoard();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 4), Board.orientation.UP, lot);
+            List<Effect> mergedList = new List<Effect>();
+
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(3, 4)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(2, 4)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(5, 4)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(6, 4)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 5)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 6)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 2)));
+            mergedList.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 3)));
+
+            Assert.AreEqual(mergedList.Count, 24);
+        }
+
+        [Test]
+        public void TestLotusFlowerEffectPlacing()
+        {
+            GameInfo game = new GameInfo();
+            LotusFlowerTile lot;
+            Board b = game.getTileBoard();
+            List<Effect> counter = new List<Effect>();
+
+            lot = new LotusFlowerTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 4), Board.orientation.RIGHT, lot);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(5, 4)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(6,4)));
+            Assert.AreEqual(6, counter.Count);
+            counter.Clear();
+
+            lot = new LotusFlowerTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.DOWN, lot);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(3, 5)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(3, 6)));
+            Assert.AreEqual(6, counter.Count);
+            counter.Clear();
+
+            lot = new LotusFlowerTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 3), Board.orientation.UP, lot);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 2)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 1)));
+            Assert.AreEqual(6, counter.Count);
+            counter.Clear();
+
+            lot = new LotusFlowerTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.LEFT, lot);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(2, 3)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(1, 3)));
+            Assert.AreEqual(6, counter.Count);
+            counter.Clear();
+
+        }
+
+        [Test]
+        public void TestWindEffectPlacing()
+        {
+            GameInfo game = new GameInfo();
+            WindTile lot;
+            Board b = game.getTileBoard();
+            List<Effect> counter = new List<Effect>();
+
+            lot = new WindTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 4), Board.orientation.UP, lot);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(5, 4)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(6, 4)));
+            Assert.AreEqual(6, counter.Count);
+            counter.Clear();
+
+            lot = new WindTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.RIGHT, lot);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(3, 5)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(3, 6)));
+            Assert.AreEqual(6, counter.Count);
+            counter.Clear();
+
+            lot = new WindTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 3), Board.orientation.LEFT, lot);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 2)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 1)));
+            Assert.AreEqual(6, counter.Count);
+            counter.Clear();
+
+            lot = new WindTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.DOWN, lot);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(2, 3)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(1, 3)));
+            Assert.AreEqual(6, counter.Count);
+            counter.Clear();
+
+        }
+
+        [Test]
+        public void TestWatchFireEffectsPlacing()
+        {
+            GameInfo game = new GameInfo();
+            WatchfireTile watch;
+            Board b = game.getTileBoard();
+            List<Effect> counter = new List<Effect>();
+
+            watch = new WatchfireTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.UP, watch);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(2, 3)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(3, 2)));
+            Assert.AreEqual(2, counter.Count);
+            counter.Clear();
+
+            watch = new WatchfireTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 3), Board.orientation.RIGHT, watch);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 2)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(5, 3)));
+            Assert.AreEqual(2, counter.Count);
+            counter.Clear();
+
+            watch = new WatchfireTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 4), Board.orientation.DOWN, watch);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 5)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(5, 4)));
+            Assert.AreEqual(2, counter.Count);
+            counter.Clear();
+
+            watch = new WatchfireTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.LEFT, watch);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(3, 5)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(2, 4)));
+            Assert.AreEqual(2, counter.Count);
+            counter.Clear();
+
+        }
+
+        [Test]
+        public void TestWildFireEffectsPlacing()
+        {
+            GameInfo game = new GameInfo();
+            WildfireTile watch;
+            Board b = game.getTileBoard();
+            List<Effect> counter = new List<Effect>();
+
+            watch = new WildfireTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.UP, watch);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(2, 3)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 3)));
+            Assert.AreEqual(2, counter.Count);
+            counter.Clear();
+
+            watch = new WildfireTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(5, 3), Board.orientation.RIGHT, watch);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(5, 4)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(5, 2)));
+            Assert.AreEqual(2, counter.Count);
+            counter.Clear();
+
+            watch = new WildfireTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.DOWN, watch);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(2, 4)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(4, 4)));
+            Assert.AreEqual(2, counter.Count);
+            counter.Clear();
+
+            watch = new WildfireTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(6, 3), Board.orientation.LEFT, watch);
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(6, 2)));
+            counter.AddRange(b.getEffectAt(Board.makeBoardLocation(6, 4)));
+            Assert.AreEqual(2, counter.Count);
+            counter.Clear();
+
+        }
+
     }
 }
