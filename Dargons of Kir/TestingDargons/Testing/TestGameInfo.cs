@@ -173,13 +173,13 @@ namespace TestingDargons
             pList.Add(p1);
             pList.Add(p2);
             game.setPlayerList(pList);
-            Board.location loc = Board.makeBoardLocation(1, 1);
+            Board.location loc = Board.makeBoardLocation(5, 5);
             Assert.True(game.canPlace(loc));
 
             Player next = game.getNextPlayer();
             Tile toPlay = next.takeTileFromHand(0);
             game.placeTileAtPosition(loc, Board.orientation.DOWN, toPlay);
-            Assert.AreSame(toPlay, game.getTileBoard().getTileAt(1, 1));
+            Assert.AreSame(toPlay, game.getTileBoard().getTileAt(5, 5));
             Assert.False(game.canPlace(loc));
 
         }
