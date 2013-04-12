@@ -48,11 +48,11 @@ namespace Dargons_of_Kir.Tiles
             toAdd1.Clear();
             toAdd2.Clear();
             toAdd1.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2, this.ID, this.callback));
-            toAdd2.Add(new Effect(Board.makeBoardLocation((this.location.x - 1) % 8, this.location.y), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2, this.ID, this.callback));
+            toAdd2.Add(new Effect(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2, this.ID, this.callback));
             toAdd1.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2, this.ID, this.callback));
-            toAdd2.Add(new Effect(Board.makeBoardLocation((this.location.x - 1) % 8, this.location.y), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2, this.ID, this.callback));
+            toAdd2.Add(new Effect(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2, this.ID, this.callback));
             toAdd1.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y), Board.orientation.UP, Board.orientation.UP, 1, 2, this.ID, this.callback));
-            toAdd2.Add(new Effect(Board.makeBoardLocation((this.location.x - 1) % 8, this.location.y), Board.orientation.UP, Board.orientation.UP, 2, 2, this.ID, this.callback));
+            toAdd2.Add(new Effect(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y), Board.orientation.UP, Board.orientation.UP, 2, 2, this.ID, this.callback));
             board.getEffectAt(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y)).AddRange(toAdd1);
             board.getEffectAt(Board.makeBoardLocation((this.location.x + 2) % 8, this.location.y)).AddRange(toAdd2);
             toAdd1.Clear();
