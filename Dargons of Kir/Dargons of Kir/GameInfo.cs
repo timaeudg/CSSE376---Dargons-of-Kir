@@ -136,6 +136,13 @@ namespace Dargons_of_Kir
         public bool canPlace(Board.location loc){
             if (this.tileBoard.getTileAt(loc.x, loc.y) == null)
             {
+                foreach (Dragon d in this.dragons)
+                {
+                    if (loc.x == d.currentPosition.x && loc.y == d.currentPosition.y)
+                    {
+                        return false;
+                    }
+                }
                 return true;
 
             }

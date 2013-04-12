@@ -28,10 +28,17 @@ namespace Dargons_of_Kir
         }
 
 
-        internal Effect getActiveEffect()
+        internal Effect getActiveEffect(Board.orientation dragonOrient)
         {
-            if (effectList.Count < 1) return null;
-            return effectList[0];
+
+            foreach (Effect e in this.effectList)
+            {
+                if (e.requiredStartingOrientation == dragonOrient)
+                {
+                    return e;
+                }
+            }
+            return null;
         }
     }
 }

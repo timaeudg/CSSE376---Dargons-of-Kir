@@ -130,14 +130,16 @@ namespace Dargons_of_Kir
             
             foreach (Dragon dragon in allDragons)
             {
-                if (!game.canPlace(dragon.getCurrentPosition()))
+
+                boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
+                /*if (!game.canPlace(dragon.getCurrentPosition()))
                 {
                     boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = game.getTileBoard().getTileAt(dragon.getCurrentPosition().x, dragon.getCurrentPosition().y).getPicture();
                 }
                 else
                 {
                     boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
-                }
+                }*/
                
                 
             }

@@ -111,7 +111,7 @@ namespace Dargons_of_Kir
                     if (this.currentPosition.x == -1) this.currentPosition = Board.makeBoardLocation(7, this.currentPosition.y);
                     break;
             }
-            Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(); 
+            Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation); 
             while(currentEffect != null)
             {
                 this.currentPosition = currentEffect.destination;
@@ -120,7 +120,7 @@ namespace Dargons_of_Kir
                 {
                     toRemove.Add(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile);
                 }
-                currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(); 
+                currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation); 
             }
             if(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile != null)
             {
