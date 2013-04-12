@@ -163,7 +163,6 @@ namespace Dargons_of_Kir
             }
             else
             {
-
                 return false;
             }
 
@@ -171,15 +170,15 @@ namespace Dargons_of_Kir
 
         public void moveDragons()
         {
-            foreach (Dragon d in this.dragons)
+           List<Tile> toDelete = new List<Tile>();
+           for (int i = 0; i < this.dragons.Count; i++ )
+           {
+               toDelete.AddRange(dragons[i].move(tileBoard));
+           }
+            foreach (Tile t in toDelete)
             {
-                d.move();
-                Board.location loc = d.getCurrentPosition();
-                this.destroyTileAt(loc);
-
+                destroyTileAt(t.location);
             }
-
         }
-
     }
 }

@@ -27,5 +27,11 @@ namespace Dargons_of_Kir
             return this.effectList;
         }
 
+
+        internal Effect getActiveEffect()
+        {
+            if (effectList.Count < 1) return null;
+            return effectList[0];
+        }
     }
 }

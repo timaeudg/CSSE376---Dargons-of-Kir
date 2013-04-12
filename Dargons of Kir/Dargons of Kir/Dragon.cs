@@ -91,12 +91,13 @@ namespace Dargons_of_Kir
             return this.currentPosition;
         }
 
-        public void move()
+        public List<Tile> move(Board board)
         {
+            List<Tile> toRemove = new List<Tile>();
             switch (this.orientation)
             {
                 case Board.orientation.UP: 
-                   this.currentPosition = Board.makeBoardLocation(this.currentPosition.x, (this.currentPosition.y-1)%8);
+                    this.currentPosition = Board.makeBoardLocation(this.currentPosition.x, (this.currentPosition.y-1)%8);
                     if (this.currentPosition.y == -1) this.currentPosition = Board.makeBoardLocation(this.currentPosition.x,7);
                     break;
                 case Board.orientation.RIGHT:
@@ -110,6 +111,23 @@ namespace Dargons_of_Kir
                     if (this.currentPosition.x == -1) this.currentPosition = Board.makeBoardLocation(7, this.currentPosition.y);
                     break;
             }
+            Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(); 
+            while(currentEffect != null)
+            {
+                this.currentPosition = currentEffect.destination;
+                this.orientation = currentEffect.endingOrientaion;
+                if(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile != null)
+                {
+                    toRemove.Add(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile);
+                }
+                currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(); 
+            }
+            if(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile != null)
+            {
+                toRemove.Add(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile);
+            }
+            
+            return toRemove;
 
         }
     }

@@ -92,9 +92,9 @@ namespace Dargons_of_Kir
             }
             if (((PictureBox)sender).Image == checkMark && placed)
             {
-                if(game.getTileBoard().addPiece(selected))
+                if(game.canPlace(selected.location))
                 {
-                    
+                    game.placeTileAtPosition(selected.location, selected.orientation, selected);
                     placed = false;
                     selected = null;
                     ((PictureBox)sender).Image = null;

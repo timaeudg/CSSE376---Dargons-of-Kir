@@ -9,9 +9,9 @@ namespace Dargons_of_Kir
 
     public class Effect
     {
-        private Board.location destination { get;  set; }
+        public Board.location destination { get; private set; }
         private Board.orientation requiredStartingOrientation {  get;  set; }
-        private Board.orientation endingOrientaion {  get;  set; }
+        public Board.orientation endingOrientaion {  get;  private set; }
         private int distance {  get;  set; }
         private int priority {  get;  set; }
         private int parentTileID {  get;  set; }
