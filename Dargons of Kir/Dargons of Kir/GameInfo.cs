@@ -227,6 +227,10 @@ namespace Dargons_of_Kir
         public void endGame(int p)
         {
             this.playerWon = p;
+            if (GameScreen.promptForNewGame(this.playerWon))
+            {
+                this.makeNewGame();
+            }
         }
 
         public void makeNewGame()
@@ -238,6 +242,8 @@ namespace Dargons_of_Kir
             this.makePile();
             this.setPlayersAndTents(this.players);
             this.makeDragonsAndSetPositions();
+            GameScreen screen = MainRunner.getScreen();
+            screen.resetScreen();
         }
     }
 }
