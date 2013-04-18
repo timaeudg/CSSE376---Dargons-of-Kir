@@ -167,7 +167,7 @@ namespace Dargons_of_Kir
 
         public bool destroyTileAt(Board.location loc)
         {
-            if (!canPlace(loc))
+            if (this.tileBoard.getTileAt(loc.x, loc.y) != null)
             {
                 this.tileBoard.destroyTileAt(loc.x, loc.y);
                 return true;
