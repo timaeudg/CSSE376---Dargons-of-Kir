@@ -18,6 +18,7 @@ namespace Dargons_of_Kir
         private List<Dragon> dragons;
         private List<Player> players;
         private Player currentPlayerTurn;
+        private int playerWon = -1;
 
         public GameInfo()
         {
@@ -65,7 +66,7 @@ namespace Dargons_of_Kir
            return types;
         }
 
-        public void setPlayerList(List<Player> plyrs)
+        private void setPlayerList(List<Player> plyrs)
         {
             this.players = plyrs;
             WarTentTile tent = new WarTentTile(this.players[0], Board.makeBoardLocation(0,0));
@@ -155,9 +156,12 @@ namespace Dargons_of_Kir
 
         public void placeTileAtPosition(Board.location place, Board.orientation orient, Tile tile)
         {
-            tile.place(place, orient);
-            this.tileBoard.addPiece(tile);
-            tile.placeEffects(this.tileBoard);
+            if (playerWon < 0)
+            {
+                tile.place(place, orient);
+                this.tileBoard.addPiece(tile);
+                tile.placeEffects(this.tileBoard);
+            }
 
         }
 
@@ -177,15 +181,63 @@ namespace Dargons_of_Kir
 
         public void moveDragons()
         {
-           List<Tile> toDelete = new List<Tile>();
-           for (int i = 0; i < this.dragons.Count; i++ )
-           {
-               toDelete.AddRange(dragons[i].move(tileBoard));
-           }
-            foreach (Tile t in toDelete)
+            if (this.playerWon < 0)
             {
-                destroyTileAt(t.location);
+                List<Tile> toDelete = new List<Tile>();
+                bool p1Win = false;
+                bool p2Win = false;
+                for (int i = 0; i < this.dragons.Count; i++)
+                {
+                    toDelete.AddRange(dragons[i].move(tileBoard));
+                }
+                foreach (Tile t in toDelete)
+                {
+                    if (this.tileBoard.getTileAt(0, 0) == t)
+                    {
+                        p2Win = true;
+                    }
+                    if (this.tileBoard.getTileAt(7, 7) == t)
+                    {
+                        p1Win = true;
+                    }
+                    destroyTileAt(t.location);
+                }
+
+                if (p2Win && p1Win)
+                {
+                    this.endGame(3);
+                }
+                else if (p2Win)
+                {
+                    this.endGame(2);
+                }
+                else if (p1Win)
+                {
+                    this.endGame(1);
+                }
             }
+
+        }
+
+        public int getPlayerWon(){
+        return this.playerWon;
+        }
+
+
+        public void endGame(int p)
+        {
+            this.playerWon = p;
+        }
+
+        public void makeNewGame()
+        {
+            this.playerWon = -1;
+            this.tileBoard = new Board();
+            this.pileOfTiles = new List<Tile>();
+            this.dragons = new List<Dragon>();
+            this.makePile();
+            this.setPlayersAndTents(this.players);
+            this.makeDragonsAndSetPositions();
         }
     }
 }
