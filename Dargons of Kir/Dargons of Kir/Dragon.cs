@@ -129,6 +129,7 @@ namespace Dargons_of_Kir
             Board.location prevLoc = this.currentPosition;
             Board.orientation prevOrient = this.orientation;
             Type tileType = null;
+            bool effectNotImpact = false;
 
             switch (this.orientation)
             {
@@ -158,9 +159,25 @@ namespace Dargons_of_Kir
                 tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
             }
             bool isImpact = (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile));
-            if (!isImpact && tileType!=null)
+           
+            if (tileType != null)
             {
-                toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                if (!isImpact)
+                {
+                    toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                }
+                else
+                {
+                    effectNotImpact = currentEffect == null;
+                    if (!effectNotImpact)
+                    {
+                        effectNotImpact = currentEffect.getParentID() != board.getTileAt(this.currentPosition.x, this.currentPosition.y).getID();
+                    }
+                    if (movedSideways || effectNotImpact)
+                    {
+                        toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                    }
+                }
             }
             
             
@@ -195,15 +212,24 @@ namespace Dargons_of_Kir
                 }
 
                 isImpact = (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile));
-                if (!isImpact && tileType!=null)
+                
+                if (tileType != null)
                 {
-                    toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
-                }
-                else
-                {
-                    if (movedSideways)
+                    if (!isImpact)
                     {
                         toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                    }
+                    else
+                    {
+                        effectNotImpact = currentEffect == null;
+                        if (!effectNotImpact)
+                        {
+                            effectNotImpact = currentEffect.getParentID() != board.getTileAt(this.currentPosition.x, this.currentPosition.y).getID();
+                        }
+                        if (movedSideways || effectNotImpact)
+                        {
+                            toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                        }
                     }
                 }
 
