@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using Dargons_of_Kir.Tiles;
 
 namespace Dargons_of_Kir
 {
@@ -112,6 +113,10 @@ namespace Dargons_of_Kir
         public List<Tile> move(Board board)
         {
             List<Tile> toRemove = new List<Tile>();
+            bool movedSideways = false;
+            bool impactIgnore = false;
+            Board.location prevLoc = this.currentPosition;
+            Board.orientation prevOrient = this.orientation;
             switch (this.orientation)
             {
                 case Board.orientation.UP: 
@@ -133,6 +138,8 @@ namespace Dargons_of_Kir
             Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation); 
             while(currentEffect != null)
             {
+                prevOrient = this.orientation;
+                prevLoc = this.currentPosition;
                 if(PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
                 {
                     //write to console
@@ -142,13 +149,62 @@ namespace Dargons_of_Kir
                 }
                 this.currentPosition = currentEffect.destination;
                 this.orientation = currentEffect.endingOrientaion;
+                if (prevOrient == this.orientation)
+                {
+                    //This means that at some point, the dragon was moved without being turned, and as such, should be checked to see if it moved sideways
+                    if (this.orientation == Board.orientation.UP || this.orientation == Board.orientation.DOWN)
+                    {
+                        if (this.currentPosition.x != prevLoc.x)
+                        {
+                            movedSideways = true;
+                        }
+                    }
+                    else
+                    {
+                        if (this.currentPosition.y != prevLoc.y)
+                        {
+                            movedSideways = true;
+                        }
+                    }
+                }
                 if(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile != null)
                 {
-                    toRemove.Add(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile);
+                    Type tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
+                    if (!movedSideways)
+                    {
+                        if (!(tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile)))
+                        {
+                            toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+
+                        }
+                        else
+                        {
+                            if (currentEffect.getParentID() != board.getTileAt(this.currentPosition.x, this.currentPosition.y).getID())
+                            {
+                                toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile))
+                        {
+                            impactIgnore = true;
+                        }
+                        toRemove.Add(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile);
+                    }
                 }
-                currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation); 
+                if (!impactIgnore)
+                {
+                    currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation);
+                    impactIgnore = false;
+                }
+                else
+                {
+                    currentEffect = null;
+                }
             }
-            if(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile != null)
+            if(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile != null && !toRemove.Contains(board.getTileAt(this.currentPosition.x, this.currentPosition.y)))
             {
                 
                 toRemove.Add(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile);

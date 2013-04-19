@@ -35,6 +35,11 @@ namespace Dargons_of_Kir
 
         }
 
+        public int getParentID()
+        {
+            return this.parentTileID;
+        }
+
 
 
 

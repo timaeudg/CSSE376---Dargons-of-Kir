@@ -31,8 +31,18 @@ namespace Dargons_of_Kir
 
         public static Board.location makeBoardLocation(int x, int y){
             Board.location toReturn = new Board.location();
-            toReturn.x = x;
-            toReturn.y = y;
+            int newX = x;
+            int newY = y;
+            if (x < 0)
+            {
+                newX = x + 8; //this will end up with 7 if -1, 6 if -2, etc.
+            }
+            if (y < 0)
+            {
+                newY = y + 8;
+            }
+            toReturn.x = newX;
+            toReturn.y = newY;
 
             return toReturn;
         }
@@ -58,7 +68,29 @@ namespace Dargons_of_Kir
 
         public void destroyTileAt(int x, int y)
         {
+            int id = this.board[x, y].tile.getID();
             this.board[x, y].tile = null;
+            List<Effect> effectsToRemove = new List<Effect>();
+            for (int i = 0; i < 8; i++)
+            {
+
+                for (int k = 0; k < 8; k++)
+                {
+                    foreach (Effect e in this.board[i, k].getEffectList())
+                    {
+                        if (e.getParentID() == id)
+                        {
+                            effectsToRemove.Add(e);
+                        }
+                    }
+                    foreach (Effect e in effectsToRemove)
+                    {
+                        this.board[i, k].getEffectList().Remove(e);
+                    }
+                }
+
+            }
+
 
         }
 
