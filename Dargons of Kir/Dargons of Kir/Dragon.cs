@@ -9,10 +9,28 @@ namespace Dargons_of_Kir
     public class Dragon
     {
         private int dragonID;
+        private List<trueposition> PathList = new List<trueposition>();
         public Board.location currentPosition {get; private set; }
         public Board.orientation orientation {get; private set; }
         private int previousEffectTileId;
         public Image image { get; set; }
+
+        private class trueposition
+        {
+            private Board.location location;
+            private Board.orientation orientation;
+
+            public trueposition(Board.location location, Board.orientation orientation)
+            {
+                this.location = location;
+                this.orientation = orientation;
+            }
+
+            public bool Equals(trueposition other)
+            {
+                return (this.location.Equals(other.location) && this.orientation.Equals(other.orientation));
+            }
+        }
 
         public Dragon(int id, Board.location startingLocation, Board.orientation rotation)
         {
@@ -111,9 +129,17 @@ namespace Dargons_of_Kir
                     if (this.currentPosition.x == -1) this.currentPosition = Board.makeBoardLocation(7, this.currentPosition.y);
                     break;
             }
+            PathList.Add(new trueposition(this.currentPosition, this.orientation));
             Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation); 
             while(currentEffect != null)
             {
+                if(PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
+                {
+                    //write to console
+                    Console.Write(PathList);
+                    PathList.Clear();
+                    return toRemove;
+                }
                 this.currentPosition = currentEffect.destination;
                 this.orientation = currentEffect.endingOrientaion;
                 if(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile != null)
@@ -126,7 +152,7 @@ namespace Dargons_of_Kir
             {
                 toRemove.Add(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile);
             }
-            
+            PathList.Clear();
             return toRemove;
 
         }
