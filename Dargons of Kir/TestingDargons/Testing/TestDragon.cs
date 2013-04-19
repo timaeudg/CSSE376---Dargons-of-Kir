@@ -13,6 +13,20 @@ namespace TestingDargons.Testing
     [TestFixture]
     class TestDragon
     {
+        [Test]
+        public void testList()
+        {
+            List<Dargons_of_Kir.Dragon.trueposition> list = new List<Dargons_of_Kir.Dragon.trueposition>();
+            Board.location loc = new Board.location();
+            loc.x = 4;
+            loc.y = 4;
+            Dragon drag = new Dragon(0, loc, Board.orientation.DOWN);
+            Dragon.trueposition position = new Dragon.trueposition(drag.currentPosition, drag.orientation);
+            Dragon.trueposition position2 = new Dragon.trueposition(drag.currentPosition, drag.orientation);
+            list.Add(position);
+            Assert.IsTrue(position2.alreadyVisited(list));
+
+        }
 
         [Test]
         public void testMakingDragons(){
@@ -186,6 +200,7 @@ namespace TestingDargons.Testing
             eff = new Effect(Board.makeBoardLocation(2, 3), Board.orientation.UP, Board.orientation.UP, 0, 0, null);
             board.getBoard()[2, 4].getEffectList().Add(eff);
             Tile tile = new SingleRiverTile();
+            //tile.setOrientation(Board.orientation.
             board.getBoard()[2, 4].tile = tile;
             Assert.AreEqual(tile, dragon.move(board)[0]);
         }
@@ -193,11 +208,15 @@ namespace TestingDargons.Testing
         [Test]
         public void testDragonsRemoveTiles()
         {
-            Board board = new Board();
+            GameInfo game = new GameInfo();
+            List<Dragon> drags = game.getDragons();
             Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.LEFT);
+            drags.Add(dragon);
+
             Tile tile = new SingleRiverTile();
-            board.getBoard()[3, 4].tile = tile;
-            Assert.AreEqual(tile, dragon.move(board)[0]);
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.LEFT, tile);
+            
+            Assert.AreEqual(tile, dragon.move(game.getTileBoard())[0]);
         }
 
         [Test]
