@@ -39,7 +39,7 @@ namespace TestingDargons.Testing
             Dragon drag;
             Board.location loc = new Board.location();
             drag  = new Dragon(0,loc,Board.orientation.DOWN);
-            Assert.True(Board.orientation.DOWN == drag.getOrientation());
+            Assert.True(Board.orientation.DOWN == drag.orientation);
 
         }
 
@@ -76,9 +76,9 @@ namespace TestingDargons.Testing
             loc.x = 6;
             loc.y = 6;
             Dragon drag = new Dragon(0, loc, Board.orientation.RIGHT);
-            Assert.AreEqual(drag.getOrientation(), Board.orientation.RIGHT);
-            drag.setOrientation(Board.orientation.LEFT);
-            Assert.AreEqual(drag.getOrientation(), Board.orientation.LEFT);
+            Assert.AreEqual(drag.orientation, Board.orientation.RIGHT);
+            drag.orientation = (Board.orientation.LEFT);
+            Assert.AreEqual(drag.orientation, Board.orientation.LEFT);
 
 
         }
@@ -97,7 +97,7 @@ namespace TestingDargons.Testing
             loc.x = 4;
             loc.y = 3;
             Assert.AreEqual(drag.getCurrentPosition(), loc);
-            drag.setOrientation(Board.orientation.LEFT);
+            drag.orientation = (Board.orientation.LEFT);
             drag.move(board);
             loc.x = 3;
             Assert.AreEqual(drag.getCurrentPosition(), loc);
@@ -118,16 +118,16 @@ namespace TestingDargons.Testing
             check.y = 0;
             Assert.AreEqual(drag.getCurrentPosition(), check);
 
-            drag.setOrientation(Board.orientation.UP);
+            drag.orientation = Board.orientation.UP;
             drag.move(board);
             check.y = 7;
             Assert.AreEqual(drag.getCurrentPosition(), check);
 
-            drag.setOrientation(Board.orientation.DOWN);
+            drag.orientation = Board.orientation.DOWN;
             drag.move(board);
             check.y = 0;
             Assert.AreEqual(drag.getCurrentPosition(), check);
-            drag.setOrientation(Board.orientation.LEFT);
+            drag.orientation = Board.orientation.LEFT;
             drag.move(board);
             check.x = 7;
             Assert.AreEqual(drag.getCurrentPosition(), check);
@@ -140,12 +140,12 @@ namespace TestingDargons.Testing
         {
             Board board = new Board();
             Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.LEFT);
-            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, 0, null);
+            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, null);
             board.getBoard()[3, 4].getEffectList().Add(eff);
             dragon.move(board);
             Assert.AreEqual(2, dragon.getCurrentPosition().x);
             Assert.AreEqual(4, dragon.getCurrentPosition().y);
-            Assert.AreEqual(Board.orientation.UP, dragon.getOrientation());
+            Assert.AreEqual(Board.orientation.UP, dragon.orientation);
 
         }
 
@@ -154,14 +154,14 @@ namespace TestingDargons.Testing
         {
             Board board = new Board();
             Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.LEFT);
-            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, 0, null);
+            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, null);
             board.getBoard()[3, 4].getEffectList().Add(eff);
-            eff = new Effect(Board.makeBoardLocation(2, 3), Board.orientation.UP, Board.orientation.UP, 0, 0, 0, null);
+            eff = new Effect(Board.makeBoardLocation(2, 3), Board.orientation.UP, Board.orientation.UP, 0, 0, null);
             board.getBoard()[2, 4].getEffectList().Add(eff);
             dragon.move(board);
             Assert.AreEqual(2, dragon.getCurrentPosition().x);
             Assert.AreEqual(3, dragon.getCurrentPosition().y);
-            Assert.AreEqual(Board.orientation.UP, dragon.getOrientation());
+            Assert.AreEqual(Board.orientation.UP, dragon.orientation);
         }
 
         [Test]
@@ -169,7 +169,7 @@ namespace TestingDargons.Testing
         {
             Board board = new Board();
             Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.LEFT);
-            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, 0, null);
+            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, null);
             Tile tile = new SingleRiverTile();
             board.getBoard()[2, 4].tile = tile;
             board.getBoard()[3, 4].getEffectList().Add(eff);
@@ -181,9 +181,9 @@ namespace TestingDargons.Testing
         {
             Board board = new Board();
             Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.LEFT);
-            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, 0, null);
+            Effect eff = new Effect(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.UP, 0, 0, null);
             board.getBoard()[3, 4].getEffectList().Add(eff);
-            eff = new Effect(Board.makeBoardLocation(2, 3), Board.orientation.UP, Board.orientation.UP, 0, 0, 0, null);
+            eff = new Effect(Board.makeBoardLocation(2, 3), Board.orientation.UP, Board.orientation.UP, 0, 0, null);
             board.getBoard()[2, 4].getEffectList().Add(eff);
             Tile tile = new SingleRiverTile();
             board.getBoard()[2, 4].tile = tile;
@@ -198,6 +198,20 @@ namespace TestingDargons.Testing
             Tile tile = new SingleRiverTile();
             board.getBoard()[3, 4].tile = tile;
             Assert.AreEqual(tile, dragon.move(board)[0]);
+        }
+
+        [Test]
+        public void testDragonsIgnoreTiles()
+        {
+            Board board = new Board();
+            Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.LEFT);
+            Tile tile = new WindTile();
+            tile.location = Board.makeBoardLocation(3, 3);
+            tile.orientation = Board.orientation.RIGHT;
+            tile.placeEffects(board);
+            board.getBoard()[3, 3].tile = tile;
+            dragon.move(board);
+            Assert.AreEqual(Board.makeBoardLocation(3,5),dragon.currentPosition);
         }
 
 

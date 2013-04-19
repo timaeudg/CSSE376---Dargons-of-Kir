@@ -141,7 +141,7 @@ namespace TestingDargons
             {
                 Assert.NotNull(d);
                 Assert.NotNull(d.getCurrentPosition());
-                Assert.NotNull(d.getOrientation());
+                Assert.NotNull(d.orientation);
                 Assert.NotNull(d.getDragonID());
                 enteredLoop = true;
             }

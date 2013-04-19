@@ -9,10 +9,10 @@ namespace Dargons_of_Kir
 {
     public class Dragon
     {
-        private int dragonID;
         private List<trueposition> PathList = new List<trueposition>();
-        public Board.location currentPosition {get; private set; }
-        public Board.orientation orientation {get; private set; }
+        public int dragonID { get; private set; }
+        public Board.location currentPosition {get; set; }
+        public Board.orientation orientation {get; set; }
         private int previousEffectTileId;
         public Image image { get; set; }
 
@@ -83,17 +83,6 @@ namespace Dargons_of_Kir
 
         }
 
-        public Board.orientation getOrientation()
-        {
-            return this.orientation;
-        }
-
-        public void setOrientation(Board.orientation newOrient)
-        {
-            this.orientation = newOrient;
-
-        }
-
 
         public void setPreviousTile(int id)
         {
@@ -113,6 +102,7 @@ namespace Dargons_of_Kir
         public List<Tile> move(Board board)
         {
             List<Tile> toRemove = new List<Tile>();
+            List<Tile> toIgnore = new List<Tile>();
             bool movedSideways = false;
             bool impactIgnore = false;
             Board.location prevLoc = this.currentPosition;
@@ -135,7 +125,7 @@ namespace Dargons_of_Kir
                     break;
             }
             PathList.Add(new trueposition(this.currentPosition, this.orientation));
-            Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation); 
+            Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation,toIgnore);
             while(currentEffect != null)
             {
                 prevOrient = this.orientation;
@@ -143,12 +133,14 @@ namespace Dargons_of_Kir
                 if(PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
                 {
                     //write to console
-                    Console.Write(PathList);
+                    //Console.Write(PathList);
                     PathList.Clear();
                     return toRemove;
                 }
                 this.currentPosition = currentEffect.destination;
                 this.orientation = currentEffect.endingOrientaion;
+                if(toIgnore.Count > 0) toIgnore.RemoveAt(0);
+                toIgnore.Add(currentEffect.parentTile);
                 if (prevOrient == this.orientation)
                 {
                     //This means that at some point, the dragon was moved without being turned, and as such, should be checked to see if it moved sideways
@@ -179,7 +171,7 @@ namespace Dargons_of_Kir
                         }
                         else
                         {
-                            if (currentEffect.getParentID() != board.getTileAt(this.currentPosition.x, this.currentPosition.y).getID())
+                            if (currentEffect.parentTile != board.getTileAt(this.currentPosition.x, this.currentPosition.y))
                             {
                                 toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
                             }
@@ -196,7 +188,10 @@ namespace Dargons_of_Kir
                 }
                 if (!impactIgnore)
                 {
-                    currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation);
+
+                    currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation,toIgnore);
+                    toIgnore.RemoveAt(0);
+                    toIgnore.Add(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile);
                     impactIgnore = false;
                 }
                 else

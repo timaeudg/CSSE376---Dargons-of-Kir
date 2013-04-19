@@ -68,7 +68,6 @@ namespace Dargons_of_Kir
 
         public void destroyTileAt(int x, int y)
         {
-            int id = this.board[x, y].tile.getID();
             this.board[x, y].tile = null;
             List<Effect> effectsToRemove = new List<Effect>();
             for (int i = 0; i < 8; i++)
@@ -78,7 +77,7 @@ namespace Dargons_of_Kir
                 {
                     foreach (Effect e in this.board[i, k].getEffectList())
                     {
-                        if (e.getParentID() == id)
+                        if (e.parentTile == this.board[x,y].tile)
                         {
                             effectsToRemove.Add(e);
                         }

@@ -29,9 +29,9 @@ namespace Dargons_of_Kir.Tiles
             switch (this.orientation)
             {
                 case Board.orientation.UP:
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, (this.location.y + 1) % 8), Board.orientation.LEFT, Board.orientation.DOWN, 0, 1, this.ID, this.callback));
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, (this.location.y + 1) % 8), Board.orientation.RIGHT, Board.orientation.DOWN, 0, 1, this.ID, this.callback));
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, (this.location.y + 1) % 8), Board.orientation.DOWN, Board.orientation.DOWN, 0, 1, this.ID, this.callback));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, (this.location.y + 1) % 8), Board.orientation.LEFT, Board.orientation.DOWN, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, (this.location.y + 1) % 8), Board.orientation.RIGHT, Board.orientation.DOWN, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, (this.location.y + 1) % 8), Board.orientation.DOWN, Board.orientation.DOWN, 0, 1, this));
                     break;
                 case Board.orientation.DOWN:
                     wrap = this.location.x - 1;
@@ -39,14 +39,14 @@ namespace Dargons_of_Kir.Tiles
                     {
                         wrap = 7;
                     }
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, wrap), Board.orientation.LEFT, Board.orientation.UP, 0, 1, this.ID, this.callback));
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, wrap), Board.orientation.RIGHT, Board.orientation.UP, 0, 1, this.ID, this.callback));
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, wrap), Board.orientation.UP, Board.orientation.UP, 0, 1, this.ID, this.callback));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, wrap), Board.orientation.LEFT, Board.orientation.UP, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, wrap), Board.orientation.RIGHT, Board.orientation.UP, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, wrap), Board.orientation.UP, Board.orientation.UP, 0, 1, this));
                     break;
                 case Board.orientation.LEFT:
-                    toAdd.Add(new Effect(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y), Board.orientation.UP, Board.orientation.RIGHT, 0, 1, this.ID, this.callback));
-                    toAdd.Add(new Effect(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y), Board.orientation.DOWN, Board.orientation.RIGHT, 0, 1, this.ID, this.callback));
-                    toAdd.Add(new Effect(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y), Board.orientation.RIGHT, Board.orientation.RIGHT, 0, 1, this.ID, this.callback));
+                    toAdd.Add(new Effect(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y), Board.orientation.UP, Board.orientation.RIGHT, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y), Board.orientation.DOWN, Board.orientation.RIGHT, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation((this.location.x + 1) % 8, this.location.y), Board.orientation.RIGHT, Board.orientation.RIGHT, 0, 1, this));
                     break;
                 case Board.orientation.RIGHT:
                     wrap = this.location.x - 1;
@@ -54,9 +54,9 @@ namespace Dargons_of_Kir.Tiles
                     {
                         wrap = 7;
                     }
-                    toAdd.Add(new Effect(Board.makeBoardLocation(wrap, this.location.y), Board.orientation.UP, Board.orientation.LEFT, 0, 1, this.ID, this.callback));
-                    toAdd.Add(new Effect(Board.makeBoardLocation(wrap, this.location.y), Board.orientation.DOWN, Board.orientation.LEFT, 0, 1, this.ID, this.callback));
-                    toAdd.Add(new Effect(Board.makeBoardLocation(wrap, this.location.y), Board.orientation.LEFT, Board.orientation.LEFT, 0, 1, this.ID, this.callback));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(wrap, this.location.y), Board.orientation.UP, Board.orientation.LEFT, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(wrap, this.location.y), Board.orientation.DOWN, Board.orientation.LEFT, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(wrap, this.location.y), Board.orientation.LEFT, Board.orientation.LEFT, 0, 1, this));
                     break;
             }
             board.getEffectAt(this.location).AddRange(toAdd);

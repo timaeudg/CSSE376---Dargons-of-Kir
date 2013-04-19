@@ -12,36 +12,25 @@ namespace Dargons_of_Kir
         public Board.location destination { get; private set; }
         public Board.orientation requiredStartingOrientation {  get;  set; }
         public Board.orientation endingOrientaion {  get;  private set; }
-        private int distance {  get;  set; }
-        private int priority {  get;  set; }
-        private int parentTileID {  get;  set; }
-        private Func<bool> callback {  get;  set; }
+        public int distance {  get; private set; }
+        public int priority {  get;  private set; }
+        public Tile parentTile {  get;  private set; }
 
-        public Effect(Board.location destination, Board.orientation startorientation,Board.orientation endorientation, int distance, int priority, int parentID, Func<bool> functionCall)
+        public Effect(Board.location destination, Board.orientation startorientation,Board.orientation endorientation, int distance, int priority, Tile parent)
         {
             this.destination = destination;
             this.requiredStartingOrientation = startorientation;
             this.endingOrientaion = endorientation;
             this.distance = distance;
             this.priority = priority;
-            this.parentTileID = parentID;
-            this.callback = functionCall;
-
+            this.parentTile = parent;
         }
 
         public bool activateCallback()
         {
-            return this.callback.Invoke();
-
+           
+            if(parentTile != null) return this.parentTile.callback();
+            return true;
         }
-
-        public int getParentID()
-        {
-            return this.parentTileID;
-        }
-
-
-
-
     }
 }
