@@ -114,9 +114,10 @@ namespace Dargons_of_Kir
         {
             List<Tile> toRemove = new List<Tile>();
             bool movedSideways = false;
-            bool impactIgnore = false;
             Board.location prevLoc = this.currentPosition;
             Board.orientation prevOrient = this.orientation;
+            Type tileType = null;
+
             switch (this.orientation)
             {
                 case Board.orientation.UP: 
@@ -134,83 +135,103 @@ namespace Dargons_of_Kir
                     if (this.currentPosition.x == -1) this.currentPosition = Board.makeBoardLocation(7, this.currentPosition.y);
                     break;
             }
-            PathList.Add(new trueposition(this.currentPosition, this.orientation));
-            Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation); 
+          //PathList.Add(new trueposition(this.currentPosition, this.orientation));
+
+
+            Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation);
+
+            if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
+            {
+                tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
+            }
+            bool isImpact = (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile));
+            if (!isImpact && tileType!=null)
+            {
+                toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+            }
+            
+            
+            prevOrient = this.orientation;
+            prevLoc = this.currentPosition;
+
+            if (currentEffect != null)
+            {
+                this.currentPosition = currentEffect.destination;
+                this.orientation = currentEffect.endingOrientaion;
+            }
+            movedSideways = this.checkIfMovedSideways(prevLoc, this.currentPosition, prevOrient, this.orientation);
+            
             while(currentEffect != null)
             {
-                prevOrient = this.orientation;
-                prevLoc = this.currentPosition;
-                if(PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
+                /*if(PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
                 {
                     //write to console
                     Console.Write(PathList);
                     PathList.Clear();
                     return toRemove;
-                }
-                this.currentPosition = currentEffect.destination;
-                this.orientation = currentEffect.endingOrientaion;
-                if (prevOrient == this.orientation)
-                {
-                    //This means that at some point, the dragon was moved without being turned, and as such, should be checked to see if it moved sideways
-                    if (this.orientation == Board.orientation.UP || this.orientation == Board.orientation.DOWN)
-                    {
-                        if (this.currentPosition.x != prevLoc.x)
-                        {
-                            movedSideways = true;
-                        }
-                    }
-                    else
-                    {
-                        if (this.currentPosition.y != prevLoc.y)
-                        {
-                            movedSideways = true;
-                        }
-                    }
-                }
-                if(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile != null)
-                {
-                    Type tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
-                    if (!movedSideways)
-                    {
-                        if (!(tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile)))
-                        {
-                            toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                }*/
 
-                        }
-                        else
-                        {
-                            if (currentEffect.getParentID() != board.getTileAt(this.currentPosition.x, this.currentPosition.y).getID())
-                            {
-                                toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile))
-                        {
-                            impactIgnore = true;
-                        }
-                        toRemove.Add(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile);
-                    }
-                }
-                if (!impactIgnore)
+                currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation);
+                tileType=null;
+                if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
                 {
-                    currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation);
-                    impactIgnore = false;
+                    tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
+                }
+                isImpact = (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile));
+                if (!isImpact && tileType!=null)
+                {
+                    toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
                 }
                 else
                 {
-                    currentEffect = null;
+                    if (movedSideways)
+                    {
+                        toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                    }
+                }
+
+                prevLoc = this.currentPosition;
+                prevOrient = this.orientation;
+
+                if (currentEffect == null)
+                {
+                    break;
+                }
+
+                this.currentPosition = currentEffect.destination;
+                this.orientation = currentEffect.endingOrientaion;
+
+                movedSideways = this.checkIfMovedSideways(prevLoc, this.currentPosition, prevOrient, this.orientation);
+
+            }
+            
+            //PathList.Clear();
+            return toRemove;
+
+        }
+
+        public bool checkIfMovedSideways(Board.location prev, Board.location current, Board.orientation prevOrient, Board.orientation currentOrient)
+        {
+            bool movedSideways = false;
+            if (prevOrient == currentOrient)
+            {
+                //This means that at some point, the dragon was moved without being turned, and as such, should be checked to see if it moved sideways
+                if (this.orientation == Board.orientation.UP || this.orientation == Board.orientation.DOWN)
+                {
+                    if (current.x != prev.x)
+                    {
+                        movedSideways = true;
+                    }
+                }
+                else
+                {
+                    if (current.y != prev.y)
+                    {
+                        movedSideways = true;
+                    }
                 }
             }
-            if(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile != null && !toRemove.Contains(board.getTileAt(this.currentPosition.x, this.currentPosition.y)))
-            {
-                
-                toRemove.Add(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile);
-            }
-            PathList.Clear();
-            return toRemove;
+            return movedSideways;
 
         }
     }

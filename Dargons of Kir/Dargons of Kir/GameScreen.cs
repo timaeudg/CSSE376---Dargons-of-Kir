@@ -273,6 +273,11 @@ namespace Dargons_of_Kir
 
         }
 
+        public void clearCell(Board.location loc)
+        {
+            boardPictures[loc.x, loc.y].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
+        }
+
     }
 
   

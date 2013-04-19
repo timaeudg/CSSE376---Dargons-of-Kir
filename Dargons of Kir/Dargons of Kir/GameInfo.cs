@@ -201,6 +201,7 @@ namespace Dargons_of_Kir
                         p1Win = true;
                     }
                     destroyTileAt(t.location);
+                    MainRunner.getScreen().clearCell(t.location);
                 }
 
                 if (p2Win && p1Win)
