@@ -145,6 +145,7 @@ namespace Dargons_of_Kir
             }
 
             game.moveDragons();
+            allDragons = game.getDragons();
 
             foreach (Dragon dragon in allDragons)
             {
@@ -208,6 +209,68 @@ namespace Dargons_of_Kir
             {
                 handPictures[i].Image = tiles[i].getPicture();
             }
+        }
+
+        public static bool promptForNewGame(int playerWon)
+        {
+            DialogResult result;
+
+            if (playerWon == 1)
+            {
+                result = MessageBox.Show("Player 1 has won! Would you like to start a new game?",
+            "Game Over, Player 1 Wins",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button1);
+            }
+            else if (playerWon == 2)
+            {
+                result = MessageBox.Show("Player 2 has won! Would you like to start a new game?",
+            "Game Over, Player 2 Wins",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button1);
+
+            }
+            else
+            {
+                result = MessageBox.Show("There was a tie?! Would you like to start a new game?",
+            "Game Over, DRAW!!!",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button1);
+            }
+
+            if (result == DialogResult.Yes)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        public void resetScreen()
+        {
+
+            for (int i = 0; i < boardPictures.GetLength(0); i++)
+            {
+                for (int j = 0; j < boardPictures.GetLength(1); j++)
+                {
+                    if (game.getTileBoard().getTileAt(i, j) == null)
+                    {
+                        boardPictures[i, j].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
+                    }
+                    else{
+                        boardPictures[i, j].Image = game.getTileBoard().getTileAt(i, j).getPicture();
+                    }
+                }
+            }
+
+            for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.getHand()[i].getPicture();
+
         }
 
     }

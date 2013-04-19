@@ -47,7 +47,7 @@ namespace Dargons_of_Kir
             List<Player> pList = new List<Player>();
             pList.Add(p1);
             pList.Add(p2);
-            game.setPlayerList(pList);
+            game.setPlayersAndTents(pList);
         }
 
 
@@ -55,6 +55,10 @@ namespace Dargons_of_Kir
         {
             screen = new GameScreen(game);
 
+        }
+         
+        public static GameScreen getScreen(){
+            return screen;
         }
 
     }

@@ -113,7 +113,7 @@ namespace TestingDargons
             pList.Add(p2);
             pList.Add(p3);
 
-            game.setPlayerList(pList);
+            game.setPlayersAndTents(pList);
             Player pTest;
             for (int k = 0; k < 100; k++)
             {
@@ -172,7 +172,7 @@ namespace TestingDargons
             List<Player> pList = new List<Player>();
             pList.Add(p1);
             pList.Add(p2);
-            game.setPlayerList(pList);
+            game.setPlayersAndTents(pList);
             Board.location loc = Board.makeBoardLocation(5, 6);
             Assert.True(game.canPlace(loc));
 
@@ -181,6 +181,10 @@ namespace TestingDargons
             game.placeTileAtPosition(loc, Board.orientation.DOWN, toPlay);
             Assert.AreSame(toPlay, game.getTileBoard().getTileAt(5, 6));
             Assert.False(game.canPlace(loc));
+
+            game.makeDragonsAndSetPositions();
+            Assert.False(game.canPlace(Board.makeBoardLocation(5, 5)));
+
 
         }
 
@@ -228,6 +232,88 @@ namespace TestingDargons
             Assert.AreEqual(Board.makeBoardLocation(4, 2), game.getDragons()[1].getCurrentPosition());
             Assert.AreEqual(Board.makeBoardLocation(3, 5), game.getDragons()[2].getCurrentPosition());
             Assert.AreEqual(Board.makeBoardLocation(5, 4), game.getDragons()[3].getCurrentPosition());
+
+
+        }
+
+        [Test]
+        public void testEndGame()
+        {
+            GameInfo game = new GameInfo();
+            game.endGame(1);
+            Assert.AreEqual(1, game.getPlayerWon());
+            game.endGame(2);
+            Assert.AreEqual(2, game.getPlayerWon());
+
+        }
+
+        [Test]
+        public void testGameEnding()
+        {
+            GameInfo game = new GameInfo();
+            Player p1 = new Player(game);
+            Player p2 = new Player(game);
+            List<Player> list = new List<Player>();
+
+            list.Add(p1);
+            list.Add(p2);
+            game.setPlayersAndTents(list);
+
+            List<Dragon> drags = game.getDragons();
+            drags.Add(new Dragon(0, Board.makeBoardLocation(6, 7), Board.orientation.RIGHT));
+
+            game.moveDragons();
+            Assert.AreEqual(1, game.getPlayerWon());
+
+            game = new GameInfo();
+            p1 = new Player(game);
+            p2 = new Player(game);
+            list = new List<Player>();
+            list.Add(p1); list.Add(p2);
+            game.setPlayersAndTents(list);
+            drags = game.getDragons();
+            drags.Add(new Dragon(0, Board.makeBoardLocation(0, 1), Board.orientation.UP));
+            game.moveDragons();
+            Assert.AreEqual(2, game.getPlayerWon());
+
+
+            game = new GameInfo();
+            p1 = new Player(game);
+            p2 = new Player(game);
+            list = new List<Player>();
+            list.Add(p1); list.Add(p2);
+            game.setPlayersAndTents(list);
+            drags = game.getDragons();
+            drags.Add(new Dragon(0, Board.makeBoardLocation(0, 1), Board.orientation.UP));
+            drags.Add(new Dragon(1, Board.makeBoardLocation(6, 7), Board.orientation.RIGHT));
+            game.moveDragons();
+            Assert.AreEqual(3, game.getPlayerWon());
+            
+
+        }
+
+
+        [Test]
+        public void testNewGame()
+        {
+            GameInfo game = new GameInfo();
+            Player p1 = new Player(game);
+            Player p2 = new Player(game);
+            List<Player> list = new List<Player>();
+
+            list.Add(p1);
+            list.Add(p2);
+
+            game.setPlayersAndTents(list);
+
+            List<Dragon> drags = game.getDragons();
+            drags.Add(new Dragon(0, Board.makeBoardLocation(6, 7), Board.orientation.RIGHT));
+
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.LEFT, game.getNextPlayer().takeTileFromHand(0));
+            game.makeNewGame();
+            Assert.AreEqual(4, game.getDragons().Count);
+            Assert.AreEqual(56, game.getTilePile().Count);
+            Assert.AreEqual(-1, game.getPlayerWon());
 
 
         }
