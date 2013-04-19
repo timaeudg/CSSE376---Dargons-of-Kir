@@ -124,6 +124,7 @@ namespace Dargons_of_Kir
             }
             if(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile != null)
             {
+                
                 toRemove.Add(board.getBoard()[this.currentPosition.x, this.currentPosition.y].tile);
             }
             

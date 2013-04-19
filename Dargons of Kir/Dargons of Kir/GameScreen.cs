@@ -223,7 +223,7 @@ namespace Dargons_of_Kir
             MessageBoxIcon.Exclamation,
             MessageBoxDefaultButton.Button1);
             }
-            else
+            else if (playerWon == 2)
             {
                 result = MessageBox.Show("Player 2 has won! Would you like to start a new game?",
             "Game Over, Player 2 Wins",
@@ -231,6 +231,14 @@ namespace Dargons_of_Kir
             MessageBoxIcon.Exclamation,
             MessageBoxDefaultButton.Button1);
 
+            }
+            else
+            {
+                result = MessageBox.Show("There was a tie?! Would you like to start a new game?",
+            "Game Over, DRAW!!!",
+            MessageBoxButtons.YesNo,
+            MessageBoxIcon.Exclamation,
+            MessageBoxDefaultButton.Button1);
             }
 
             if (result == DialogResult.Yes)

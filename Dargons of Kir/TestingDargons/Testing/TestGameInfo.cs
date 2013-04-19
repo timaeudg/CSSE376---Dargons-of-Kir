@@ -182,6 +182,10 @@ namespace TestingDargons
             Assert.AreSame(toPlay, game.getTileBoard().getTileAt(5, 6));
             Assert.False(game.canPlace(loc));
 
+            game.makeDragonsAndSetPositions();
+            Assert.False(game.canPlace(Board.makeBoardLocation(5, 5)));
+
+
         }
 
         [Test]
@@ -240,6 +244,7 @@ namespace TestingDargons
             Assert.AreEqual(1, game.getPlayerWon());
             game.endGame(2);
             Assert.AreEqual(2, game.getPlayerWon());
+
         }
 
         [Test]
@@ -259,6 +264,30 @@ namespace TestingDargons
 
             game.moveDragons();
             Assert.AreEqual(1, game.getPlayerWon());
+
+            game = new GameInfo();
+            p1 = new Player(game);
+            p2 = new Player(game);
+            list = new List<Player>();
+            list.Add(p1); list.Add(p2);
+            game.setPlayersAndTents(list);
+            drags = game.getDragons();
+            drags.Add(new Dragon(0, Board.makeBoardLocation(0, 1), Board.orientation.UP));
+            game.moveDragons();
+            Assert.AreEqual(2, game.getPlayerWon());
+
+
+            game = new GameInfo();
+            p1 = new Player(game);
+            p2 = new Player(game);
+            list = new List<Player>();
+            list.Add(p1); list.Add(p2);
+            game.setPlayersAndTents(list);
+            drags = game.getDragons();
+            drags.Add(new Dragon(0, Board.makeBoardLocation(0, 1), Board.orientation.UP));
+            drags.Add(new Dragon(1, Board.makeBoardLocation(6, 7), Board.orientation.RIGHT));
+            game.moveDragons();
+            Assert.AreEqual(3, game.getPlayerWon());
             
 
         }
@@ -280,8 +309,7 @@ namespace TestingDargons
             List<Dragon> drags = game.getDragons();
             drags.Add(new Dragon(0, Board.makeBoardLocation(6, 7), Board.orientation.RIGHT));
 
-            game.moveDragons();
-            Assert.AreEqual(1, game.getPlayerWon());
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.LEFT, game.getNextPlayer().takeTileFromHand(0));
             game.makeNewGame();
             Assert.AreEqual(4, game.getDragons().Count);
             Assert.AreEqual(56, game.getTilePile().Count);
