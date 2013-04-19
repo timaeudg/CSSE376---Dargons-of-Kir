@@ -16,7 +16,7 @@ namespace Dargons_of_Kir
         private int previousEffectTileId;
         public Image image { get; set; }
 
-        private class trueposition
+        public class trueposition
         {
             private Board.location location;
             private Board.orientation orientation;
@@ -30,6 +30,18 @@ namespace Dargons_of_Kir
             public bool Equals(trueposition other)
             {
                 return (this.location.Equals(other.location) && this.orientation.Equals(other.orientation));
+            }
+
+            public Boolean alreadyVisited(List<trueposition> list)
+            {
+                foreach (trueposition value in list)
+                {
+                    if (value.Equals(this))
+                    {
+                        return true;
+                    }
+                }
+                return false;
             }
         }
 
@@ -134,7 +146,6 @@ namespace Dargons_of_Kir
                     if (this.currentPosition.x == -1) this.currentPosition = Board.makeBoardLocation(7, this.currentPosition.y);
                     break;
             }
-            PathList.Add(new trueposition(this.currentPosition, this.orientation));
             Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation); 
             while(currentEffect != null)
             {
@@ -142,11 +153,10 @@ namespace Dargons_of_Kir
                 prevLoc = this.currentPosition;
                 if(PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
                 {
-                    //write to console
-                    Console.Write(PathList);
                     PathList.Clear();
                     return toRemove;
                 }
+                PathList.Add(new trueposition(this.currentPosition, this.orientation));
                 this.currentPosition = currentEffect.destination;
                 this.orientation = currentEffect.endingOrientaion;
                 if (prevOrient == this.orientation)
