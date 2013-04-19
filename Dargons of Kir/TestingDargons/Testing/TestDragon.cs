@@ -13,6 +13,20 @@ namespace TestingDargons.Testing
     [TestFixture]
     class TestDragon
     {
+        [Test]
+        public void testList()
+        {
+            List<Dargons_of_Kir.Dragon.trueposition> list = new List<Dargons_of_Kir.Dragon.trueposition>();
+            Board.location loc = new Board.location();
+            loc.x = 4;
+            loc.y = 4;
+            Dragon drag = new Dragon(0, loc, Board.orientation.DOWN);
+            Dragon.trueposition position = new Dragon.trueposition(drag.currentPosition, drag.orientation);
+            Dragon.trueposition position2 = new Dragon.trueposition(drag.currentPosition, drag.orientation);
+            list.Add(position);
+            Assert.IsTrue(position2.alreadyVisited(list));
+
+        }
 
         [Test]
         public void testMakingDragons(){

@@ -16,7 +16,7 @@ namespace Dargons_of_Kir
         private int previousEffectTileId;
         public Image image { get; set; }
 
-        private class trueposition
+        public class trueposition
         {
             private Board.location location;
             private Board.orientation orientation;
@@ -30,6 +30,18 @@ namespace Dargons_of_Kir
             public bool Equals(trueposition other)
             {
                 return (this.location.Equals(other.location) && this.orientation.Equals(other.orientation));
+            }
+
+            public Boolean alreadyVisited(List<trueposition> list)
+            {
+                foreach (trueposition value in list)
+                {
+                    if (value.Equals(this))
+                    {
+                        return true;
+                    }
+                }
+                return false;
             }
         }
 
@@ -135,7 +147,8 @@ namespace Dargons_of_Kir
                     if (this.currentPosition.x == -1) this.currentPosition = Board.makeBoardLocation(7, this.currentPosition.y);
                     break;
             }
-          //PathList.Add(new trueposition(this.currentPosition, this.orientation));
+          
+            PathList.Add(new trueposition(this.currentPosition, this.orientation));
 
 
             Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation);
@@ -163,13 +176,16 @@ namespace Dargons_of_Kir
             
             while(currentEffect != null)
             {
-                /*if(PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
+                PathList.Add(new trueposition(this.currentPosition, this.orientation));
+                if (PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
                 {
-                    //write to console
-                    Console.Write(PathList);
                     PathList.Clear();
                     return toRemove;
-                }*/
+                }
+                else
+                {
+                    PathList.Add(new trueposition(this.currentPosition, this.orientation));
+                }
 
                 currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation);
                 tileType=null;
@@ -177,6 +193,7 @@ namespace Dargons_of_Kir
                 {
                     tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
                 }
+
                 isImpact = (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile));
                 if (!isImpact && tileType!=null)
                 {
