@@ -9,10 +9,10 @@ namespace Dargons_of_Kir
 {
     public class Dragon
     {
+        private int dragonID;
         private List<trueposition> PathList = new List<trueposition>();
-        public int dragonID { get; private set; }
-        public Board.location currentPosition {get; set; }
-        public Board.orientation orientation {get; set; }
+        public Board.location currentPosition { get; private set; }
+        public Board.orientation orientation { get; set; }
         private int previousEffectTileId;
         public Image image { get; set; }
 
@@ -48,12 +48,13 @@ namespace Dargons_of_Kir
         public Dragon(int id, Board.location startingLocation, Board.orientation rotation)
         {
             this.dragonID = id;
-            switch(dragonID % 4) {
-                case (0) : { image = Image.FromFile("..\\..\\..\\..\\images\\bluedragon.jpg"); break; }
-                case (1) : { image = Image.FromFile("..\\..\\..\\..\\images\\reddragon.jpg"); break; }
-                case (2) : { image = Image.FromFile("..\\..\\..\\..\\images\\greendragon.jpg"); break; }
-                case (3) : { image = Image.FromFile("..\\..\\..\\..\\images\\yellowdragon.jpg"); break; }
-                default  : { image = Image.FromFile("..\\..\\..\\..\\images\\blue.png"); break; }
+            switch (dragonID % 4)
+            {
+                case (0): { image = Image.FromFile("..\\..\\..\\..\\images\\bluedragon.jpg"); break; }
+                case (1): { image = Image.FromFile("..\\..\\..\\..\\images\\reddragon.jpg"); break; }
+                case (2): { image = Image.FromFile("..\\..\\..\\..\\images\\greendragon.jpg"); break; }
+                case (3): { image = Image.FromFile("..\\..\\..\\..\\images\\yellowdragon.jpg"); break; }
+                default: { image = Image.FromFile("..\\..\\..\\..\\images\\blue.png"); break; }
             }
             this.currentPosition = startingLocation;
             this.orientation = rotation;
@@ -72,17 +73,17 @@ namespace Dargons_of_Kir
 
         public System.Drawing.Image getImage()
         {
-             System.Drawing.Image temp;
+            System.Drawing.Image temp;
 
             switch (this.orientation)
             {
-                case(Board.orientation.UP):
+                case (Board.orientation.UP):
                     return this.image;
-                case(Board.orientation.LEFT):
+                case (Board.orientation.LEFT):
                     temp = (System.Drawing.Image)this.image.Clone();
                     temp.RotateFlip(RotateFlipType.Rotate90FlipX);
                     return temp;
-                case(Board.orientation.DOWN):
+                case (Board.orientation.DOWN):
                     temp = (System.Drawing.Image)this.image.Clone();
                     temp.RotateFlip(RotateFlipType.RotateNoneFlipY);
                     return temp;
@@ -95,10 +96,21 @@ namespace Dargons_of_Kir
 
         }
 
+        public Board.orientation getOrientation()
+        {
+            return this.orientation;
+        }
+
+        public void setOrientation(Board.orientation newOrient)
+        {
+            this.orientation = newOrient;
+
+        }
+
 
         public void setPreviousTile(int id)
         {
-            this.previousEffectTileId = id ;
+            this.previousEffectTileId = id;
         }
 
         public int getPreviousTile()
@@ -123,9 +135,9 @@ namespace Dargons_of_Kir
 
             switch (this.orientation)
             {
-                case Board.orientation.UP: 
-                    this.currentPosition = Board.makeBoardLocation(this.currentPosition.x, (this.currentPosition.y-1)%8);
-                    if (this.currentPosition.y == -1) this.currentPosition = Board.makeBoardLocation(this.currentPosition.x,7);
+                case Board.orientation.UP:
+                    this.currentPosition = Board.makeBoardLocation(this.currentPosition.x, (this.currentPosition.y - 1) % 8);
+                    if (this.currentPosition.y == -1) this.currentPosition = Board.makeBoardLocation(this.currentPosition.x, 7);
                     break;
                 case Board.orientation.RIGHT:
                     this.currentPosition = Board.makeBoardLocation((this.currentPosition.x + 1) % 8, this.currentPosition.y);
@@ -138,17 +150,15 @@ namespace Dargons_of_Kir
                     if (this.currentPosition.x == -1) this.currentPosition = Board.makeBoardLocation(7, this.currentPosition.y);
                     break;
             }
-          
-            PathList.Add(new trueposition(this.currentPosition, this.orientation));
+            PathList.Add(new trueposition(this.currentPosition, this.orientation));  
             Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation,toIgnore);
-
 
             if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
             {
                 tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
             }
             bool isImpact = (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile));
-           
+
             if (tileType != null)
             {
                 if (!isImpact)
@@ -156,13 +166,11 @@ namespace Dargons_of_Kir
                     toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
                 }
                 else
-                if(toIgnore.Count > 0) toIgnore.RemoveAt(0);
-                toIgnore.Add(currentEffect.parentTile);
                 {
                     effectNotImpact = currentEffect == null;
                     if (!effectNotImpact)
                     {
-                        effectNotImpact = currentEffect.getParentID() != board.getTileAt(this.currentPosition.x, this.currentPosition.y).getID();
+                        effectNotImpact = currentEffect.parentTile != board.getTileAt(this.currentPosition.x, this.currentPosition.y);
                     }
                     if (movedSideways || effectNotImpact)
                     {
@@ -170,8 +178,8 @@ namespace Dargons_of_Kir
                     }
                 }
             }
-            
-            
+
+
             prevOrient = this.orientation;
             prevLoc = this.currentPosition;
 
@@ -179,10 +187,11 @@ namespace Dargons_of_Kir
             {
                 this.currentPosition = currentEffect.destination;
                 this.orientation = currentEffect.endingOrientaion;
+                toIgnore.Add(currentEffect.parentTile);
             }
             movedSideways = this.checkIfMovedSideways(prevLoc, this.currentPosition, prevOrient, this.orientation);
-            
-            while(currentEffect != null)
+
+            while (currentEffect != null)
             {
                 PathList.Add(new trueposition(this.currentPosition, this.orientation));
                 if (PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
@@ -195,15 +204,17 @@ namespace Dargons_of_Kir
                     PathList.Add(new trueposition(this.currentPosition, this.orientation));
                 }
 
-                currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation);
-                tileType=null;
+                currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation,toIgnore);
+                if (toIgnore.Count > 1) toIgnore.RemoveAt(0);
+                if (currentEffect != null && currentEffect.parentTile != null) toIgnore.Add(currentEffect.parentTile); 
+                tileType = null;
                 if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
                 {
                     tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
                 }
 
                 isImpact = (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile));
-                
+
                 if (tileType != null)
                 {
                     if (!isImpact)
@@ -215,7 +226,7 @@ namespace Dargons_of_Kir
                         effectNotImpact = currentEffect == null;
                         if (!effectNotImpact)
                         {
-                            effectNotImpact = currentEffect.getParentID() != board.getTileAt(this.currentPosition.x, this.currentPosition.y).getID();
+                            effectNotImpact = currentEffect.parentTile != board.getTileAt(this.currentPosition.x, this.currentPosition.y);
                         }
                         if (movedSideways || effectNotImpact)
                         {
@@ -238,7 +249,7 @@ namespace Dargons_of_Kir
                 movedSideways = this.checkIfMovedSideways(prevLoc, this.currentPosition, prevOrient, this.orientation);
 
             }
-            
+
             //PathList.Clear();
             return toRemove;
 
