@@ -740,6 +740,250 @@ namespace TestingDargons.Testing
         }
 
         [Test]
+        public void TestLotusFlowerCorrect()
+        {
+            GameInfo game = new GameInfo();
+            LotusFlowerTile pond = new LotusFlowerTile();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.UP, pond);
+            Board board = game.getTileBoard();
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(3, 3));
+
+            e = board.getEffectAt(Board.makeBoardLocation(3, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(3, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 2), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 2), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 2), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.LEFT, new LotusFlowerTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(2, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.UP, Board.orientation.UP, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(1, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 3), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 3), Board.orientation.UP, Board.orientation.UP, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 3), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.DOWN, new LotusFlowerTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(3, 4));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.UP, Board.orientation.UP, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(3, 5));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 4), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 4), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 4), Board.orientation.UP, Board.orientation.UP, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, new LotusFlowerTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(4, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.UP, Board.orientation.UP, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(5, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(4, 3), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(4, 3), Board.orientation.UP, Board.orientation.UP, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(4, 3), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+
+        }
+
+        [Test]
+        public void TestLotusFlowerWrap()
+        {
+
+            GameInfo game = new GameInfo();
+            LotusFlowerTile pond = new LotusFlowerTile();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(7, 0), Board.orientation.UP, pond);
+            Board board = game.getTileBoard();
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(7, 7));
+
+
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(7, 6));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 7), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 7), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 7), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(7,0), Board.orientation.RIGHT, new LotusFlowerTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(0, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.UP, Board.orientation.UP, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(1, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 0), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 0), Board.orientation.UP, Board.orientation.UP, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 0), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(7,0), Board.orientation.DOWN, new LotusFlowerTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(7, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.UP, Board.orientation.UP, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(7, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 1), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 1), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 1), Board.orientation.UP, Board.orientation.UP, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(7,0), Board.orientation.LEFT, new LotusFlowerTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(6, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.UP, Board.orientation.UP, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(5, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(6, 0), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(6, 0), Board.orientation.UP, Board.orientation.UP, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(6, 0), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+        }
+
+        [Test]
+        public void TestWindCorrect()
+        {
+            GameInfo game = new GameInfo();
+            WindTile pond = new WindTile();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.UP, pond);
+            Board board = game.getTileBoard();
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(3, 3));
+
+            e = board.getEffectAt(Board.makeBoardLocation(4, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(5, 3), Board.orientation.UP, Board.orientation.UP, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(5, 3), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(5, 3), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(5, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(6, 3), Board.orientation.UP, Board.orientation.UP, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(6, 3), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(6, 3), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, new WindTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(3, 4));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 5), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 5), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 5), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(3, 5));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 6), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 6), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 6), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.DOWN, new WindTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(2, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1, 3), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1, 3), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1, 3), Board.orientation.UP, Board.orientation.UP, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(1, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 3), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 3), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 3), Board.orientation.UP, Board.orientation.UP, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.LEFT, new WindTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(3, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 1), Board.orientation.UP, Board.orientation.UP, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 1), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 1), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(3, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 0), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 0), Board.orientation.UP, Board.orientation.UP, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 0), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+
+        }
+
+        [Test]
+        public void TestWindWrap()
+        {
+
+            GameInfo game = new GameInfo();
+            WindTile pond = new WindTile();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(7, 0), Board.orientation.LEFT, pond);
+            Board board = game.getTileBoard();
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(7, 7));
+
+
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 6), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 6), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 6), Board.orientation.UP, Board.orientation.UP, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(7, 6));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 5), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 5), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 5), Board.orientation.UP, Board.orientation.UP, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(7, 0), Board.orientation.UP, new WindTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(0, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1, 0), Board.orientation.UP, Board.orientation.UP, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1, 0), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1, 0), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(1, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 0), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 0), Board.orientation.UP, Board.orientation.UP, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 0), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(7, 0), Board.orientation.RIGHT, new WindTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(7, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 2), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 2), Board.orientation.RIGHT, Board.orientation.RIGHT, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 2), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(7, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 3), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 3), Board.orientation.RIGHT, Board.orientation.RIGHT, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 3), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+
+            game = new GameInfo();
+            game.placeTileAtPosition(Board.makeBoardLocation(7, 0), Board.orientation.DOWN, new WindTile());
+            board = game.getTileBoard();
+            e = board.getEffectAt(Board.makeBoardLocation(6, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(5, 0), Board.orientation.UP, Board.orientation.UP, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(5, 0), Board.orientation.DOWN, Board.orientation.DOWN, 1, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(5, 0), Board.orientation.LEFT, Board.orientation.LEFT, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(5, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(4, 0), Board.orientation.DOWN, Board.orientation.DOWN, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(4, 0), Board.orientation.UP, Board.orientation.UP, 2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(4, 0), Board.orientation.LEFT, Board.orientation.LEFT, 2, 2));
+        }
+
+        [Test]
         public void TestWindEffectPlacing()
         {
             GameInfo game = new GameInfo();
@@ -777,6 +1021,7 @@ namespace TestingDargons.Testing
 
         }
 
+
         [Test]
         public void TestWatchFireEffectsPlacing()
         {
@@ -813,6 +1058,47 @@ namespace TestingDargons.Testing
             Assert.AreEqual(2, counter.Count);
             counter.Clear();
 
+        }
+
+        [Test]
+        public void TestWatchfireCorrect()
+        {
+            GameInfo game = new GameInfo();
+            WatchfireTile sam = new WatchfireTile();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(1, 1), Board.orientation.UP, sam);
+            Board board = game.getTileBoard();
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(0, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1,0), Board.orientation.UP, Board.orientation.RIGHT, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(1, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 1), Board.orientation.LEFT, Board.orientation.DOWN, 1,2));
+
+
+            sam = new WatchfireTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(2, 3), Board.orientation.RIGHT, sam);
+            e = board.getEffectAt(Board.makeBoardLocation(2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, Board.orientation.DOWN, 1, 2));
+            
+
+            e = board.getEffectAt(Board.makeBoardLocation(3,3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 2), Board.orientation.UP, Board.orientation.LEFT, 1,2));
+
+            sam = new WatchfireTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(2, 4), Board.orientation.DOWN, sam);
+            e = board.getEffectAt(Board.makeBoardLocation(3, 4));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2,5), Board.orientation.DOWN, Board.orientation.LEFT, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(2, 5));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3,4), Board.orientation.RIGHT, Board.orientation.UP, 1, 2));
+
+            sam = new WatchfireTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(5, 5), Board.orientation.LEFT, sam);
+            e = board.getEffectAt(Board.makeBoardLocation(5, 6));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(4,5), Board.orientation.LEFT, Board.orientation.UP, 1, 2));
+
+            e = board.getEffectAt(Board.makeBoardLocation(4, 5));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(5,6), Board.orientation.DOWN, Board.orientation.RIGHT, 1, 2));
         }
 
         [Test]
