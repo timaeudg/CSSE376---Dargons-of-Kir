@@ -449,6 +449,8 @@ namespace TestingDargons.Testing
             Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2,3), Board.orientation.LEFT, Board.orientation.LEFT, 0, 1));
         }
 
+
+
         [Test]
         public void TestLotusPondEffectPlacing()
         {
@@ -1099,6 +1101,57 @@ namespace TestingDargons.Testing
 
             e = board.getEffectAt(Board.makeBoardLocation(4, 5));
             Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(5,6), Board.orientation.DOWN, Board.orientation.RIGHT, 1, 2));
+        }
+
+        [Test]
+        public void TestWatchFireWrap()
+        {
+            GameInfo game;
+            Board board;
+            List<Effect> e;
+            WatchfireTile tile;
+            Board.location loc;
+
+            game = new GameInfo();
+            board = game.getTileBoard();
+            tile = new WatchfireTile();
+            loc = Board.makeBoardLocation(0, 0);
+            game.placeTileAtPosition(loc, Board.orientation.UP,tile);
+            e = board.getEffectAt(Board.makeBoardLocation(7,0));
+            Assert.True(TestTiles.checkEffectListHas(e,Board.makeBoardLocation(0,7),Board.orientation.UP,Board.orientation.RIGHT,1,2));
+            e= board.getEffectAt(Board.makeBoardLocation(0,7));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.LEFT, Board.orientation.DOWN, 1, 2));
+
+            game = new GameInfo();
+            board = game.getTileBoard();
+            tile = new WatchfireTile();
+            loc = Board.makeBoardLocation(7, 0);
+            game.placeTileAtPosition(loc, Board.orientation.RIGHT, tile);
+            e = board.getEffectAt(Board.makeBoardLocation(7, 7));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 0), Board.orientation.RIGHT, Board.orientation.DOWN, 1, 2));
+            e = board.getEffectAt(Board.makeBoardLocation(0, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 7), Board.orientation.UP, Board.orientation.LEFT, 1, 2));
+
+            game = new GameInfo();
+            board = game.getTileBoard();
+            tile = new WatchfireTile();
+            loc = Board.makeBoardLocation(0, 7);
+            game.placeTileAtPosition(loc, Board.orientation.LEFT, tile);
+            e = board.getEffectAt(Board.makeBoardLocation(0, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 7), Board.orientation.LEFT, Board.orientation.UP, 1, 2));
+            e = board.getEffectAt(Board.makeBoardLocation(7, 7));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 0), Board.orientation.DOWN, Board.orientation.RIGHT, 1, 2));
+
+            game = new GameInfo();
+            board = game.getTileBoard();
+            tile = new WatchfireTile();
+            loc = Board.makeBoardLocation(7, 7);
+            game.placeTileAtPosition(loc, Board.orientation.DOWN, tile);
+            e = board.getEffectAt(Board.makeBoardLocation(7, 0));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 7), Board.orientation.RIGHT, Board.orientation.UP, 1, 2));
+            e = board.getEffectAt(Board.makeBoardLocation(0, 7));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(7, 0), Board.orientation.DOWN, Board.orientation.LEFT, 1, 2));
+
         }
 
         [Test]
