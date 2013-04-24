@@ -33,7 +33,7 @@ namespace Dargons_of_Kir.Tiles
                     toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y + 1), Board.orientation.RIGHT, Board.orientation.DOWN, 0, 1, this));
                     break;
                 case Board.orientation.DOWN:
-                    wrap = this.location.x - 1;
+                    wrap = this.location.y - 1;
                     if (wrap == -1)
                     {
                         wrap = 7;
