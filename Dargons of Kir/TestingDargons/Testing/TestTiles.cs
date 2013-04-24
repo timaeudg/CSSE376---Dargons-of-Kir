@@ -9,6 +9,16 @@ namespace TestingDargons.Testing
     [TestFixture]
     public class TestTiles
     {
+        public static bool checkEffectListHas(List<Effect> list, Board.location ending, Board.orientation start, Board.orientation end, int distance, int priority)
+        {
+            foreach(Effect e in list){
+                if(e.destination.Equals(ending) && e.endingOrientaion == end && e.requiredStartingOrientation == start && e.distance == distance && e.priority == priority){
+                    return true;
+                }
+            }
+            return false;
+        }
+
         [Test]
         public void TestInitSingleRiver()
         {
@@ -144,6 +154,21 @@ namespace TestingDargons.Testing
         }
 
         [Test]
+        public void TestMonkEffectsCorrect()
+        {
+            GameInfo game = new GameInfo();
+            MonkTile monk = new MonkTile();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(1, 1), Board.orientation.UP, monk);
+            Board board = game.getTileBoard();
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(1, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0,1),Board.orientation.RIGHT, Board.orientation.LEFT, 0,1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 1), Board.orientation.LEFT, Board.orientation.RIGHT, 0, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1, 2), Board.orientation.UP, Board.orientation.DOWN, 0, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1, 0), Board.orientation.DOWN, Board.orientation.UP, 0, 1));
+        }
+
+        [Test]
         public void TestSamuraiEffectsPlacing()
         {
             GameInfo game = new GameInfo();
@@ -170,6 +195,37 @@ namespace TestingDargons.Testing
             game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, sam);
             Assert.AreEqual(2, e.Count);
 
+        }
+
+        [Test]
+        public void TestSamuraiEffectsCorrect()
+        {
+            GameInfo game = new GameInfo();
+            SamuraiTile sam = new SamuraiTile();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(1, 1), Board.orientation.UP, sam);
+            Board board = game.getTileBoard();
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(1, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 1), Board.orientation.DOWN, Board.orientation.RIGHT, 0, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1, 0), Board.orientation.LEFT, Board.orientation.UP, 0, 1));
+
+            sam = new SamuraiTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(2, 3), Board.orientation.RIGHT, sam);
+            e = board.getEffectAt(Board.makeBoardLocation(2, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 3), Board.orientation.UP, Board.orientation.RIGHT, 0, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 4), Board.orientation.LEFT, Board.orientation.DOWN, 0, 1));
+
+            sam = new SamuraiTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(2, 4), Board.orientation.DOWN, sam);
+            e = board.getEffectAt(Board.makeBoardLocation(2, 4));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1, 4), Board.orientation.UP, Board.orientation.LEFT, 0, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 5), Board.orientation.RIGHT, Board.orientation.DOWN, 0, 1));
+
+            sam = new SamuraiTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3,3), Board.orientation.LEFT, sam);
+            e = board.getEffectAt(Board.makeBoardLocation(3, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 3), Board.orientation.DOWN, Board.orientation.LEFT, 0, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 2), Board.orientation.RIGHT, Board.orientation.UP, 0, 1));
         }
 
         [Test]

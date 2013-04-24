@@ -162,7 +162,7 @@ namespace Dargons_of_Kir
                     effectNotImpact = currentEffect == null;
                     if (!effectNotImpact)
                     {
-                        effectNotImpact = currentEffect.getParentID() != board.getTileAt(this.currentPosition.x, this.currentPosition.y).getID();
+                        effectNotImpact = currentEffect.parentTile != board.getTileAt(this.currentPosition.x, this.currentPosition.y);
                     }
                     if (movedSideways || effectNotImpact)
                     {
@@ -195,7 +195,7 @@ namespace Dargons_of_Kir
                     PathList.Add(new trueposition(this.currentPosition, this.orientation));
                 }
 
-                currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation);
+                currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation,toIgnore);
                 tileType=null;
                 if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
                 {
@@ -215,7 +215,7 @@ namespace Dargons_of_Kir
                         effectNotImpact = currentEffect == null;
                         if (!effectNotImpact)
                         {
-                            effectNotImpact = currentEffect.getParentID() != board.getTileAt(this.currentPosition.x, this.currentPosition.y).getID();
+                            effectNotImpact = currentEffect.parentTile != board.getTileAt(this.currentPosition.x, this.currentPosition.y);
                         }
                         if (movedSideways || effectNotImpact)
                         {
