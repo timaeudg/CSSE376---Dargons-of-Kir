@@ -233,7 +233,6 @@ namespace TestingDargons.Testing
             Assert.AreEqual(Board.makeBoardLocation(3,5),dragon.currentPosition);
         }
 
-
         [Test]
         public void testDragonImage()
         {
@@ -243,6 +242,77 @@ namespace TestingDargons.Testing
             Dragon drag = new Dragon(0, loc, Board.orientation.RIGHT);
             drag.setImage(Image.FromFile("..\\..\\..\\..\\images\\reddragon.JPG"));
             Assert.IsNotNull(drag.image);
+        }
+
+        [Test]
+        public void testNewTruePosition()
+        {
+            Board.location loc = new Board.location();
+            loc.x = 7;
+            loc.y = 0;
+            Dragon.trueposition postion = new Dragon.trueposition(loc, Board.orientation.UP);
+            Assert.NotNull(postion);
+        }
+
+        [Test]
+        public void testEqualTruePosition()
+        {
+            Board.location loc = new Board.location();
+            loc.x = 7;
+            loc.y = 0;
+            Dragon.trueposition postion = new Dragon.trueposition(loc, Board.orientation.UP);
+            Dragon.trueposition position2 = new Dragon.trueposition(loc, Board.orientation.UP);
+            Assert.IsTrue(postion.Equals(position2));
+        }
+
+        [Test]
+        public void tesAlreadyVisitedTruePosition()
+        {
+            List<Dragon.trueposition> list = new List<Dragon.trueposition>();
+            Board.location loc = new Board.location();
+            loc.x = 7;
+            loc.y = 0;
+            list.Add(new Dragon.trueposition(loc, Board.orientation.UP));
+            loc.x = 0; loc.y = 3;
+            list.Add(new Dragon.trueposition(loc, Board.orientation.DOWN));
+            loc.x = 3; loc.y = 5;
+            list.Add(new Dragon.trueposition(loc, Board.orientation.LEFT));
+            loc.x = 5; loc.y = 7;
+            Dragon.trueposition position = new Dragon.trueposition(loc, Board.orientation.RIGHT);
+            list.Add(position);
+            loc.x = 6; loc.y = 4;
+            Assert.IsFalse(new Dragon.trueposition(loc, Board.orientation.DOWN).alreadyVisited(list));
+            Assert.IsTrue(position.alreadyVisited(list));
+        }
+
+        [Test]
+        public void testLoop()
+        {
+            Board board = new Board();
+            Dragon dragon = new Dragon(0, Board.makeBoardLocation(2, 2), Board.orientation.DOWN);
+            Console.WriteLine("a");
+            Tile tile1 = new ThreeRiversTile();
+            Tile tile2 = new ThreeRiversTile();
+            Tile tile3 = new ThreeRiversTile();
+            Tile tile4 = new ThreeRiversTile();
+            tile1.location = Board.makeBoardLocation(2, 3);
+            tile1.orientation = Board.orientation.LEFT;
+            tile1.placeEffects(board);
+            board.getBoard()[2, 3].tile = tile1;
+            tile2.location = Board.makeBoardLocation(3, 3);
+            tile2.orientation = Board.orientation.UP;
+            tile2.placeEffects(board);
+            board.getBoard()[3, 3].tile = tile2;
+            tile3.location = Board.makeBoardLocation(3, 4);
+            tile3.orientation = Board.orientation.RIGHT;
+            tile3.placeEffects(board);
+            board.getBoard()[3, 4].tile = tile3;
+            tile4.location = Board.makeBoardLocation(2, 4);
+            tile4.orientation = Board.orientation.DOWN;
+            tile4.placeEffects(board);
+            board.getBoard()[2, 4].tile = tile4;
+            dragon.move(board);
+            Assert.AreEqual(Board.makeBoardLocation(3, 3), dragon.currentPosition);
         }
     }
 }

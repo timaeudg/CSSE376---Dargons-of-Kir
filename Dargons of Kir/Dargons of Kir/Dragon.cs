@@ -150,7 +150,7 @@ namespace Dargons_of_Kir
                     if (this.currentPosition.x == -1) this.currentPosition = Board.makeBoardLocation(7, this.currentPosition.y);
                     break;
             }
-            PathList.Add(new trueposition(this.currentPosition, this.orientation));  
+//            PathList.Add(new trueposition(this.currentPosition, this.orientation));  
             Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation,toIgnore);
 
             if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
@@ -193,8 +193,9 @@ namespace Dargons_of_Kir
 
             while (currentEffect != null)
             {
-                PathList.Add(new trueposition(this.currentPosition, this.orientation));
-                if (PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
+                
+               // if (PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
+               if(new trueposition(this.currentPosition, this.orientation).alreadyVisited(PathList))
                 {
                     PathList.Clear();
                     return toRemove;
