@@ -232,6 +232,7 @@ namespace Dargons_of_Kir
                         }
                         if (movedSideways || effectNotImpact)
                         {
+                            if (movedSideways && !effectNotImpact) toIgnore.Add(currentEffect.parentTile);
                             toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
                         }
                     }
