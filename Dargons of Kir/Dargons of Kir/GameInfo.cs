@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
+using Dargons_of_Kir.Tiles;
 
 
 
@@ -254,6 +255,28 @@ namespace Dargons_of_Kir
             {
                 screen.resetScreen();
             }
+        }
+
+        public static bool dragonTilePlace(Tile selected, int p1, int p2, GameInfo game)
+        {
+            
+            Type tile = selected.GetType();
+            Board.location loc = Board.makeBoardLocation(p1, p2);
+            if (tile == typeof(DragonBreathTile) || tile == typeof(DragonsLairTile))
+            {
+                foreach (Dragon d in game.getDragons())
+                {
+                    if (d.getCurrentPosition().Equals(loc))
+                    {
+                        return true;
+                    }
+
+                }
+
+            }
+
+
+            return false;
         }
     }
 }

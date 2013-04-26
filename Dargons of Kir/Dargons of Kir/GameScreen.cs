@@ -92,7 +92,8 @@ namespace Dargons_of_Kir
             }
             if (((PictureBox)sender).Image == checkMark && placed)
             {
-                if(game.canPlace(selected.location))
+                //if(game.canPlace(selected.location))
+                if(placed)
                 {
                     game.placeTileAtPosition(selected.location, selected.orientation, selected);
                     placed = false;
@@ -166,7 +167,8 @@ namespace Dargons_of_Kir
                 Board.location loc = new Board.location();
                 loc.x = GameGrid.GetColumn((PictureBox)sender);
                 loc.y = GameGrid.GetRow((PictureBox)sender);
-                if (game.canPlace(loc))
+                Tile toPlay = selected;
+                if (game.canPlace(loc) || GameInfo.dragonTilePlace(selected, GameGrid.GetColumn((PictureBox)sender), GameGrid.GetRow((PictureBox)sender), this.game))
                 {
                     ((PictureBox)sender).Image = selected.getPicture();
                     selected.location = new Board.location();
