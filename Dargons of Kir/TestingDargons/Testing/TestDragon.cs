@@ -266,7 +266,7 @@ namespace TestingDargons.Testing
         }
 
         [Test]
-        public void tesAlreadyVisitedTruePosition()
+        public void testAlreadyVisitedTruePosition()
         {
             List<Dragon.trueposition> list = new List<Dragon.trueposition>();
             Board.location loc = new Board.location();
@@ -283,6 +283,16 @@ namespace TestingDargons.Testing
             loc.x = 6; loc.y = 4;
             Assert.IsFalse(new Dragon.trueposition(loc, Board.orientation.DOWN).alreadyVisited(list));
             Assert.IsTrue(position.alreadyVisited(list));
+        }
+
+        [Test]
+        public void testAlreadyVisitedNull()
+        {
+            List<Dragon.trueposition> list = new List<Dragon.trueposition>();
+            Board.location loc = new Board.location();
+            loc.x = 7;
+            loc.y = 0;
+            Assert.IsFalse(new Dragon.trueposition(loc, Board.orientation.UP).alreadyVisited(list)); 
         }
 
         [Test]
