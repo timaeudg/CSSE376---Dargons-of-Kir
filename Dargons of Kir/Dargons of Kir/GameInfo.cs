@@ -187,9 +187,47 @@ namespace Dargons_of_Kir
                 List<Tile> toDelete = new List<Tile>();
                 bool p1Win = false;
                 bool p2Win = false;
-                for (int i = 0; i < this.dragons.Count; i++)
+                foreach (Dragon d in this.dragons)
                 {
-                    toDelete.AddRange(dragons[i].move(tileBoard));
+                         if (this.tileBoard.getTileAt(d.getCurrentPosition().x, d.getCurrentPosition().y) != null)
+                        {
+                            Tile dragonTile = this.tileBoard.getTileAt(d.getCurrentPosition().x, d.getCurrentPosition().y);
+                            if (dragonTile.GetType() == typeof(DragonsLairTile))
+                            {
+                                toDelete.Add(dragonTile);
+                            }
+                            else
+                            {
+                                List<Tile> dragonDestroy = new List<Tile>();
+                                Board.location dragonLoc = d.getCurrentPosition();
+                                List<Board.location> locsToDestroy = new List<Board.location>();
+                                locsToDestroy.Add(Board.makeBoardLocation(dragonLoc.x - 1, dragonLoc.y));
+                                locsToDestroy.Add(Board.makeBoardLocation(dragonLoc.x + 1, dragonLoc.y));
+                                locsToDestroy.Add(Board.makeBoardLocation(dragonLoc.x, dragonLoc.y - 1));
+                                locsToDestroy.Add(Board.makeBoardLocation(dragonLoc.x, dragonLoc.y + 1));
+                                foreach (Board.location l in locsToDestroy)
+                                {
+                                    dragonDestroy.Add(this.tileBoard.getTileAt(l.x, l.y));
+                                }
+                                foreach (Tile t in dragonDestroy)
+                                {
+                                    if (t != null)
+                                    {
+                                        this.destroyTileAt(t.location);
+                                        if (MainRunner.getScreen() != null)
+                                        {
+                                            MainRunner.getScreen().clearCell(t.location);
+                                        }
+                                    }
+                                }
+                                toDelete.AddRange(d.move(tileBoard));
+                            }
+
+
+                        }
+                        else{
+                            toDelete.AddRange(d.move(tileBoard));
+                        }
                 }
                 foreach (Tile t in toDelete)
                 {
