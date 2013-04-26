@@ -14,37 +14,22 @@ namespace Dargons_of_Kir
     
     public class GameInfo
     {
-        private List<Tile> pileOfTiles;
-        private Board tileBoard;
-        private List<Dragon> dragons;
-        private List<Player> players;
-        private Player currentPlayerTurn;
-        private int playerWon = -1;
+        public List<Tile> drawPile {get; private set;}
+        public Board board { get; private set; }
+        public List<Dragon> dragons { get; private set; }
+        public List<Player> players { get; private set; }
+        public Player currentPlayer { get; private set; }
+        private int winningPlayer = -1;
 
         public GameInfo()
         {
-            this.pileOfTiles = new List<Tile>();
-            this.tileBoard = new Board();
+            this.drawPile = new List<Tile>();
+            this.board = new Board();
             this.dragons = new List<Dragon>();
             this.makePile();
             this.players = new List<Player>();
-            this.currentPlayerTurn = null;
+            this.currentPlayer = null;
             this.makeDragonsAndSetPositions();
-        }
-
-        public List<Tile> getTilePile()
-        {
-            return this.pileOfTiles;
-        }
-
-        public List<Dragon> getDragons()
-        {
-            return this.dragons;
-        }
-
-        public Board getTileBoard()
-        {
-            return this.tileBoard;
         }
 
         public List<Type> makePile(){
@@ -58,7 +43,7 @@ namespace Dargons_of_Kir
                         Tile tmp = (Tile)Activator.CreateInstance(c, null);
                         if (tmp.getDrawable())
                         {
-                            pileOfTiles.Add(tmp);
+                            drawPile.Add(tmp);
                             counter++;
                         }
                     }
@@ -67,39 +52,24 @@ namespace Dargons_of_Kir
            return types;
         }
 
-        private void setPlayerList(List<Player> plyrs)
-        {
-            this.players = plyrs;
-            WarTentTile tent = new WarTentTile(this.players[0], Board.makeBoardLocation(0,0));
-            this.placeTileAtPosition(Board.makeBoardLocation(0, 0), Board.orientation.UP, tent);
-            tent = new WarTentTile(this.players[1], Board.makeBoardLocation(7, 7));
-            this.placeTileAtPosition(Board.makeBoardLocation(7, 7), Board.orientation.UP, tent);
-        }
-
         public void setPlayersAndTents(List<Player> players)
         {
-            this.setPlayerList(players);
-            Board.location loc = new Board.location();
-            loc.x=0;
-            loc.y=0;
-            tileBoard.addPiece(new WarTentTile(players[0], loc));
-            loc = new Board.location();
-            loc.x = 7;
-            loc.y = 7;
-            tileBoard.addPiece(new WarTentTile(players[1], loc));
+            this.players = players;
+            board.addTile(new WarTentTile(players[0], new Board.location(0, 0)));
+            board.addTile(new WarTentTile(players[1], new Board.location(7, 7)));
         }
 
         public Player getNextPlayer()
         {
             Player toReturn;
             
-            if(this.currentPlayerTurn == null){
+            if(this.currentPlayer == null){
                 toReturn = this.players[0];
-                this.currentPlayerTurn = this.players[0];
+                this.currentPlayer = this.players[0];
             }
             else{
-                toReturn = this.players[(this.players.IndexOf(this.currentPlayerTurn)+1)%(this.players.Count)];
-                this.currentPlayerTurn = toReturn;
+                toReturn = this.players[(this.players.IndexOf(this.currentPlayer)+1)%(this.players.Count)];
+                this.currentPlayer = toReturn;
             }
 
 
@@ -109,38 +79,27 @@ namespace Dargons_of_Kir
 
         public void makeDragonsAndSetPositions()
         {
-            Board.location loc = new Board.location();
-            loc.x = 2;
-            loc.y = 2;
-            Dragon dragTopLeft = new Dragon(0, loc, Board.orientation.DOWN);
-            loc = new Board.location();
-            loc.x = 5;
-            loc.y = 2;
-            Dragon dragTopRight = new Dragon(1, loc, Board.orientation.LEFT);
-            loc = new Board.location();
-            loc.x = 2;
-            loc.y = 5;
-            Dragon dragBotLeft = new Dragon(2, loc, Board.orientation.RIGHT);
-            loc = new Board.location();
-            loc.x = 5;
-            loc.y = 5;
-            Dragon dragBotRight = new Dragon(3, loc, Board.orientation.UP);
+            Board.location loc = new Board.location(2,2);
+            Dragon dragTopLeft = new Dragon(0, loc, Board.direction.DOWN);
+            loc = new Board.location(5,2);
+            Dragon dragTopRight = new Dragon(1, loc, Board.direction.LEFT);
+            loc = new Board.location(2,5);
+            Dragon dragBotLeft = new Dragon(2, loc, Board.direction.RIGHT);
+            loc = new Board.location(5,5);
+            Dragon dragBotRight = new Dragon(3, loc, Board.direction.UP);
 
             this.dragons.Add(dragTopLeft);
             this.dragons.Add(dragTopRight);
             this.dragons.Add(dragBotLeft);
             this.dragons.Add(dragBotRight);
-     
-
-
         }
 
         public bool canPlace(Board.location loc){
-            if (this.tileBoard.getTileAt(loc.x, loc.y) == null)
+            if (this.board[loc].tile == null)
             {
                 foreach (Dragon d in this.dragons)
                 {
-                    if (loc.x == d.currentPosition.x && loc.y == d.currentPosition.y)
+                    if (loc.x == d.position.x && loc.y == d.position.y)
                     {
                         return false;
                     }
@@ -155,43 +114,29 @@ namespace Dargons_of_Kir
 
         }
 
-        public void placeTileAtPosition(Board.location place, Board.orientation orient, Tile tile)
+        public void placeTileAtPosition(Board.location place, Board.direction orient, Tile tile)
         {
-            if (playerWon < 0)
+            if (winningPlayer < 0)
             {
                 tile.place(place, orient);
-                this.tileBoard.addPiece(tile);
-                tile.placeEffects(this.tileBoard);
-            }
-
-        }
-
-        public bool destroyTileAt(Board.location loc)
-        {
-            if (this.tileBoard.getTileAt(loc.x, loc.y) != null)
-            {
-                this.tileBoard.destroyTileAt(loc.x, loc.y);
-                return true;
-            }
-            else
-            {
-                return false;
+                this.board.addTile(tile);
+                tile.placeEffects(this.board);
             }
 
         }
 
         public void moveDragons()
         {
-            if (this.playerWon < 0)
+            if (this.winningPlayer < 0)
             {
                 List<Tile> toDelete = new List<Tile>();
                 bool p1Win = false;
                 bool p2Win = false;
                 foreach (Dragon d in this.dragons)
                 {
-                         if (this.tileBoard.getTileAt(d.getCurrentPosition().x, d.getCurrentPosition().y) != null)
+                         if (this.board[d.position].tile != null)
                         {
-                            Tile dragonTile = this.tileBoard.getTileAt(d.getCurrentPosition().x, d.getCurrentPosition().y);
+                            Tile dragonTile = this.board[d.position].tile;
                             if (dragonTile.GetType() == typeof(DragonsLairTile))
                             {
                                 toDelete.Add(dragonTile);
@@ -199,50 +144,50 @@ namespace Dargons_of_Kir
                             else
                             {
                                 List<Tile> dragonDestroy = new List<Tile>();
-                                Board.location dragonLoc = d.getCurrentPosition();
+                                Board.location dragonLoc = d.position;
                                 List<Board.location> locsToDestroy = new List<Board.location>();
-                                locsToDestroy.Add(Board.makeBoardLocation(dragonLoc.x - 1, dragonLoc.y));
-                                locsToDestroy.Add(Board.makeBoardLocation(dragonLoc.x + 1, dragonLoc.y));
-                                locsToDestroy.Add(Board.makeBoardLocation(dragonLoc.x, dragonLoc.y - 1));
-                                locsToDestroy.Add(Board.makeBoardLocation(dragonLoc.x, dragonLoc.y + 1));
+                                locsToDestroy.Add(new Board.location(dragonLoc.x - 1, dragonLoc.y));
+                                locsToDestroy.Add(new Board.location(dragonLoc.x + 1, dragonLoc.y));
+                                locsToDestroy.Add(new Board.location(dragonLoc.x, dragonLoc.y - 1));
+                                locsToDestroy.Add(new Board.location(dragonLoc.x, dragonLoc.y + 1));
                                 foreach (Board.location l in locsToDestroy)
                                 {
-                                    dragonDestroy.Add(this.tileBoard.getTileAt(l.x, l.y));
+                                    dragonDestroy.Add(this.board[l].tile);
                                 }
                                 foreach (Tile t in dragonDestroy)
                                 {
                                     if (t != null)
                                     {
-                                        this.destroyTileAt(t.location);
-                                        if (MainRunner.getScreen() != null)
+                                        this.board.destroyTile(t.location);
+                                        if (MainRunner.screen != null)
                                         {
-                                            MainRunner.getScreen().clearCell(t.location);
+                                            MainRunner.screen.clearCell(t.location);
                                         }
                                     }
                                 }
-                                toDelete.AddRange(d.move(tileBoard));
+                                toDelete.AddRange(d.move(board));
                             }
 
 
                         }
                         else{
-                            toDelete.AddRange(d.move(tileBoard));
+                            toDelete.AddRange(d.move(board));
                         }
                 }
                 foreach (Tile t in toDelete)
                 {
-                    if (this.tileBoard.getTileAt(0, 0) == t)
+                    if (this.board[0, 0].tile == t)
                     {
                         p2Win = true;
                     }
-                    if (this.tileBoard.getTileAt(7, 7) == t)
+                    if (this.board[7, 7].tile == t)
                     {
                         p1Win = true;
                     }
-                    destroyTileAt(t.location);
-                    if (MainRunner.getScreen() != null)
+                    board.destroyTile(t.location);
+                    if (MainRunner.screen != null)
                     {
-                        MainRunner.getScreen().clearCell(t.location);
+                        MainRunner.screen.clearCell(t.location);
                     }
                 }
 
@@ -262,17 +207,12 @@ namespace Dargons_of_Kir
 
         }
 
-        public int getPlayerWon(){
-        return this.playerWon;
-        }
-
-
         public void endGame(int p)
         {
-            this.playerWon = p;
-            if (MainRunner.getScreen() != null)
+            this.winningPlayer = p;
+            if (MainRunner.screen != null)
             {
-                if (GameScreen.promptForNewGame(this.playerWon))
+                if (GameScreen.promptForNewGame(this.winningPlayer))
                 {
                     this.makeNewGame();
                 }
@@ -281,14 +221,14 @@ namespace Dargons_of_Kir
 
         public void makeNewGame()
         {
-            this.playerWon = -1;
-            this.tileBoard = new Board();
-            this.pileOfTiles = new List<Tile>();
+            this.winningPlayer = -1;
+            this.board = new Board();
+            this.drawPile = new List<Tile>();
             this.dragons = new List<Dragon>();
             this.makePile();
             this.setPlayersAndTents(this.players);
             this.makeDragonsAndSetPositions();
-            GameScreen screen = MainRunner.getScreen();
+            GameScreen screen = MainRunner.screen;
             if (screen != null)
             {
                 screen.resetScreen();
@@ -299,12 +239,12 @@ namespace Dargons_of_Kir
         {
             
             Type tile = selected.GetType();
-            Board.location loc = Board.makeBoardLocation(p1, p2);
+            Board.location loc =  new Board.location(p1, p2);
             if (tile == typeof(DragonBreathTile) || tile == typeof(DragonsLairTile))
             {
-                foreach (Dragon d in game.getDragons())
+                foreach (Dragon d in game.dragons)
                 {
-                    if (d.getCurrentPosition().Equals(loc))
+                    if (d.position.Equals(loc))
                     {
                         return true;
                     }

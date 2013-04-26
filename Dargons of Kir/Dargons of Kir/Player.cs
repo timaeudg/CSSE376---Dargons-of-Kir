@@ -9,7 +9,7 @@ namespace Dargons_of_Kir
 {
     public class Player
     {
-        private Tile[] tiles = new Tile[4];
+        public Tile[] hand { get; private set; }
         private GameInfo gameInfo;
         public int PlayerID;
         private static int IDSEED=0;
@@ -18,6 +18,7 @@ namespace Dargons_of_Kir
 
         public Player(GameInfo game)
         {
+            this.hand = new Tile[4];
             this.gameInfo = game;
             for (int i = 0; i < 4; i++)
             {
@@ -34,35 +35,18 @@ namespace Dargons_of_Kir
 
         public void drawTile()
         {
-            // tiles.Add(pile.draw());
-            // this will be fixed when devon tells me what frack is storing our tiles.
-
-            List<Tile> pile = this.gameInfo.getTilePile();
+            List<Tile> pile = this.gameInfo.drawPile;
             for (int i = 0; i < 4; i++)
             {
-                if (tiles[i] == null)
+                if (hand[i] == null)
                 {
                     Tile toRemove = pile[randGenerator.Next(0, pile.Count-1)];
                     pile.Remove(toRemove);
-                    tiles[i] = toRemove;
+                    hand[i] = toRemove;
                     break;
                 }
             }
 
         }
-
-        public Tile takeTileFromHand(int index)
-        {
-            Tile toReturn = tiles[index];
-            tiles[index] = null;
-            drawTile();
-            return toReturn;
-        }
-
-        public Tile[] getHand()
-        {
-            return this.tiles;
-        }
-
     }
 }

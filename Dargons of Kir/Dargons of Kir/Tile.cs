@@ -8,19 +8,17 @@ namespace Dargons_of_Kir
 {
     public abstract class Tile
     {
-        public System.Drawing.Image TilePicture;
-        public Board.orientation orientation;
+        public System.Drawing.Image picture { get; private set;}
+        public Board.direction orientation;
         public Board.location location;
         public int Priority;
-        protected int ID;
-        private static int nextID;
         public static bool Drawable { get; protected set;}
 
         public Tile()
         {
             Tile.Drawable = true;
-            ID = Tile.genID();
-            orientation = Board.orientation.UP;
+            location = new Board.location(0, 0);
+            orientation = Board.direction.UP;
         }
 
         virtual public bool getDrawable(){
@@ -29,37 +27,15 @@ namespace Dargons_of_Kir
 
         public Tile(System.Drawing.Image pic):this()
         {
-            this.TilePicture = pic;
-        }
-
-        public System.Drawing.Image getPicture()
-        {
-            return this.TilePicture;
+            this.picture = pic;
         }
 
         public abstract bool callback();
 
-        public void place(Board.location location, Board.orientation orientation) {
+        public void place(Board.location location, Board.direction orientation) {
             this.location = location;
-            this.setOrientation(orientation);
+            this.orientation = orientation;
         
-        }
-
-        public int getID()
-        {
-            return this.ID;
-        }
-
-        public void setOrientation(Board.orientation rot)
-        {
-            this.orientation = rot;
-        }
-
-        protected static int genID()
-        {
-            int ret = Tile.nextID;
-            Tile.nextID = Tile.nextID + 1;
-            return ret;
         }
 
         public abstract void placeEffects(Board board);

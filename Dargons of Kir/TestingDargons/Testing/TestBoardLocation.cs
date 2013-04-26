@@ -37,54 +37,54 @@ namespace TestingDargons
         public void TestGetEffect()
         {
             BoardLocation loc = new BoardLocation();
-            Effect eff = new Effect(Board.makeBoardLocation(1, 1), Board.orientation.UP, Board.orientation.UP, 1, 2, null);
+            Effect eff = new Effect(Board.makeBoardLocation(1, 1), Board.direction.UP, Board.direction.UP, 1, 2, null);
             loc.getEffectList().Add(eff);
-            Assert.IsNull(loc.getActiveEffect(Board.orientation.DOWN,null));
-            Assert.AreEqual(loc.getActiveEffect(Board.orientation.UP,null), eff);
+            Assert.IsNull(loc.getActiveEffect(Board.direction.DOWN,null));
+            Assert.AreEqual(loc.getActiveEffect(Board.direction.UP,null), eff);
         }
 
         [Test]
         public void TestConflictingEffectsByPriority()
         {
             BoardLocation loc = new BoardLocation();
-            Effect eff = new Effect(Board.makeBoardLocation(1, 1), Board.orientation.UP, Board.orientation.UP, 2, 1, null);
-            Effect eff2 = new Effect(Board.makeBoardLocation(1, 1), Board.orientation.UP, Board.orientation.UP, 1, 2, null);
+            Effect eff = new Effect(Board.makeBoardLocation(1, 1), Board.direction.UP, Board.direction.UP, 2, 1, null);
+            Effect eff2 = new Effect(Board.makeBoardLocation(1, 1), Board.direction.UP, Board.direction.UP, 1, 2, null);
             loc.getEffectList().Add(eff);
             loc.getEffectList().Add(eff2);
-            Assert.AreEqual(loc.getActiveEffect(Board.orientation.UP,null), eff);
+            Assert.AreEqual(loc.getActiveEffect(Board.direction.UP,null), eff);
         }
 
         [Test]
         public void TestConflictingEffectsByDistance()
         {
             BoardLocation loc = new BoardLocation();
-            Effect eff = new Effect(Board.makeBoardLocation(1, 1), Board.orientation.UP, Board.orientation.UP, 1, 2, null);
-            Effect eff2 = new Effect(Board.makeBoardLocation(1, 1), Board.orientation.UP, Board.orientation.UP, 2, 2, null);
+            Effect eff = new Effect(Board.makeBoardLocation(1, 1), Board.direction.UP, Board.direction.UP, 1, 2, null);
+            Effect eff2 = new Effect(Board.makeBoardLocation(1, 1), Board.direction.UP, Board.direction.UP, 2, 2, null);
             loc.getEffectList().Add(eff2);
             loc.getEffectList().Add(eff);
-            Assert.AreEqual(loc.getActiveEffect(Board.orientation.UP,null), eff);
+            Assert.AreEqual(loc.getActiveEffect(Board.direction.UP,null), eff);
         }
 
         [Test]
         public void TestConflictingEffectsDifferentDirections()
         {
             BoardLocation loc = new BoardLocation();
-            Effect eff = new Effect(Board.makeBoardLocation(1, 2), Board.orientation.UP, Board.orientation.UP, 1, 2, null);
-            Effect eff2 = new Effect(Board.makeBoardLocation(1, 1), Board.orientation.UP, Board.orientation.UP, 1, 2, null);
+            Effect eff = new Effect(Board.makeBoardLocation(1, 2), Board.direction.UP, Board.direction.UP, 1, 2, null);
+            Effect eff2 = new Effect(Board.makeBoardLocation(1, 1), Board.direction.UP, Board.direction.UP, 1, 2, null);
             loc.getEffectList().Add(eff2);
             loc.getEffectList().Add(eff);
-            Assert.IsNull(loc.getActiveEffect(Board.orientation.UP,null));
+            Assert.IsNull(loc.getActiveEffect(Board.direction.UP,null));
         }
 
         [Test]
         public void TestConflictingEffectsSameDirections()
         {
             BoardLocation loc = new BoardLocation();
-            Effect eff = new Effect(Board.makeBoardLocation(1, 1), Board.orientation.UP, Board.orientation.UP, 1, 2, null);
-            Effect eff2 = new Effect(Board.makeBoardLocation(1, 1), Board.orientation.UP, Board.orientation.UP, 1, 2, null);
+            Effect eff = new Effect(Board.makeBoardLocation(1, 1), Board.direction.UP, Board.direction.UP, 1, 2, null);
+            Effect eff2 = new Effect(Board.makeBoardLocation(1, 1), Board.direction.UP, Board.direction.UP, 1, 2, null);
             loc.getEffectList().Add(eff2);
             loc.getEffectList().Add(eff);
-            Assert.AreEqual(loc.getActiveEffect(Board.orientation.UP,null),eff2);
+            Assert.AreEqual(loc.getActiveEffect(Board.direction.UP,null),eff2);
         }
 
         [Test]
@@ -94,9 +94,9 @@ namespace TestingDargons
             Tile tile = new MonkTile();
             System.Collections.Generic.List<Tile> tiles = new System.Collections.Generic.List<Tile>();
             tiles.Add(tile);
-            Effect eff = new Effect(Board.makeBoardLocation(1, 1), Board.orientation.UP, Board.orientation.UP, 1, 2, tile);
+            Effect eff = new Effect(Board.makeBoardLocation(1, 1), Board.direction.UP, Board.direction.UP, 1, 2, tile);
             loc.getEffectList().Add(eff);
-            Assert.IsNull(loc.getActiveEffect(Board.orientation.UP, tiles));
+            Assert.IsNull(loc.getActiveEffect(Board.direction.UP, tiles));
         }
     }
 }

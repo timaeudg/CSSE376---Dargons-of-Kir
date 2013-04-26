@@ -35,7 +35,7 @@ namespace TestingDargons.Testing
             MonkTile monk = new MonkTile();
             monk.location.x = 4;
             monk.location.y = 2;
-            Assert.IsTrue(b.addPiece(monk));
+            Assert.IsTrue(b.addTile(monk));
             Assert.NotNull(b.getTileAt(4, 2));
         }
 
@@ -46,9 +46,9 @@ namespace TestingDargons.Testing
             MonkTile monk = new MonkTile();
             monk.location.x = 4;
             monk.location.y = 5;
-            Assert.IsTrue(b.addPiece(monk));
+            Assert.IsTrue(b.addTile(monk));
             Assert.NotNull(b.getTileAt(4, 5));
-            Assert.IsFalse(b.addPiece(monk));
+            Assert.IsFalse(b.addTile(monk));
         }
 
 
@@ -68,7 +68,7 @@ namespace TestingDargons.Testing
         {
             GameInfo game = new GameInfo();
 
-            game.placeTileAtPosition(Board.makeBoardLocation(0, 0), Board.orientation.LEFT, new MonkTile());
+            game.placeTileAtPosition(Board.makeBoardLocation(0, 0), Board.direction.LEFT, new MonkTile());
             Assert.True(game.destroyTileAt(Board.makeBoardLocation(0, 0)));
             Assert.False(game.destroyTileAt(Board.makeBoardLocation(0, 0)));
 

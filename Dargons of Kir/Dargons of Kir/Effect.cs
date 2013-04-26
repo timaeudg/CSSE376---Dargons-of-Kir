@@ -9,27 +9,18 @@ namespace Dargons_of_Kir
 
     public class Effect
     {
-        public Board.location destination { get; private set; }
-        public Board.orientation requiredStartingOrientation {  get;  set; }
-        public Board.orientation endingOrientaion {  get;  private set; }
-        public int distance {  get; private set; }
-        public int priority {  get;  private set; }
-        public Tile parentTile {  get;  private set; }
+        public Board.location[,] moveTo {get; private set;}
+        private Board.direction parentIs = 0;
+        public Tile parent = null;
 
-        public Effect(Board.location destination, Board.orientation startorientation,Board.orientation endorientation, int distance, int priority, Tile parent)
+        public Effect()
         {
-            this.destination = destination;
-            this.requiredStartingOrientation = startorientation;
-            this.endingOrientaion = endorientation;
-            this.distance = distance;
-            this.priority = priority;
-            this.parentTile = parent;
+            moveTo = new Board.location[4, 4];
         }
 
         public bool activateCallback()
         {
-           
-            if(parentTile != null) return this.parentTile.callback();
+            if(parent != null) return this.parent.callback();
             return true;
         }
     }

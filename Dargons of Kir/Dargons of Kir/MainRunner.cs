@@ -56,10 +56,5 @@ namespace Dargons_of_Kir
             screen = new GameScreen(game);
 
         }
-         
-        public static GameScreen getScreen(){
-            return screen;
-        }
-
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 
 
-namespace Dargons_of_Kir
+namespace Dargons_of_Kir.Tiles
 {
     public class WarTentTile : Tile
     {
@@ -42,7 +42,7 @@ namespace Dargons_of_Kir
         public WarTentTile(): base(getPic())
         {
             this.owner = null;
-            this.pos = new Board.location();
+            this.pos = new Board.location(0,0);
         }
 
         public override bool callback()

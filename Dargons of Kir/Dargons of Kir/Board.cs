@@ -8,8 +8,32 @@ namespace Dargons_of_Kir
 {
     public class Board
     {
-        public enum orientation { LEFT, UP, RIGHT, DOWN };
-        public struct location { public int x { get; set; } public int y { get; set; } };
+        public enum direction { LEFT, UP, RIGHT, DOWN };
+        public class location {
+            private int _x;
+            private int _y;
+             public int x {
+                 get { return _x; }
+                 set {
+                     if (value > 7) value = value % 8;
+                     while (value < 0) value = value + 8;
+                     _x = value;
+                 } }
+            public int y { 
+                get { return _y; } 
+                set {
+                     if (value > 7) value = value % 8;
+                     while (value < 0) value = value + 8;
+                     _y = value;
+                 }
+            }
+            public location(int newX, int newY)
+            {
+                x = newX;
+                y = newY;
+            }
+        };
+
         private BoardLocation[,] board;
 
         public Board()
@@ -24,40 +48,24 @@ namespace Dargons_of_Kir
             }
         }
 
-        public BoardLocation[,] getBoard()
+        public BoardLocation this[Board.location k]
         {
-            return this.board;
+            get { return board[k.x,k.y]; }
+            set { board[k.x,k.y] = value; }
         }
 
-        public static Board.location makeBoardLocation(int x, int y){
-            Board.location toReturn = new Board.location();
-            int newX = x;
-            int newY = y;
-            if (x < 0)
-            {
-                newX = x + 8; //this will end up with 7 if -1, 6 if -2, etc.
-            }
-            if (y < 0)
-            {
-                newY = y + 8;
-            }
-            toReturn.x = newX;
-            toReturn.y = newY;
-
-            return toReturn;
-        }
-
-        public Tile getTileAt(int x, int y)
+        public BoardLocation this[int x, int y]
         {
-            return this.board[x,y].tile;
+            get { return board[x, y]; }
+            set { board[x, y] = value; }
         }
 
-        public bool addPiece(Tile tile)
+        public bool addTile(Tile tile)
         {
             
-            if (board[tile.location.x, tile.location.y].tile == null)
+            if (this[tile.location].tile == null)
             {
-                board[tile.location.x, tile.location.y].tile = tile;
+                this[tile.location].tile = tile;
             }
             else
             {
@@ -66,38 +74,29 @@ namespace Dargons_of_Kir
             return true;
         }
 
-        public void destroyTileAt(int x, int y)
+        public void destroyTile(Board.location loc)
         {
-            Tile removed = this.board[x, y].tile;
-            this.board[x, y].tile = null;
+            Tile removed = this[loc].tile;
+            this[loc].tile = null;
             List<Effect> effectsToRemove = new List<Effect>();
             for (int i = 0; i < 8; i++)
             {
 
                 for (int k = 0; k < 8; k++)
                 {
-                    foreach (Effect e in this.board[i, k].getEffectList())
+                    foreach (Effect e in this[loc].effects)
                     {
-                        if (e.parentTile.Equals(removed))
+                        if (e.parent.Equals(removed))
                         {
-
                             effectsToRemove.Add(e);
                         }
                     }
                     foreach (Effect e in effectsToRemove)
                     {
-                        this.board[i, k].getEffectList().Remove(e);
+                        this[loc].effects.Remove(e);
                     }
                 }
-
             }
-
-
-        }
-
-        public List<Effect> getEffectAt(location location)
-        {
-            return this.board[location.x, location.y].getEffectList();
         }
     }
 }

@@ -24,18 +24,6 @@ namespace Dargons_of_Kir.Tiles
 
         public override void placeEffects(Board board)
         {
-            Effect Left = new Effect(Board.makeBoardLocation(this.location.x - 1, this.location.y), Board.orientation.RIGHT, Board.orientation.LEFT, 0, 1, this);
-            Effect Right = new Effect(Board.makeBoardLocation(this.location.x + 1, this.location.y), Board.orientation.LEFT, Board.orientation.RIGHT, 0, 1, this);
-            Effect Down = new Effect(Board.makeBoardLocation(this.location.x , this.location.y-1), Board.orientation.DOWN, Board.orientation.UP, 0, 1, this);
-            Effect Up = new Effect(Board.makeBoardLocation(this.location.x , this.location.y+1), Board.orientation.UP, Board.orientation.DOWN, 0, 1, this);
-
-            board.getBoard()[this.location.x, this.location.y].getEffectList().Add(Left);
-            board.getBoard()[this.location.x, this.location.y].getEffectList().Add(Right);
-            board.getBoard()[this.location.x, this.location.y].getEffectList().Add(Up);
-            board.getBoard()[this.location.x, this.location.y].getEffectList().Add(Down);
         }
-
-        
-      
     }
 }

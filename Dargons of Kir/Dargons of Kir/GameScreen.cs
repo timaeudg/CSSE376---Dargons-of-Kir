@@ -26,16 +26,16 @@ namespace Dargons_of_Kir
         {
             this.game = newGame;
             currentPlayer = game.getNextPlayer();
-            for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.getHand()[i].getPicture();
-            List<Dragon> allDragons = game.getDragons();
+            for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.hand[i].picture;
+            List<Dragon> allDragons = game.dragons;
             foreach (Dragon dragon in allDragons)
             {
-                boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = dragon.getImage();
+                boardPictures[dragon.position.x, dragon.position.y].Image = dragon.image;
             }
 
-            Board board = game.getTileBoard();
-            boardPictures[0, 0].Image = board.getTileAt(0, 0).getPicture();
-            boardPictures[7, 7].Image = board.getTileAt(7, 7).getPicture();
+            Board board = game.board;
+            boardPictures[0, 0].Image = board[0, 0].tile.picture;
+            boardPictures[7, 7].Image = board[7, 7].tile.picture;
 
         }
 
@@ -86,7 +86,7 @@ namespace Dargons_of_Kir
         {
             if (((PictureBox)sender).Image == checkMark && !placed) 
             {
-                ((PictureBox)sender).Image = selected.getPicture();
+                ((PictureBox)sender).Image = selected.picture;
                 selected = null;
                 return;
             }
@@ -99,10 +99,10 @@ namespace Dargons_of_Kir
                     placed = false;
                     selected = null;
                     ((PictureBox)sender).Image = null;
-                    currentPlayer.takeTileFromHand(selectedIndex);
+                    currentPlayer.hand[selectedIndex] = null;
                     selectedIndex = 0;
                     currentPlayer = game.getNextPlayer();
-                    for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.getHand()[i].getPicture();
+                    for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.hand[i].picture;
                     turn = (turn + 1) % 3;
                     if (turn == 2)
                     {
@@ -117,7 +117,7 @@ namespace Dargons_of_Kir
             {
                 if (((PictureBox)sender).Image == handPictures[i].Image)
                 {
-                    selected = currentPlayer.getHand()[i];
+                    selected = currentPlayer.hand[i];
                     selectedIndex = i;
                 }
             }
@@ -127,30 +127,20 @@ namespace Dargons_of_Kir
 
         private void dragonTurn()
         {
-            List<Dragon> allDragons = game.getDragons();
+            List<Dragon> allDragons = game.dragons;
             
             foreach (Dragon dragon in allDragons)
             {
 
-                boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
-                /*if (!game.canPlace(dragon.getCurrentPosition()))
-                {
-                    boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = game.getTileBoard().getTileAt(dragon.getCurrentPosition().x, dragon.getCurrentPosition().y).getPicture();
-                }
-                else
-                {
-                    boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
-                }*/
-               
-                
+                boardPictures[dragon.position.x, dragon.position.y].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
             }
 
             game.moveDragons();
-            allDragons = game.getDragons();
+            allDragons = game.dragons;
 
             foreach (Dragon dragon in allDragons)
             {
-                boardPictures[dragon.getCurrentPosition().x, dragon.getCurrentPosition().y].Image = dragon.getImage();
+                boardPictures[dragon.position.x, dragon.position.y].Image = dragon.image;
 
             }
 
@@ -164,16 +154,12 @@ namespace Dargons_of_Kir
             if (!placed)
             {
                 if (selected == null) return;
-                Board.location loc = new Board.location();
-                loc.x = GameGrid.GetColumn((PictureBox)sender);
-                loc.y = GameGrid.GetRow((PictureBox)sender);
+                Board.location loc = new Board.location(GameGrid.GetColumn((PictureBox)sender),GameGrid.GetRow((PictureBox)sender));
                 Tile toPlay = selected;
                 if (game.canPlace(loc) || GameInfo.dragonTilePlace(selected, GameGrid.GetColumn((PictureBox)sender), GameGrid.GetRow((PictureBox)sender), this.game))
                 {
-                    ((PictureBox)sender).Image = selected.getPicture();
-                    selected.location = new Board.location();
-                    selected.location.x = GameGrid.GetColumn((PictureBox)sender);
-                    selected.location.y = GameGrid.GetRow((PictureBox)sender);
+                    ((PictureBox)sender).Image = selected.picture;
+                    selected.location = new Board.location(GameGrid.GetColumn((PictureBox)sender),GameGrid.GetRow((PictureBox)sender));
                     placed = !placed;
                 }
                
@@ -199,7 +185,7 @@ namespace Dargons_of_Kir
                 {
                     Image temp = ((PictureBox)sender).Image;
                     temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                    selected.orientation = ((selected.orientation + 1) > Board.orientation.DOWN) ? (selected.orientation - 3) : (selected.orientation + 1);
+                    selected.orientation = ((selected.orientation + 1) > Board.direction.DOWN) ? (selected.orientation - 3) : (selected.orientation + 1);
                     ((PictureBox)sender).Image = temp;
                 }
             }
@@ -209,7 +195,7 @@ namespace Dargons_of_Kir
         {
             for (int i = 0; i < 4; i++)
             {
-                handPictures[i].Image = tiles[i].getPicture();
+                handPictures[i].Image = tiles[i].picture;
             }
         }
 
@@ -261,17 +247,17 @@ namespace Dargons_of_Kir
             {
                 for (int j = 0; j < boardPictures.GetLength(1); j++)
                 {
-                    if (game.getTileBoard().getTileAt(i, j) == null)
+                    if (game.board[i, j].tile == null)
                     {
                         boardPictures[i, j].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
                     }
                     else{
-                        boardPictures[i, j].Image = game.getTileBoard().getTileAt(i, j).getPicture();
+                        boardPictures[i, j].Image = game.board[i, j].tile.picture;
                     }
                 }
             }
 
-            for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.getHand()[i].getPicture();
+            for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.hand[i].picture;
 
         }
 

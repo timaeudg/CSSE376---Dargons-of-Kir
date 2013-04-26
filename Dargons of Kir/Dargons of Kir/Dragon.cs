@@ -9,19 +9,46 @@ namespace Dargons_of_Kir
 {
     public class Dragon
     {
-        private int dragonID;
-        private List<trueposition> PathList = new List<trueposition>();
-        public Board.location currentPosition { get; private set; }
-        public Board.orientation orientation { get; set; }
-        private int previousEffectTileId;
-        public Image image { get; set; }
+        public class movement
+        {
+            public Board.direction moveFrom;
+            public Board.direction facing;
+        }
+        public Board.location position { get; private set; }
+        public Board.direction orientation { get; private set; }
+        private Image _image;
+        public Image image 
+        {
+            get
+            {
+                //Ensure we are returning a correctly rotated image
+                System.Drawing.Image temp;
+                switch (this.orientation)
+                {
+                    case (Board.direction.UP):
+                        temp = this._image; break;
+                    case (Board.direction.LEFT):
+                        temp = (System.Drawing.Image)this._image.Clone();
+                        temp.RotateFlip(RotateFlipType.Rotate90FlipX); break;
+                    case (Board.direction.DOWN):
+                        temp = (System.Drawing.Image)this._image.Clone();
+                        temp.RotateFlip(RotateFlipType.RotateNoneFlipY); break;
+                    default:
+                        temp = (System.Drawing.Image)this._image.Clone();
+                        temp.RotateFlip(RotateFlipType.Rotate90FlipNone); break;
+                }
+                return temp;
+            }
+            set {_image = value;}
+        }
+        private static int id = 0;
 
         public class trueposition
         {
             private Board.location location;
-            private Board.orientation orientation;
+            private Board.direction orientation;
 
-            public trueposition(Board.location location, Board.orientation orientation)
+            public trueposition(Board.location location, Board.direction orientation)
             {
                 this.location = location;
                 this.orientation = orientation;
@@ -45,10 +72,9 @@ namespace Dargons_of_Kir
             }
         }
 
-        public Dragon(int id, Board.location startingLocation, Board.orientation rotation)
+        public Dragon(int id, Board.location startingLocation, Board.direction rotation)
         {
-            this.dragonID = id;
-            switch (dragonID % 4)
+            switch (Dragon.id++ % 4)
             {
                 case (0): { image = Image.FromFile("..\\..\\..\\..\\images\\bluedragon.jpg"); break; }
                 case (1): { image = Image.FromFile("..\\..\\..\\..\\images\\reddragon.jpg"); break; }
@@ -56,106 +82,34 @@ namespace Dargons_of_Kir
                 case (3): { image = Image.FromFile("..\\..\\..\\..\\images\\yellowdragon.jpg"); break; }
                 default: { image = Image.FromFile("..\\..\\..\\..\\images\\blue.png"); break; }
             }
-            this.currentPosition = startingLocation;
+            this.position = startingLocation;
             this.orientation = rotation;
-            this.previousEffectTileId = -1;
-        }
-
-        public int getDragonID()
-        {
-            return this.dragonID;
-        }
-
-        public void setImage(System.Drawing.Image pic)
-        {
-            this.image = pic;
-        }
-
-        public System.Drawing.Image getImage()
-        {
-            System.Drawing.Image temp;
-
-            switch (this.orientation)
-            {
-                case (Board.orientation.UP):
-                    return this.image;
-                case (Board.orientation.LEFT):
-                    temp = (System.Drawing.Image)this.image.Clone();
-                    temp.RotateFlip(RotateFlipType.Rotate90FlipX);
-                    return temp;
-                case (Board.orientation.DOWN):
-                    temp = (System.Drawing.Image)this.image.Clone();
-                    temp.RotateFlip(RotateFlipType.RotateNoneFlipY);
-                    return temp;
-                default:
-                    temp = (System.Drawing.Image)this.image.Clone();
-                    temp.RotateFlip(RotateFlipType.Rotate90FlipNone);
-                    return temp;
-
-            }
-
-        }
-
-        public Board.orientation getOrientation()
-        {
-            return this.orientation;
-        }
-
-        public void setOrientation(Board.orientation newOrient)
-        {
-            this.orientation = newOrient;
-
-        }
-
-
-        public void setPreviousTile(int id)
-        {
-            this.previousEffectTileId = id;
-        }
-
-        public int getPreviousTile()
-        {
-            return this.previousEffectTileId;
-        }
-
-        public Board.location getCurrentPosition()
-        {
-            return this.currentPosition;
         }
 
         public List<Tile> move(Board board)
         {
+            List<trueposition> PathList = new List<trueposition>();
             List<Tile> toRemove = new List<Tile>();
             List<Tile> toIgnore = new List<Tile>();
             bool movedSideways = false;
-            Board.location prevLoc = this.currentPosition;
-            Board.orientation prevOrient = this.orientation;
+            Board.location prevLoc = this.position;
+            Board.direction prevOrient = this.orientation;
             Type tileType = null;
             bool effectNotImpact = false;
 
             switch (this.orientation)
             {
-                case Board.orientation.UP:
-                    this.currentPosition = Board.makeBoardLocation(this.currentPosition.x, (this.currentPosition.y - 1) % 8);
-                    if (this.currentPosition.y == -1) this.currentPosition = Board.makeBoardLocation(this.currentPosition.x, 7);
-                    break;
-                case Board.orientation.RIGHT:
-                    this.currentPosition = Board.makeBoardLocation((this.currentPosition.x + 1) % 8, this.currentPosition.y);
-                    break;
-                case Board.orientation.DOWN:
-                    this.currentPosition = Board.makeBoardLocation(this.currentPosition.x, (this.currentPosition.y + 1) % 8);
-                    break;
-                case Board.orientation.LEFT:
-                    this.currentPosition = Board.makeBoardLocation((this.currentPosition.x - 1) % 8, this.currentPosition.y);
-                    if (this.currentPosition.x == -1) this.currentPosition = Board.makeBoardLocation(7, this.currentPosition.y);
-                    break;
+                case Board.direction.UP: this.position.y--; break;
+                case Board.direction.RIGHT: this.position.x++; break;
+                case Board.direction.DOWN: this.position.y++; break;
+                case Board.direction.LEFT: this.position.x--; break;
             }
 //            PathList.Add(new trueposition(this.currentPosition, this.orientation));  
-            Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation,toIgnore);
+            Effect currentEffect = board[position].getActiveEffect(this.orientation,toIgnore);
 
-            if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
+            if (board[position].tile != null)
             {
-                tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
+                tileType = board[position].tile.GetType();
             }
             bool isImpact = (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile));
 
@@ -163,56 +117,56 @@ namespace Dargons_of_Kir
             {
                 if (!isImpact)
                 {
-                    toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                    toRemove.Add(board[position].tile);
                 }
                 else
                 {
                     effectNotImpact = currentEffect == null;
                     if (!effectNotImpact)
                     {
-                        effectNotImpact = currentEffect.parentTile != board.getTileAt(this.currentPosition.x, this.currentPosition.y);
+                        effectNotImpact = currentEffect.parent != board[position].tile;
                     }
                     if (movedSideways || effectNotImpact)
                     {
-                        toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                        toRemove.Add(board[position].tile);
                     }
                 }
             }
 
 
             prevOrient = this.orientation;
-            prevLoc = this.currentPosition;
+            prevLoc = this.position;
 
             if (currentEffect != null)
             {
-                this.currentPosition = currentEffect.destination;
-                this.orientation = currentEffect.endingOrientaion;
-                toIgnore.Add(currentEffect.parentTile);
+                //Apply the Effect
+                // TODO Apply new Effects properly
+                toIgnore.Add(currentEffect.parent);
             }
-            movedSideways = this.checkIfMovedSideways(prevLoc, this.currentPosition, prevOrient, this.orientation);
+            movedSideways = this.checkIfMovedSideways(prevLoc, this.position, prevOrient, this.orientation);
 
             while (currentEffect != null)
             {
                 
                // if (PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
-               if(new trueposition(this.currentPosition, this.orientation).alreadyVisited(PathList))
+               if(new trueposition(this.position, this.orientation).alreadyVisited(PathList))
                 {
                     PathList.Clear();
                     return toRemove;
                 }
                 else
                 {
-                    PathList.Add(new trueposition(this.currentPosition, this.orientation));
+                    PathList.Add(new trueposition(this.position, this.orientation));
                 }
 
-                currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation,toIgnore);
+                currentEffect = board[position].getActiveEffect(this.orientation,toIgnore);
 
                 if (toIgnore.Count > 1) toIgnore.RemoveAt(0);
-                if (currentEffect != null && currentEffect.parentTile != null) toIgnore.Add(currentEffect.parentTile); 
+                if (currentEffect != null && currentEffect.parent != null) toIgnore.Add(currentEffect.parent); 
                 tileType = null;
-                if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
+                if (board[position].tile != null)
                 {
-                    tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
+                    tileType = board[position].tile.GetType();
                 }
 
                 isImpact = (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile));
@@ -221,23 +175,23 @@ namespace Dargons_of_Kir
                 {
                     if (!isImpact)
                     {
-                        toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                        toRemove.Add(board[position].tile);
                     }
                     else
                     {
                         effectNotImpact = currentEffect == null;
                         if (!effectNotImpact)
                         {
-                            effectNotImpact = currentEffect.parentTile != board.getTileAt(this.currentPosition.x, this.currentPosition.y);
+                            effectNotImpact = currentEffect.parent != board[position].tile;
                         }
                         if (movedSideways || effectNotImpact)
                         {
-                            toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                            toRemove.Add(board[position].tile);
                         }
                     }
                 }
 
-                prevLoc = this.currentPosition;
+                prevLoc = this.position;
                 prevOrient = this.orientation;
 
                 if (currentEffect == null)
@@ -245,10 +199,9 @@ namespace Dargons_of_Kir
                     break;
                 }
 
-                this.currentPosition = currentEffect.destination;
-                this.orientation = currentEffect.endingOrientaion;
+                // TODO apply effect
 
-                movedSideways = this.checkIfMovedSideways(prevLoc, this.currentPosition, prevOrient, this.orientation);
+                movedSideways = this.checkIfMovedSideways(prevLoc, this.position, prevOrient, this.orientation);
 
             }
 
@@ -257,13 +210,13 @@ namespace Dargons_of_Kir
 
         }
 
-        public bool checkIfMovedSideways(Board.location prev, Board.location current, Board.orientation prevOrient, Board.orientation currentOrient)
+        public bool checkIfMovedSideways(Board.location prev, Board.location current, Board.direction prevOrient, Board.direction currentOrient)
         {
             bool movedSideways = false;
             if (prevOrient == currentOrient)
             {
                 //This means that at some point, the dragon was moved without being turned, and as such, should be checked to see if it moved sideways
-                if (this.orientation == Board.orientation.UP || this.orientation == Board.orientation.DOWN)
+                if (this.orientation == Board.direction.UP || this.orientation == Board.direction.DOWN)
                 {
                     if (current.x != prev.x)
                     {

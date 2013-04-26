@@ -21,14 +21,14 @@ namespace TestingDargons.Testing
         [Test]
         public void TestInit()
         {
-            Effect e = new Effect(new Board.location(), new Board.orientation(), new Board.orientation(), 0, 0, null);
+            Effect e = new Effect(new Board.location(), new Board.direction(), new Board.direction(), 0, 0, null);
             Assert.NotNull(e);
         }
 
         [Test]
         public void TestCallback()
         {
-            Effect e = new Effect(new Board.location(), new Board.orientation(), new Board.orientation(), 0, 0, null);
+            Effect e = new Effect(new Board.location(), new Board.direction(), new Board.direction(), 0, 0, null);
             Assert.True(e.activateCallback());
         }
 

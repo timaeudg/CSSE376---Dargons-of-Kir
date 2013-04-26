@@ -157,9 +157,9 @@ namespace TestingDargons
             Board.location loc = new Board.location();
             loc.x =3;
             loc.y=3;
-            game.placeTileAtPosition(loc, Board.orientation.LEFT, toPlace);
+            game.placeTileAtPosition(loc, Board.direction.LEFT, toPlace);
             Assert.AreSame(toPlace, game.getTileBoard().getTileAt(3, 3));
-            Assert.AreEqual(Board.orientation.LEFT, game.getTileBoard().getTileAt(3, 3).orientation);
+            Assert.AreEqual(Board.direction.LEFT, game.getTileBoard().getTileAt(3, 3).orientation);
 
         }
 
@@ -178,7 +178,7 @@ namespace TestingDargons
 
             Player next = game.getNextPlayer();
             Tile toPlay = next.takeTileFromHand(0);
-            game.placeTileAtPosition(loc, Board.orientation.DOWN, toPlay);
+            game.placeTileAtPosition(loc, Board.direction.DOWN, toPlay);
             Assert.AreSame(toPlay, game.getTileBoard().getTileAt(5, 6));
             Assert.False(game.canPlace(loc));
 
@@ -260,7 +260,7 @@ namespace TestingDargons
             game.setPlayersAndTents(list);
 
             List<Dragon> drags = game.getDragons();
-            drags.Add(new Dragon(0, Board.makeBoardLocation(6, 7), Board.orientation.RIGHT));
+            drags.Add(new Dragon(0, Board.makeBoardLocation(6, 7), Board.direction.RIGHT));
 
             game.moveDragons();
             Assert.AreEqual(1, game.getPlayerWon());
@@ -272,7 +272,7 @@ namespace TestingDargons
             list.Add(p1); list.Add(p2);
             game.setPlayersAndTents(list);
             drags = game.getDragons();
-            drags.Add(new Dragon(0, Board.makeBoardLocation(0, 1), Board.orientation.UP));
+            drags.Add(new Dragon(0, Board.makeBoardLocation(0, 1), Board.direction.UP));
             game.moveDragons();
             Assert.AreEqual(2, game.getPlayerWon());
 
@@ -284,8 +284,8 @@ namespace TestingDargons
             list.Add(p1); list.Add(p2);
             game.setPlayersAndTents(list);
             drags = game.getDragons();
-            drags.Add(new Dragon(0, Board.makeBoardLocation(0, 1), Board.orientation.UP));
-            drags.Add(new Dragon(1, Board.makeBoardLocation(6, 7), Board.orientation.RIGHT));
+            drags.Add(new Dragon(0, Board.makeBoardLocation(0, 1), Board.direction.UP));
+            drags.Add(new Dragon(1, Board.makeBoardLocation(6, 7), Board.direction.RIGHT));
             game.moveDragons();
             Assert.AreEqual(3, game.getPlayerWon());
             
@@ -307,9 +307,9 @@ namespace TestingDargons
             game.setPlayersAndTents(list);
 
             List<Dragon> drags = game.getDragons();
-            drags.Add(new Dragon(0, Board.makeBoardLocation(6, 7), Board.orientation.RIGHT));
+            drags.Add(new Dragon(0, Board.makeBoardLocation(6, 7), Board.direction.RIGHT));
 
-            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.LEFT, game.getNextPlayer().takeTileFromHand(0));
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.direction.LEFT, game.getNextPlayer().takeTileFromHand(0));
             game.makeNewGame();
             Assert.AreEqual(4, game.getDragons().Count);
             Assert.AreEqual(56, game.getTilePile().Count);
