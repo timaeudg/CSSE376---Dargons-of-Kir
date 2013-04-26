@@ -234,6 +234,27 @@ namespace TestingDargons.Testing
         }
 
         [Test]
+        public void testDragonsIgnoreImpactTilesWhenMovingSideways()
+        {
+            Board board = new Board();
+            Dragon dragon = new Dragon(0, Board.makeBoardLocation(4, 4), Board.orientation.DOWN);
+            Tile tile = new WindTile();
+            tile.location = Board.makeBoardLocation(3, 5);
+            tile.orientation = Board.orientation.UP;
+            tile.placeEffects(board);
+            board.addPiece(tile);
+            tile = new MonkTile();
+            tile.location = Board.makeBoardLocation(5, 5);
+            tile.orientation = Board.orientation.UP;
+            tile.placeEffects(board);
+            board.addPiece(tile);
+            dragon.move(board);
+
+            Assert.AreEqual(Board.makeBoardLocation(5, 5), dragon.getCurrentPosition());
+
+        }
+
+        [Test]
         public void testDragonImage()
         {
             Board.location loc = new Board.location();
