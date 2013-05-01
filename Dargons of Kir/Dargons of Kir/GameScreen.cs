@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
+using System.Resources;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -272,12 +275,61 @@ namespace Dargons_of_Kir
             }
 
             for (int i = 0; i < 4; i++) handPictures[i].Image = currentPlayer.getHand()[i].getPicture();
+            foreach(Dragon d in game.getDragons()){
+                boardPictures[d.currentPosition.x, d.currentPosition.y].Image = d.getImage();
+            }
 
         }
 
         public void clearCell(Board.location loc)
         {
             boardPictures[loc.x, loc.y].Image = Image.FromFile("..\\..\\..\\..\\images\\back.JPG");
+        }
+
+        private void changeLanguageSpanish(object sender, EventArgs e)
+        {
+            
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("es-US");
+
+            ResourceManager LocRM = new ResourceManager("Dargons_of_Kir.GameScreen", typeof(GameScreen).Assembly);
+
+            this.changeMenuItemsText(LocRM);
+
+            this.Refresh();
+        }
+
+        private void changeMenuItemsText(ResourceManager manage)
+        {
+            fileToolStripMenuItem.Text = manage.GetString("fileToolStripMenuItem.Text");
+            languagesToolStripMenuItem.Text = manage.GetString("languagesToolStripMenuItem.Text");
+            helpToolStripMenuItem.Text = manage.GetString("helpToolStripMenuItem.Text");
+            newGameToolStripMenuItem.Text = manage.GetString("newGameToolStripMenuItem.Text");
+        }
+
+        private void englishToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("");
+
+            ResourceManager LocRM = new ResourceManager("Dargons_of_Kir.GameScreen", typeof(GameScreen).Assembly);
+
+            this.changeMenuItemsText(LocRM);
+            this.Refresh();
+        }
+
+        private void japaneseToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Thread.CurrentThread.CurrentUICulture = new CultureInfo("ja-JP");
+
+            ResourceManager LocRM = new ResourceManager("Dargons_of_Kir.GameScreen", typeof(GameScreen).Assembly);
+
+            this.changeMenuItemsText(LocRM);
+
+            this.Refresh();
+        }
+
+        private void newGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            game.makeNewGame();
         }
 
     }

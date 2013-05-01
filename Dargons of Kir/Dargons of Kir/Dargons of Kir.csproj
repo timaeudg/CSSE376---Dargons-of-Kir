@@ -75,6 +75,12 @@
     <Compile Include="Tiles\WatchfireTile.cs" />
     <Compile Include="Tiles\WildfireTile.cs" />
     <Compile Include="Tiles\WindTile.cs" />
+    <EmbeddedResource Include="GameScreen.es-US.resx">
+      <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="GameScreen.ja-JP.resx">
+      <DependentUpon>GameScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </EmbeddedResource>

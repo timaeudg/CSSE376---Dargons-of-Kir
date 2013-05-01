@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameScreen));
             this.GameGrid = new System.Windows.Forms.TableLayoutPanel();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.PlayerHand = new System.Windows.Forms.TableLayoutPanel();
@@ -35,6 +36,9 @@
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.languagesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.spanishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.englishToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.japaneseToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -43,55 +47,17 @@
             // 
             this.GameGrid.AllowDrop = true;
             this.GameGrid.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.GameGrid.ColumnCount = 8;
-            this.GameGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.Location = new System.Drawing.Point(12, 32);
-            this.GameGrid.MaximumSize = new System.Drawing.Size(800, 800);
-            this.GameGrid.MinimumSize = new System.Drawing.Size(800, 800);
+            resources.ApplyResources(this.GameGrid, "GameGrid");
             this.GameGrid.Name = "GameGrid";
-            this.GameGrid.RowCount = 8;
-            this.GameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.GameGrid.Size = new System.Drawing.Size(800, 800);
-            this.GameGrid.TabIndex = 0;
             this.GameGrid.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.setPicture);
             // 
             // PlayerHand
             // 
             this.PlayerHand.AllowDrop = true;
             this.PlayerHand.BackColor = System.Drawing.SystemColors.ControlDark;
-            this.PlayerHand.ColumnCount = 1;
-            this.PlayerHand.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            resources.ApplyResources(this.PlayerHand, "PlayerHand");
             this.PlayerHand.ForeColor = System.Drawing.Color.OrangeRed;
-            this.PlayerHand.Location = new System.Drawing.Point(818, 31);
-            this.PlayerHand.MaximumSize = new System.Drawing.Size(200, 812);
-            this.PlayerHand.MinimumSize = new System.Drawing.Size(200, 812);
             this.PlayerHand.Name = "PlayerHand";
-            this.PlayerHand.RowCount = 8;
-            this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 200F));
-            this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle());
-            this.PlayerHand.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.PlayerHand.Size = new System.Drawing.Size(200, 812);
-            this.PlayerHand.TabIndex = 0;
             // 
             // menuStrip1
             // 
@@ -100,51 +66,65 @@
             this.fileToolStripMenuItem,
             this.languagesToolStripMenuItem,
             this.helpToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            resources.ApplyResources(this.menuStrip1, "menuStrip1");
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1081, 24);
-            this.menuStrip1.TabIndex = 1;
-            this.menuStrip1.Text = "menuStrip1";
             // 
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newGameToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
+            resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
             // 
             // newGameToolStripMenuItem
             // 
             this.newGameToolStripMenuItem.Name = "newGameToolStripMenuItem";
-            this.newGameToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.newGameToolStripMenuItem.Text = "New Game";
+            resources.ApplyResources(this.newGameToolStripMenuItem, "newGameToolStripMenuItem");
+            this.newGameToolStripMenuItem.Click += new System.EventHandler(this.newGameToolStripMenuItem_Click);
             // 
             // languagesToolStripMenuItem
             // 
+            this.languagesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.spanishToolStripMenuItem,
+            this.englishToolStripMenuItem,
+            this.japaneseToolStripMenuItem});
             this.languagesToolStripMenuItem.Name = "languagesToolStripMenuItem";
-            this.languagesToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
-            this.languagesToolStripMenuItem.Text = "Languages";
+            resources.ApplyResources(this.languagesToolStripMenuItem, "languagesToolStripMenuItem");
+            // 
+            // spanishToolStripMenuItem
+            // 
+            this.spanishToolStripMenuItem.Name = "spanishToolStripMenuItem";
+            resources.ApplyResources(this.spanishToolStripMenuItem, "spanishToolStripMenuItem");
+            this.spanishToolStripMenuItem.Click += new System.EventHandler(this.changeLanguageSpanish);
+            // 
+            // englishToolStripMenuItem
+            // 
+            this.englishToolStripMenuItem.Name = "englishToolStripMenuItem";
+            resources.ApplyResources(this.englishToolStripMenuItem, "englishToolStripMenuItem");
+            this.englishToolStripMenuItem.Click += new System.EventHandler(this.englishToolStripMenuItem_Click);
+            // 
+            // japaneseToolStripMenuItem
+            // 
+            this.japaneseToolStripMenuItem.Name = "japaneseToolStripMenuItem";
+            resources.ApplyResources(this.japaneseToolStripMenuItem, "japaneseToolStripMenuItem");
+            this.japaneseToolStripMenuItem.Click += new System.EventHandler(this.japaneseToolStripMenuItem_Click);
             // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "Help";
+            resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             // 
             // GameScreen
             // 
             this.AllowDrop = true;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.ClientSize = new System.Drawing.Size(1081, 886);
             this.Controls.Add(this.PlayerHand);
             this.Controls.Add(this.GameGrid);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "GameScreen";
-            this.Text = "Dargons of Kir";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -162,6 +142,9 @@
         private System.Windows.Forms.ToolStripMenuItem newGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem languagesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem spanishToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem englishToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem japaneseToolStripMenuItem;
 
     }
 }
