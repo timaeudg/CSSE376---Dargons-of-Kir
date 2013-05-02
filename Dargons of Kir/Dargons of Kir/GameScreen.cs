@@ -332,6 +332,14 @@ namespace Dargons_of_Kir
             game.makeNewGame();
         }
 
+        private void openHelpWindow(object sender, EventArgs e)
+        {
+            HelpWindow help = new HelpWindow();
+            help.Show();
+            help.TopMost = true;
+            help.Activate();
+        }
+
     }
 
   
