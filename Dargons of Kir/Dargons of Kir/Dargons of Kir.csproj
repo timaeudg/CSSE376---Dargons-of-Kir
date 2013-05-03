@@ -90,6 +90,12 @@
     <EmbeddedResource Include="GameScreen.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="HelpWindow.es-US.resx">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HelpWindow.ja-JP.resx">
+      <DependentUpon>HelpWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="HelpWindow.resx">
       <DependentUpon>HelpWindow.cs</DependentUpon>
     </EmbeddedResource>

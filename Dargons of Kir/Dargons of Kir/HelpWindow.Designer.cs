@@ -77,12 +77,7 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.AutoScroll = true;
-            this.tableLayoutPanel1.AutoSize = true;
-            this.tableLayoutPanel1.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 55F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 45F));
+            resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.Controls.Add(this.pictureBox14, 0, 13);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox13, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox12, 0, 11);
@@ -111,344 +106,168 @@
             this.tableLayoutPanel1.Controls.Add(this.samuraiLabel, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.roninLabel, 1, 2);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.MaximumSize = new System.Drawing.Size(630, 9000);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 14;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 175F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 350F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 350F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 350F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 350F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 375F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 125F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(630, 523);
-            this.tableLayoutPanel1.TabIndex = 1;
             // 
             // pictureBox14
             // 
-            this.pictureBox14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox14.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox14.Image")));
-            this.pictureBox14.Location = new System.Drawing.Point(4, 3767);
+            resources.ApplyResources(this.pictureBox14, "pictureBox14");
             this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(329, 2399);
-            this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox14.TabIndex = 41;
             this.pictureBox14.TabStop = false;
             // 
             // pictureBox13
             // 
-            this.pictureBox13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox13.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox13.Image")));
-            this.pictureBox13.Location = new System.Drawing.Point(4, 3516);
+            resources.ApplyResources(this.pictureBox13, "pictureBox13");
             this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(329, 244);
-            this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox13.TabIndex = 40;
             this.pictureBox13.TabStop = false;
             // 
             // pictureBox12
             // 
-            this.pictureBox12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox12.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox12.Image")));
-            this.pictureBox12.Location = new System.Drawing.Point(4, 3140);
+            resources.ApplyResources(this.pictureBox12, "pictureBox12");
             this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(329, 369);
-            this.pictureBox12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox12.TabIndex = 39;
             this.pictureBox12.TabStop = false;
             // 
             // pictureBox11
             // 
-            this.pictureBox11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(4, 2789);
+            resources.ApplyResources(this.pictureBox11, "pictureBox11");
             this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(329, 344);
-            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox11.TabIndex = 38;
             this.pictureBox11.TabStop = false;
             // 
             // pictureBox10
             // 
-            this.pictureBox10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(4, 2438);
+            resources.ApplyResources(this.pictureBox10, "pictureBox10");
             this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(329, 344);
-            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox10.TabIndex = 37;
             this.pictureBox10.TabStop = false;
             // 
             // pictureBox9
             // 
-            this.pictureBox9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
-            this.pictureBox9.Location = new System.Drawing.Point(4, 2287);
+            resources.ApplyResources(this.pictureBox9, "pictureBox9");
             this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(329, 144);
-            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox9.TabIndex = 36;
             this.pictureBox9.TabStop = false;
             // 
             // pictureBox8
             // 
-            this.pictureBox8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
-            this.pictureBox8.Location = new System.Drawing.Point(4, 1936);
+            resources.ApplyResources(this.pictureBox8, "pictureBox8");
             this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(329, 344);
-            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox8.TabIndex = 35;
             this.pictureBox8.TabStop = false;
             // 
             // pictureBox7
             // 
-            this.pictureBox7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(4, 1685);
+            resources.ApplyResources(this.pictureBox7, "pictureBox7");
             this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(329, 244);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox7.TabIndex = 34;
             this.pictureBox7.TabStop = false;
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(4, 1384);
+            resources.ApplyResources(this.pictureBox6, "pictureBox6");
             this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(329, 294);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox6.TabIndex = 33;
             this.pictureBox6.TabStop = false;
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(4, 1083);
+            resources.ApplyResources(this.pictureBox5, "pictureBox5");
             this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(329, 294);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox5.TabIndex = 32;
             this.pictureBox5.TabStop = false;
             // 
             // pictureBox4
             // 
-            this.pictureBox4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(4, 732);
+            resources.ApplyResources(this.pictureBox4, "pictureBox4");
             this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(329, 344);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox4.TabIndex = 31;
             this.pictureBox4.TabStop = false;
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(4, 556);
+            resources.ApplyResources(this.pictureBox3, "pictureBox3");
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(329, 169);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox3.TabIndex = 30;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(4, 255);
+            resources.ApplyResources(this.pictureBox2, "pictureBox2");
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(329, 294);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox2.TabIndex = 29;
             this.pictureBox2.TabStop = false;
             // 
             // dragonsLairLabel
             // 
-            this.dragonsLairLabel.AutoSize = true;
-            this.dragonsLairLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dragonsLairLabel.Location = new System.Drawing.Point(340, 3764);
+            resources.ApplyResources(this.dragonsLairLabel, "dragonsLairLabel");
             this.dragonsLairLabel.Name = "dragonsLairLabel";
-            this.dragonsLairLabel.Size = new System.Drawing.Size(269, 2405);
-            this.dragonsLairLabel.TabIndex = 27;
-            this.dragonsLairLabel.Text = resources.GetString("dragonsLairLabel.Text");
-            this.dragonsLairLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // dragonBreathLabel
             // 
-            this.dragonBreathLabel.AutoSize = true;
-            this.dragonBreathLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dragonBreathLabel.Location = new System.Drawing.Point(340, 3513);
+            resources.ApplyResources(this.dragonBreathLabel, "dragonBreathLabel");
             this.dragonBreathLabel.Name = "dragonBreathLabel";
-            this.dragonBreathLabel.Size = new System.Drawing.Size(269, 250);
-            this.dragonBreathLabel.TabIndex = 25;
-            this.dragonBreathLabel.Text = resources.GetString("dragonBreathLabel.Text");
-            this.dragonBreathLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lotusPondLabel
             // 
-            this.lotusPondLabel.AutoSize = true;
-            this.lotusPondLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lotusPondLabel.Location = new System.Drawing.Point(340, 3137);
+            resources.ApplyResources(this.lotusPondLabel, "lotusPondLabel");
             this.lotusPondLabel.Name = "lotusPondLabel";
-            this.lotusPondLabel.Size = new System.Drawing.Size(269, 375);
-            this.lotusPondLabel.TabIndex = 23;
-            this.lotusPondLabel.Text = resources.GetString("lotusPondLabel.Text");
-            this.lotusPondLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lotusFlowerLabel
             // 
-            this.lotusFlowerLabel.AutoSize = true;
-            this.lotusFlowerLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lotusFlowerLabel.Location = new System.Drawing.Point(340, 2786);
+            resources.ApplyResources(this.lotusFlowerLabel, "lotusFlowerLabel");
             this.lotusFlowerLabel.Name = "lotusFlowerLabel";
-            this.lotusFlowerLabel.Size = new System.Drawing.Size(269, 350);
-            this.lotusFlowerLabel.TabIndex = 21;
-            this.lotusFlowerLabel.Text = resources.GetString("lotusFlowerLabel.Text");
-            this.lotusFlowerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // stormLabel
             // 
-            this.stormLabel.AutoSize = true;
-            this.stormLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stormLabel.Location = new System.Drawing.Point(340, 2435);
+            resources.ApplyResources(this.stormLabel, "stormLabel");
             this.stormLabel.Name = "stormLabel";
-            this.stormLabel.Size = new System.Drawing.Size(269, 350);
-            this.stormLabel.TabIndex = 19;
-            this.stormLabel.Text = resources.GetString("stormLabel.Text");
-            this.stormLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // windLabel
             // 
-            this.windLabel.AutoSize = true;
-            this.windLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.windLabel.Location = new System.Drawing.Point(340, 2284);
+            resources.ApplyResources(this.windLabel, "windLabel");
             this.windLabel.Name = "windLabel";
-            this.windLabel.Size = new System.Drawing.Size(269, 150);
-            this.windLabel.TabIndex = 17;
-            this.windLabel.Text = resources.GetString("windLabel.Text");
-            this.windLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // wildfireLabel
             // 
-            this.wildfireLabel.AutoSize = true;
-            this.wildfireLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.wildfireLabel.Location = new System.Drawing.Point(340, 1933);
+            resources.ApplyResources(this.wildfireLabel, "wildfireLabel");
             this.wildfireLabel.Name = "wildfireLabel";
-            this.wildfireLabel.Size = new System.Drawing.Size(269, 350);
-            this.wildfireLabel.TabIndex = 15;
-            this.wildfireLabel.Text = resources.GetString("wildfireLabel.Text");
-            this.wildfireLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // watchfireLabel
             // 
-            this.watchfireLabel.AutoSize = true;
-            this.watchfireLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.watchfireLabel.Location = new System.Drawing.Point(340, 1682);
+            resources.ApplyResources(this.watchfireLabel, "watchfireLabel");
             this.watchfireLabel.Name = "watchfireLabel";
-            this.watchfireLabel.Size = new System.Drawing.Size(269, 250);
-            this.watchfireLabel.TabIndex = 13;
-            this.watchfireLabel.Text = resources.GetString("watchfireLabel.Text");
-            this.watchfireLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tripleRiverLabel
             // 
-            this.tripleRiverLabel.AutoSize = true;
-            this.tripleRiverLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tripleRiverLabel.Location = new System.Drawing.Point(340, 1381);
+            resources.ApplyResources(this.tripleRiverLabel, "tripleRiverLabel");
             this.tripleRiverLabel.Name = "tripleRiverLabel";
-            this.tripleRiverLabel.Size = new System.Drawing.Size(269, 300);
-            this.tripleRiverLabel.TabIndex = 11;
-            this.tripleRiverLabel.Text = resources.GetString("tripleRiverLabel.Text");
-            this.tripleRiverLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // doubleRiverLabel
             // 
-            this.doubleRiverLabel.AutoSize = true;
-            this.doubleRiverLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.doubleRiverLabel.Location = new System.Drawing.Point(340, 1080);
+            resources.ApplyResources(this.doubleRiverLabel, "doubleRiverLabel");
             this.doubleRiverLabel.Name = "doubleRiverLabel";
-            this.doubleRiverLabel.Size = new System.Drawing.Size(269, 300);
-            this.doubleRiverLabel.TabIndex = 9;
-            this.doubleRiverLabel.Text = resources.GetString("doubleRiverLabel.Text");
-            this.doubleRiverLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // singleRiverLabel
             // 
-            this.singleRiverLabel.AutoSize = true;
-            this.singleRiverLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.singleRiverLabel.Location = new System.Drawing.Point(340, 729);
+            resources.ApplyResources(this.singleRiverLabel, "singleRiverLabel");
             this.singleRiverLabel.Name = "singleRiverLabel";
-            this.singleRiverLabel.Size = new System.Drawing.Size(269, 350);
-            this.singleRiverLabel.TabIndex = 7;
-            this.singleRiverLabel.Text = resources.GetString("singleRiverLabel.Text");
-            this.singleRiverLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // monkLable
             // 
-            this.monkLable.AutoSize = true;
-            this.monkLable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.monkLable.Location = new System.Drawing.Point(340, 1);
+            resources.ApplyResources(this.monkLable, "monkLable");
             this.monkLable.Name = "monkLable";
-            this.monkLable.Size = new System.Drawing.Size(269, 250);
-            this.monkLable.TabIndex = 0;
-            this.monkLable.Text = resources.GetString("monkLable.Text");
-            this.monkLable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // samuraiLabel
             // 
-            this.samuraiLabel.AutoSize = true;
-            this.samuraiLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.samuraiLabel.Location = new System.Drawing.Point(340, 252);
+            resources.ApplyResources(this.samuraiLabel, "samuraiLabel");
             this.samuraiLabel.Name = "samuraiLabel";
-            this.samuraiLabel.Size = new System.Drawing.Size(269, 300);
-            this.samuraiLabel.TabIndex = 1;
-            this.samuraiLabel.Text = resources.GetString("samuraiLabel.Text");
-            this.samuraiLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(4, 4);
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(329, 244);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
             // 
             // roninLabel
             // 
-            this.roninLabel.AutoSize = true;
-            this.roninLabel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.roninLabel.Location = new System.Drawing.Point(340, 553);
+            resources.ApplyResources(this.roninLabel, "roninLabel");
             this.roninLabel.Name = "roninLabel";
-            this.roninLabel.Size = new System.Drawing.Size(269, 175);
-            this.roninLabel.TabIndex = 5;
-            this.roninLabel.Text = resources.GetString("roninLabel.Text");
-            this.roninLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // HelpWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(642, 523);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "HelpWindow";
-            this.Text = "Tile Rules";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
