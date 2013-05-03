@@ -3715,6 +3715,146 @@
         KKACiiigAooooAKKKKAP/9k=
 </value>
   </data>
+  <data name="dragonsLairLabel.Text" xml:space="preserve">
+    <value>Dragon Lair —Dragon Tile
+This tile is used to delay a dragon’s movement. The
+Dragon Lair is placed on top of a dragon and
+prevents that dragon from moving or activating tiles
+this turn. Remove the Dragon Lair from the game at
+the end of the turn.</value>
+  </data>
+  <data name="dragonBreathLabel.Text" xml:space="preserve">
+    <value>Dragon Breath —Dragon Tile
+This tile is used to remove tiles in play before the
+dragons move. The Dragon Breath is placed on top
+of a dragon, and any tiles in the four squares
+adjacent to the dragon are destroyed. Remove the
+destroyed tiles and the Dragon Breath from the
+game after both players have placed tiles, and
+before moving the dragons.</value>
+  </data>
+  <data name="lotusPondLabel.Text" xml:space="preserve">
+    <value>Lotus Pond — Proximity Tile
+The lotus pond is used to pull a dragon. When a
+dragon moves into one of the lotus pond’s eight
+squares of influence and is not facing directly away
+from the lotus pond, the dragon is drawn one square
+closer. If a dragon is drawn into or moves into the
+same square as the lotus pond, the tile is destroyed
+and removed from the game at the end of the turn.
+Dragons cannot be pulled backwards.</value>
+  </data>
+  <data name="lotusFlowerLabel.Text" xml:space="preserve">
+    <value>Lotus Flower —Proximity Tile
+The lotus flower is used to pull a dragon. When a
+dragon moves into one of the lotus flower’s two
+squares of influence and is not facing directly away
+from the lotus flower, the dragon is drawn one square
+closer. If a dragon is drawn into or moves into the
+same square as the lotus flower, the tile is destroyed
+and removed from the game at the end of the turn.
+Dragons cannot be pulled backwards.</value>
+  </data>
+  <data name="stormLabel.Text" xml:space="preserve">
+    <value>Storm — Proximity Tile
+The storm is used to blow a dragon off course, or to
+propel a dragon forward. When a dragon moves
+into one of the storm’s eight squares of
+influence and is not facing directly toward
+the storm, the dragon is pushed one square
+further away from the storm. If a dragon
+moves into the same square as the storm, the tile is
+destroyed and removed from the game at the end of
+the turn. Dragons cannot be pushed backwards.</value>
+  </data>
+  <data name="windLabel.Text" xml:space="preserve">
+    <value>Wind — Proximity Tile
+The wind is used to blow a dragon off course, or to
+propel a dragon forward. When a dragon moves
+into one of the wind’s two squares of
+influence and is not facing directly toward
+the wind, the dragon is pushed one square
+further away. If a dragon moves into the
+same square as the wind, the tile is destroyed and
+removed from the game at the end of the turn. Dragons cannot be pushed backwards.</value>
+  </data>
+  <data name="wildfireLabel.Text" xml:space="preserve">
+    <value>Wildfire —Proximity Tile
+The wildfire is used to ward off approaching dragons.
+When a dragon moves into one of the wildfire’s two
+squares of influence and is facing in a proper direction, the dragon is drawn around the tile, and turned
+180-degrees. The dragon is considered to have
+entered only the squares in which it began and ended
+the movement caused by the wildfire. If a dragon
+moves into the same square as the wildfire, the tile is
+destroyed and removed from the game at the end of
+the turn.</value>
+  </data>
+  <data name="watchfireLabel.Text" xml:space="preserve">
+    <value>Watchfire —Proximity Tile
+The watchfire is used to ward off approaching
+dragons. When a dragon moves into one of the
+watchfire’s two squares of influence and is facing in
+a proper direction, the dragon is drawn around the
+tile, and turned 90-degrees. The dragon is considered
+to have entered only the squares in which it began
+and ended the movement caused by the watchfire. If
+a dragon moves into the same square as the watchfire,
+the tile is destroyed and removed from the game at
+the end of the turn.</value>
+  </data>
+  <data name="tripleRiverLabel.Text" xml:space="preserve">
+    <value>Three Rivers —Impact Tile
+The three rivers are used to turn a dragon 90-degrees
+or move it down stream. The dragon will move
+through the river and exit out of the waterfall side of
+the tile. Three sides of the river tile are approachable.
+If a dragon moves into the river tile’s square from the
+single unapproachable side, or if a dragon enters the
+river with its side, the river tile is destroyed and
+removed from the game at the end of the turn.</value>
+  </data>
+  <data name="doubleRiverLabel.Text" xml:space="preserve">
+    <value>Two Rivers — Impact Tile
+The two rivers are used to turn a dragon 90-degrees.
+The dragon will move through the river and exit out
+of the waterfall side of the tile. The two river sides of
+the tile are approachable. If a dragon moves into the
+river tile’s square from one of the two unapproachable sides, or if a dragon enters the river with its side,
+the river tile is destroyed and removed from the game
+at the end of the turn.</value>
+  </data>
+  <data name="singleRiverLabel.Text" xml:space="preserve">
+    <value>Single River — Impact Tile
+The single river is used to accelerate a dragon. The
+dragon will move through the river tile into the next
+square. Both sides of the single river are approachable. If a dragon moves into the single river tile’s
+square from one of the two unapproachable sides, or
+if a dragon enters the river with its side, the river tile
+is destroyed and removed from the game at the end of
+the turn.</value>
+  </data>
+  <data name="monkLable.Text" xml:space="preserve">
+    <value>Monk — Impact Tile
+The monk is used to ward off a dragon from any
+direction. This tile turns the dragon 180-degrees and
+deflects it in the opposite direction. All four sides of
+the monk are approachable. If a dragon hits the monk
+with its side, the monk tile is destroyed and removed
+from the game at the end of the turn.</value>
+  </data>
+  <data name="samuraiLabel.Text" xml:space="preserve">
+    <value>Samurai —Impact Tile
+The samurai is used to deflect the dragon off the
+samurai’s shield. This tile turns the dragon 90-
+degrees and propels it forward into the square
+adjacent to the samurai. The two shield sides of the
+samurai are approachable. If a dragon approaches the
+samurai from one of the two unprotected sides, or if
+a dragon hits the samurai with its side, the samurai
+tile is destroyed and removed from the game at the
+end of the turn.</value>
+  </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         /9j/4AAQSkZJRgABAQEAYABgAAD/4RD0RXhpZgAATU0AKgAAAAgABAE7AAIAAAAOAAAISodpAAQAAAAB
@@ -4001,5 +4141,16 @@
         UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUU
         UUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFFFFAH//Z
 </value>
+  </data>
+  <data name="roninLabel.Text" xml:space="preserve">
+    <value>Ronin — Impact Tile
+The ronin are used to deflect a dragon off either one
+of their shields. This tile turns the dragon 180-
+degrees and deflects it in the opposite direction. The
+two shield sides of the ronin are approachable. If a
+dragon approaches the ronin from one of the two
+unprotected sides, or if a dragon hits the ronin with its
+side, the ronin tile is destroyed and removed from the
+game at the end of the turn.</value>
   </data>
 </root>

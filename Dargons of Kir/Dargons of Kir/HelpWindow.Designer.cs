@@ -43,21 +43,21 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.dragonsLairLabel = new System.Windows.Forms.Label();
+            this.dragonBreathLabel = new System.Windows.Forms.Label();
+            this.lotusPondLabel = new System.Windows.Forms.Label();
+            this.lotusFlowerLabel = new System.Windows.Forms.Label();
+            this.stormLabel = new System.Windows.Forms.Label();
+            this.windLabel = new System.Windows.Forms.Label();
+            this.wildfireLabel = new System.Windows.Forms.Label();
+            this.watchfireLabel = new System.Windows.Forms.Label();
+            this.tripleRiverLabel = new System.Windows.Forms.Label();
+            this.doubleRiverLabel = new System.Windows.Forms.Label();
+            this.singleRiverLabel = new System.Windows.Forms.Label();
+            this.monkLable = new System.Windows.Forms.Label();
+            this.samuraiLabel = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
+            this.roninLabel = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).BeginInit();
@@ -96,21 +96,21 @@
             this.tableLayoutPanel1.Controls.Add(this.pictureBox4, 0, 3);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox3, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox2, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label28, 1, 13);
-            this.tableLayoutPanel1.Controls.Add(this.label26, 1, 12);
-            this.tableLayoutPanel1.Controls.Add(this.label24, 1, 11);
-            this.tableLayoutPanel1.Controls.Add(this.label22, 1, 10);
-            this.tableLayoutPanel1.Controls.Add(this.label20, 1, 9);
-            this.tableLayoutPanel1.Controls.Add(this.label18, 1, 8);
-            this.tableLayoutPanel1.Controls.Add(this.label16, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label14, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label12, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.dragonsLairLabel, 1, 13);
+            this.tableLayoutPanel1.Controls.Add(this.dragonBreathLabel, 1, 12);
+            this.tableLayoutPanel1.Controls.Add(this.lotusPondLabel, 1, 11);
+            this.tableLayoutPanel1.Controls.Add(this.lotusFlowerLabel, 1, 10);
+            this.tableLayoutPanel1.Controls.Add(this.stormLabel, 1, 9);
+            this.tableLayoutPanel1.Controls.Add(this.windLabel, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.wildfireLabel, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.watchfireLabel, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.tripleRiverLabel, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.doubleRiverLabel, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.singleRiverLabel, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.monkLable, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.samuraiLabel, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label6, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.roninLabel, 1, 2);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.MaximumSize = new System.Drawing.Size(630, 9000);
@@ -139,7 +139,7 @@
             this.pictureBox14.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox14.Image")));
             this.pictureBox14.Location = new System.Drawing.Point(4, 3767);
             this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(329, 2613);
+            this.pictureBox14.Size = new System.Drawing.Size(329, 2399);
             this.pictureBox14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox14.TabIndex = 41;
             this.pictureBox14.TabStop = false;
@@ -276,136 +276,148 @@
             this.pictureBox2.TabIndex = 29;
             this.pictureBox2.TabStop = false;
             // 
-            // label28
+            // dragonsLairLabel
             // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(340, 3764);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(268, 26);
-            this.label28.TabIndex = 27;
-            this.label28.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.dragonsLairLabel.AutoSize = true;
+            this.dragonsLairLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dragonsLairLabel.Location = new System.Drawing.Point(340, 3764);
+            this.dragonsLairLabel.Name = "dragonsLairLabel";
+            this.dragonsLairLabel.Size = new System.Drawing.Size(269, 2405);
+            this.dragonsLairLabel.TabIndex = 27;
+            this.dragonsLairLabel.Text = resources.GetString("dragonsLairLabel.Text");
+            this.dragonsLairLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label26
+            // dragonBreathLabel
             // 
-            this.label26.AutoSize = true;
-            this.label26.Location = new System.Drawing.Point(340, 3513);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(268, 26);
-            this.label26.TabIndex = 25;
-            this.label26.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.dragonBreathLabel.AutoSize = true;
+            this.dragonBreathLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dragonBreathLabel.Location = new System.Drawing.Point(340, 3513);
+            this.dragonBreathLabel.Name = "dragonBreathLabel";
+            this.dragonBreathLabel.Size = new System.Drawing.Size(269, 250);
+            this.dragonBreathLabel.TabIndex = 25;
+            this.dragonBreathLabel.Text = resources.GetString("dragonBreathLabel.Text");
+            this.dragonBreathLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label24
+            // lotusPondLabel
             // 
-            this.label24.AutoSize = true;
-            this.label24.Location = new System.Drawing.Point(340, 3137);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(268, 26);
-            this.label24.TabIndex = 23;
-            this.label24.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.lotusPondLabel.AutoSize = true;
+            this.lotusPondLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lotusPondLabel.Location = new System.Drawing.Point(340, 3137);
+            this.lotusPondLabel.Name = "lotusPondLabel";
+            this.lotusPondLabel.Size = new System.Drawing.Size(269, 375);
+            this.lotusPondLabel.TabIndex = 23;
+            this.lotusPondLabel.Text = resources.GetString("lotusPondLabel.Text");
+            this.lotusPondLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label22
+            // lotusFlowerLabel
             // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(340, 2786);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(268, 26);
-            this.label22.TabIndex = 21;
-            this.label22.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.lotusFlowerLabel.AutoSize = true;
+            this.lotusFlowerLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lotusFlowerLabel.Location = new System.Drawing.Point(340, 2786);
+            this.lotusFlowerLabel.Name = "lotusFlowerLabel";
+            this.lotusFlowerLabel.Size = new System.Drawing.Size(269, 350);
+            this.lotusFlowerLabel.TabIndex = 21;
+            this.lotusFlowerLabel.Text = resources.GetString("lotusFlowerLabel.Text");
+            this.lotusFlowerLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label20
+            // stormLabel
             // 
-            this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(340, 2435);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(268, 26);
-            this.label20.TabIndex = 19;
-            this.label20.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.stormLabel.AutoSize = true;
+            this.stormLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stormLabel.Location = new System.Drawing.Point(340, 2435);
+            this.stormLabel.Name = "stormLabel";
+            this.stormLabel.Size = new System.Drawing.Size(269, 350);
+            this.stormLabel.TabIndex = 19;
+            this.stormLabel.Text = resources.GetString("stormLabel.Text");
+            this.stormLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label18
+            // windLabel
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(340, 2284);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(268, 26);
-            this.label18.TabIndex = 17;
-            this.label18.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.windLabel.AutoSize = true;
+            this.windLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.windLabel.Location = new System.Drawing.Point(340, 2284);
+            this.windLabel.Name = "windLabel";
+            this.windLabel.Size = new System.Drawing.Size(269, 150);
+            this.windLabel.TabIndex = 17;
+            this.windLabel.Text = resources.GetString("windLabel.Text");
+            this.windLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label16
+            // wildfireLabel
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(340, 1933);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(268, 26);
-            this.label16.TabIndex = 15;
-            this.label16.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.wildfireLabel.AutoSize = true;
+            this.wildfireLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wildfireLabel.Location = new System.Drawing.Point(340, 1933);
+            this.wildfireLabel.Name = "wildfireLabel";
+            this.wildfireLabel.Size = new System.Drawing.Size(269, 350);
+            this.wildfireLabel.TabIndex = 15;
+            this.wildfireLabel.Text = resources.GetString("wildfireLabel.Text");
+            this.wildfireLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label14
+            // watchfireLabel
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(340, 1682);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(268, 26);
-            this.label14.TabIndex = 13;
-            this.label14.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.watchfireLabel.AutoSize = true;
+            this.watchfireLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.watchfireLabel.Location = new System.Drawing.Point(340, 1682);
+            this.watchfireLabel.Name = "watchfireLabel";
+            this.watchfireLabel.Size = new System.Drawing.Size(269, 250);
+            this.watchfireLabel.TabIndex = 13;
+            this.watchfireLabel.Text = resources.GetString("watchfireLabel.Text");
+            this.watchfireLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label12
+            // tripleRiverLabel
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(340, 1381);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(268, 26);
-            this.label12.TabIndex = 11;
-            this.label12.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.tripleRiverLabel.AutoSize = true;
+            this.tripleRiverLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tripleRiverLabel.Location = new System.Drawing.Point(340, 1381);
+            this.tripleRiverLabel.Name = "tripleRiverLabel";
+            this.tripleRiverLabel.Size = new System.Drawing.Size(269, 300);
+            this.tripleRiverLabel.TabIndex = 11;
+            this.tripleRiverLabel.Text = resources.GetString("tripleRiverLabel.Text");
+            this.tripleRiverLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // doubleRiverLabel
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(340, 1080);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(268, 26);
-            this.label10.TabIndex = 9;
-            this.label10.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.doubleRiverLabel.AutoSize = true;
+            this.doubleRiverLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.doubleRiverLabel.Location = new System.Drawing.Point(340, 1080);
+            this.doubleRiverLabel.Name = "doubleRiverLabel";
+            this.doubleRiverLabel.Size = new System.Drawing.Size(269, 300);
+            this.doubleRiverLabel.TabIndex = 9;
+            this.doubleRiverLabel.Text = resources.GetString("doubleRiverLabel.Text");
+            this.doubleRiverLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label8
+            // singleRiverLabel
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(340, 729);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(268, 26);
-            this.label8.TabIndex = 7;
-            this.label8.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.singleRiverLabel.AutoSize = true;
+            this.singleRiverLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.singleRiverLabel.Location = new System.Drawing.Point(340, 729);
+            this.singleRiverLabel.Name = "singleRiverLabel";
+            this.singleRiverLabel.Size = new System.Drawing.Size(269, 350);
+            this.singleRiverLabel.TabIndex = 7;
+            this.singleRiverLabel.Text = resources.GetString("singleRiverLabel.Text");
+            this.singleRiverLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label1
+            // monkLable
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(340, 1);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(269, 250);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.monkLable.AutoSize = true;
+            this.monkLable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.monkLable.Location = new System.Drawing.Point(340, 1);
+            this.monkLable.Name = "monkLable";
+            this.monkLable.Size = new System.Drawing.Size(269, 250);
+            this.monkLable.TabIndex = 0;
+            this.monkLable.Text = resources.GetString("monkLable.Text");
+            this.monkLable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // samuraiLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(340, 252);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(268, 26);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.samuraiLabel.AutoSize = true;
+            this.samuraiLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.samuraiLabel.Location = new System.Drawing.Point(340, 252);
+            this.samuraiLabel.Name = "samuraiLabel";
+            this.samuraiLabel.Size = new System.Drawing.Size(269, 300);
+            this.samuraiLabel.TabIndex = 1;
+            this.samuraiLabel.Text = resources.GetString("samuraiLabel.Text");
+            this.samuraiLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox1
             // 
@@ -418,15 +430,16 @@
             this.pictureBox1.TabIndex = 28;
             this.pictureBox1.TabStop = false;
             // 
-            // label6
+            // roninLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(340, 553);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(268, 26);
-            this.label6.TabIndex = 5;
-            this.label6.Text = "This is just a test for some things that are going to come, stay tuned. Herp Derp" +
-    " herpoinwoeinoin oiwnvwe\r\n";
+            this.roninLabel.AutoSize = true;
+            this.roninLabel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roninLabel.Location = new System.Drawing.Point(340, 553);
+            this.roninLabel.Name = "roninLabel";
+            this.roninLabel.Size = new System.Drawing.Size(269, 175);
+            this.roninLabel.TabIndex = 5;
+            this.roninLabel.Text = resources.GetString("roninLabel.Text");
+            this.roninLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // HelpWindow
             // 
@@ -435,7 +448,7 @@
             this.ClientSize = new System.Drawing.Size(642, 523);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "HelpWindow";
-            this.Text = "HelpWindow";
+            this.Text = "Tile Rules";
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
@@ -473,21 +486,21 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.Label label28;
-        private System.Windows.Forms.Label label26;
-        private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label dragonsLairLabel;
+        private System.Windows.Forms.Label dragonBreathLabel;
+        private System.Windows.Forms.Label lotusPondLabel;
+        private System.Windows.Forms.Label lotusFlowerLabel;
+        private System.Windows.Forms.Label stormLabel;
+        private System.Windows.Forms.Label windLabel;
+        private System.Windows.Forms.Label wildfireLabel;
+        private System.Windows.Forms.Label watchfireLabel;
+        private System.Windows.Forms.Label tripleRiverLabel;
+        private System.Windows.Forms.Label doubleRiverLabel;
+        private System.Windows.Forms.Label singleRiverLabel;
+        private System.Windows.Forms.Label monkLable;
+        private System.Windows.Forms.Label samuraiLabel;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label roninLabel;
 
     }
 }
