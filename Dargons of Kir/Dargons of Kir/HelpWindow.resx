@@ -214,14 +214,11 @@ the turn.</value>
   <data name="monkLable.Location" type="System.Drawing.Point, System.Drawing">
     <value>340, 1</value>
   </data>
-  <data name="&gt;&gt;doubleRiverLabel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;pictureBox13.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
   <data name="singleRiverLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
-  </data>
-  <data name="&gt;&gt;pictureBox13.Name" xml:space="preserve">
-    <value>pictureBox13</value>
   </data>
   <data name="pictureBox4.Size" type="System.Drawing.Size, System.Drawing">
     <value>329, 344</value>
@@ -232,16 +229,8 @@ the turn.</value>
   <data name="&gt;&gt;dragonsLairLabel.ZOrder" xml:space="preserve">
     <value>13</value>
   </data>
-  <data name="roninLabel.Text" xml:space="preserve">
-    <value>Ronin — Impact Tile
-The ronin are used to deflect a dragon off either one
-of their shields. This tile turns the dragon 180-
-degrees and deflects it in the opposite direction. The
-two shield sides of the ronin are approachable. If a
-dragon approaches the ronin from one of the two
-unprotected sides, or if a dragon hits the ronin with its
-side, the ronin tile is destroyed and removed from the
-game at the end of the turn.</value>
+  <data name="lotusFlowerLabel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="pictureBox2.SizeMode" type="System.Windows.Forms.PictureBoxSizeMode, System.Windows.Forms">
     <value>CenterImage</value>
@@ -264,8 +253,8 @@ game at the end of the turn.</value>
   <data name="pictureBox9.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 2287</value>
   </data>
-  <data name="&gt;&gt;dragonBreathLabel.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
+  <data name="&gt;&gt;pictureBox13.Name" xml:space="preserve">
+    <value>pictureBox13</value>
   </data>
   <data name="&gt;&gt;pictureBox13.Type" xml:space="preserve">
     <value>System.Windows.Forms.PictureBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -686,9 +675,6 @@ from the game at the end of the turn.</value>
   </data>
   <data name="tableLayoutPanel1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </data>
-  <data name="&gt;&gt;pictureBox13.Parent" xml:space="preserve">
-    <value>tableLayoutPanel1</value>
   </data>
   <data name="monkLable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1334,6 +1320,9 @@ before moving the dragons.</value>
   </data>
   <data name="&gt;&gt;monkLable.ZOrder" xml:space="preserve">
     <value>24</value>
+  </data>
+  <data name="samuraiLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleCenter</value>
   </data>
   <data name="pictureBox12.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -2216,8 +2205,8 @@ the turn.</value>
   <data name="&gt;&gt;pictureBox12.Name" xml:space="preserve">
     <value>pictureBox12</value>
   </data>
-  <data name="samuraiLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleCenter</value>
+  <data name="&gt;&gt;monkLable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="pictureBox9.TabIndex" type="System.Int32, mscorlib">
     <value>36</value>
@@ -2593,9 +2582,6 @@ Dragons cannot be pulled backwards.</value>
   <data name="&gt;&gt;pictureBox2.Name" xml:space="preserve">
     <value>pictureBox2</value>
   </data>
-  <data name="&gt;&gt;watchfireLabel.Name" xml:space="preserve">
-    <value>watchfireLabel</value>
-  </data>
   <data name="&gt;&gt;pictureBox7.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
@@ -2628,6 +2614,9 @@ Dragons cannot be pulled backwards.</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
+  </data>
+  <data name="&gt;&gt;doubleRiverLabel.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;pictureBox14.Name" xml:space="preserve">
     <value>pictureBox14</value>
@@ -2665,6 +2654,18 @@ Dragons cannot be pulled backwards.</value>
   <data name="&gt;&gt;pictureBox14.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="stormLabel.Text" xml:space="preserve">
+    <value>Storm — Proximity Tile
+The storm is used to blow a dragon off course, or to
+propel a dragon forward. When a dragon moves
+into one of the storm’s eight squares of
+influence and is not facing directly toward
+the storm, the dragon is pushed one square
+further away from the storm. If a dragon
+moves into the same square as the storm, the tile is
+destroyed and removed from the game at the end of
+the turn. Dragons cannot be pushed backwards.</value>
+  </data>
   <data name="watchfireLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>269, 250</value>
   </data>
@@ -2701,9 +2702,6 @@ Dragons cannot be pulled backwards.</value>
   <data name="&gt;&gt;wildfireLabel.ZOrder" xml:space="preserve">
     <value>19</value>
   </data>
-  <data name="lotusFlowerLabel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="&gt;&gt;pictureBox3.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
@@ -2738,6 +2736,17 @@ removed from the game at the end of the turn. Dragons cannot be pushed backwards
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
+  </data>
+  <data name="roninLabel.Text" xml:space="preserve">
+    <value>Ronin — Impact Tile
+The ronin are used to deflect a dragon off either one
+of their shields. This tile turns the dragon 180-
+degrees and deflects it in the opposite direction. The
+two shield sides of the ronin are approachable. If a
+dragon approaches the ronin from one of the two
+unprotected sides, or if a dragon hits the ronin with its
+side, the ronin tile is destroyed and removed from the
+game at the end of the turn.</value>
   </data>
   <data name="doubleRiverLabel.Text" xml:space="preserve">
     <value>Two Rivers — Impact Tile
@@ -3363,6 +3372,9 @@ at the end of the turn.</value>
   <data name="doubleRiverLabel.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
     <value>MiddleCenter</value>
   </data>
+  <data name="&gt;&gt;dragonBreathLabel.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
   <data name="pictureBox10.TabIndex" type="System.Int32, mscorlib">
     <value>37</value>
   </data>
@@ -3403,9 +3415,6 @@ removed from the game at the end of the turn.</value>
   </data>
   <data name="&gt;&gt;stormLabel.Name" xml:space="preserve">
     <value>stormLabel</value>
-  </data>
-  <data name="&gt;&gt;monkLable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;pictureBox8.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -4992,17 +5001,8 @@ the end of the turn.</value>
         RQAUUUUAFFFFAH//2Q==
 </value>
   </data>
-  <data name="stormLabel.Text" xml:space="preserve">
-    <value>Storm — Proximity Tile
-The storm is used to blow a dragon off course, or to
-propel a dragon forward. When a dragon moves
-into one of the storm’s eight squares of
-influence and is not facing directly toward
-the storm, the dragon is pushed one square
-further away from the storm. If a dragon
-moves into the same square as the storm, the tile is
-destroyed and removed from the game at the end of
-the turn. Dragons cannot be pushed backwards.</value>
+  <data name="&gt;&gt;watchfireLabel.Name" xml:space="preserve">
+    <value>watchfireLabel</value>
   </data>
   <data name="&gt;&gt;pictureBox13.ZOrder" xml:space="preserve">
     <value>1</value>
