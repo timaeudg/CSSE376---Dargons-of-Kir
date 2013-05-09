@@ -56,6 +56,12 @@
   <ItemGroup>
     <Compile Include="Board.cs" />
     <Compile Include="BoardLocation.cs" />
+    <Compile Include="InstructionWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InstructionWindow.Designer.cs">
+      <DependentUpon>InstructionWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="HelpWindow.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,15 @@
     <Compile Include="Tiles\WatchfireTile.cs" />
     <Compile Include="Tiles\WildfireTile.cs" />
     <Compile Include="Tiles\WindTile.cs" />
+    <EmbeddedResource Include="InstructionWindow.es-US.resx">
+      <DependentUpon>InstructionWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstructionWindow.ja-JP.resx">
+      <DependentUpon>InstructionWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="InstructionWindow.resx">
+      <DependentUpon>InstructionWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="GameScreen.es-US.resx">
       <DependentUpon>GameScreen.cs</DependentUpon>
     </EmbeddedResource>

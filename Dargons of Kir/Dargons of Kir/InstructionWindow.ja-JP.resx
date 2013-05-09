@@ -118,43 +118,38 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 20</value>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 373</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>ファイル</value>
-  </data>
-  <data name="languagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
-  </data>
-  <data name="languagesToolStripMenuItem.Text" xml:space="preserve">
-    <value>言語</value>
-  </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>タイルのヘルプ</value>
-  </data>
-  <data name="rulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 20</value>
-  </data>
-  <data name="rulesToolStripMenuItem.Text" xml:space="preserve">
-    <value>説明書</value>
-  </data>
-  <data name="spanishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="japaneseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="newGameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="newGameToolStripMenuItem.Text" xml:space="preserve">
-    <value>新しいゲーム</value>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>タイルの配置：サイドからタイルを選択してください
+それを左クリックすることによって山。場所
+によってタイルは、ボード上の左クリック。
+右側のタイルをクリックしてにしながら
+ボードは、それを回転させる
+左クリックすると、戻ってタイルをピックアップ。
+緑のチェックマークを左クリック
+自分のターンを終了する。
+
+ターン：最初のプレーヤーからタイルを選択
+彼らの4のセットとボード上に配置し、
+二選手は、同じを行います。
+両方のプレイヤーは自分のタイルを配置した後、
+ドラゴンは自分のターンを取る。
+
+ドラゴンズ：すべてのドラゴンの事前つのスペースと取る
+ボード上に配置され、タイルの影響、
+それらのいずれかになるまでに継続
+ループ内で行ったり、解決した
+彼らの移動のためのすべてのエフェクト。ドラゴンズと
+タイル効果はボードを包み込む。
+
+ウイニングドラゴンに接触すると
+その後戦争テントタイルゲームで
+終わって、テントのプレーヤーがある
+失った竜に襲わ。もしドローパイル
+タイルのためにドラゴンの動きを空
+最後にもう一度、そして何テントはされていない場合
+ゲームが引き分けで終わるヒット。</value>
   </data>
 </root>

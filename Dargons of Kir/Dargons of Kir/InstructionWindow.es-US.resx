@@ -118,43 +118,44 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>67, 20</value>
+  <data name="button1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>255, 385</value>
   </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>ファイル</value>
+  <data name="textBox1.Text" xml:space="preserve">
+    <value>La colocación de baldosas: Seleccione una ficha de la parte
+pila de la izquierda haciendo clic sobre ella. lugar
+el azulejo haciendo clic izquierdo en el tablero.
+Al hacer clic derecho sobre la baldosa, mientras que en
+la Junta hace girar,
+clic izquierdo recoge el azulejo de nuevo.
+Izquierda haga clic en la marca verde
+para terminar su turno.
+
+Activa: El primer jugador selecciona una ficha de
+su conjunto de cuatro y lo coloca en el tablero,
+el segundo jugador entonces hace lo mismo.
+Después de que ambos jugadores hayan colocado sus fichas
+dragón tomar su turno.
+
+Dragons: Todos dragones antelación una plaza y tomar
+efectos de las baldosas colocadas en el tablero,
+continuar hasta que tienen ya sea
+ido en un bucle o han resuelto
+todos los efectos de su movimiento. Dragones y
+efectos azulejos envuelven alrededor del tablero.
+
+Ganadora: Cuando un dragón entra en contacto con
+con un azulejo Tent Guerra entonces el juego
+Es más, el jugador que está tienda es
+golpeado por un dragón pierde. Si el mazo de robo
+para los azulejos se vacía el movimiento dragones
+por última vez, y si no hay tienda es
+golpeó el juego termina en empate.</value>
   </data>
-  <data name="languagesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>43, 20</value>
+  <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>392, 414</value>
   </data>
-  <data name="languagesToolStripMenuItem.Text" xml:space="preserve">
-    <value>言語</value>
-  </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>103, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>タイルのヘルプ</value>
-  </data>
-  <data name="rulesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>55, 20</value>
-  </data>
-  <data name="rulesToolStripMenuItem.Text" xml:space="preserve">
-    <value>説明書</value>
-  </data>
-  <data name="spanishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="englishToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="japaneseToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="newGameToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
-  </data>
-  <data name="newGameToolStripMenuItem.Text" xml:space="preserve">
-    <value>新しいゲーム</value>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>393, 411</value>
   </data>
 </root>
