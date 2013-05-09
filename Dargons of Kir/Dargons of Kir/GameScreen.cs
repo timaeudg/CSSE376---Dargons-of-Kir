@@ -304,6 +304,7 @@ namespace Dargons_of_Kir
             languagesToolStripMenuItem.Text = manage.GetString("languagesToolStripMenuItem.Text");
             helpToolStripMenuItem.Text = manage.GetString("helpToolStripMenuItem.Text");
             newGameToolStripMenuItem.Text = manage.GetString("newGameToolStripMenuItem.Text");
+            rulesToolStripMenuItem.Text = manage.GetString("rulesToolStripMenuItem.Text");
         }
 
         private void englishToolStripMenuItem_Click(object sender, EventArgs e)
@@ -338,6 +339,15 @@ namespace Dargons_of_Kir
             help.Show();
             help.TopMost = true;
             help.Activate();
+        }
+
+        private void rulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            InstructionWindow window = new InstructionWindow();
+            window.Show();
+            window.TopMost = true;
+            window.Activate();
         }
 
     }
