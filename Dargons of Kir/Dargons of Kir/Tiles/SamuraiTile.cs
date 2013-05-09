@@ -14,7 +14,7 @@ namespace Dargons_of_Kir.Tiles
         }
         public SamuraiTile() : base(getPic())
         {
-            this.Priority = 0;
+            this.Priority = 1;
         }
 
         override public bool callback()
@@ -28,20 +28,20 @@ namespace Dargons_of_Kir.Tiles
 
             switch(this.orientation){
                 case Board.orientation.UP:
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x + 1, this.location.y),Board.orientation.DOWN, Board.orientation.RIGHT, 0, 1, this));
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y - 1), Board.orientation.LEFT, Board.orientation.UP, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x + 1, this.location.y), Board.orientation.DOWN, Board.orientation.RIGHT, 0, this.Priority, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y - 1), Board.orientation.LEFT, Board.orientation.UP, 0, this.Priority, this));
                     break;
                 case Board.orientation.DOWN:
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x - 1, this.location.y), Board.orientation.UP, Board.orientation.LEFT, 0, 1, this));
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y + 1), Board.orientation.RIGHT, Board.orientation.DOWN, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x - 1, this.location.y), Board.orientation.UP, Board.orientation.LEFT, 0, this.Priority, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y + 1), Board.orientation.RIGHT, Board.orientation.DOWN, 0, this.Priority, this));
                     break;
                 case Board.orientation.LEFT:
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x - 1, this.location.y), Board.orientation.DOWN, Board.orientation.LEFT, 0, 1, this));
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y - 1), Board.orientation.RIGHT, Board.orientation.UP, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x - 1, this.location.y), Board.orientation.DOWN, Board.orientation.LEFT, 0, this.Priority, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y - 1), Board.orientation.RIGHT, Board.orientation.UP, 0, this.Priority, this));
                     break;
                 case Board.orientation.RIGHT:
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y + 1), Board.orientation.LEFT, Board.orientation.DOWN, 0, 1, this));
-                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x + 1, this.location.y), Board.orientation.UP, Board.orientation.RIGHT, 0, 1, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x, this.location.y + 1), Board.orientation.LEFT, Board.orientation.DOWN, 0, this.Priority, this));
+                    toAdd.Add(new Effect(Board.makeBoardLocation(this.location.x + 1, this.location.y), Board.orientation.UP, Board.orientation.RIGHT, 0, this.Priority, this));
                     break;
 
             }

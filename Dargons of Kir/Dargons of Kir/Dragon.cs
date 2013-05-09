@@ -157,7 +157,7 @@ namespace Dargons_of_Kir
             {
                 tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
             }
-            bool isImpact = (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile));
+            bool isImpact = board.getTileAt(this.currentPosition.x, this.currentPosition.y).Priority==1;
 
             if (tileType != null)
             {
@@ -215,7 +215,7 @@ namespace Dargons_of_Kir
                     tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
                 }
 
-                isImpact = (tileType == typeof(MonkTile) || tileType == typeof(SingleRiverTile) || tileType == typeof(TwoRiversTile) || tileType == typeof(ThreeRiversTile) || tileType == typeof(RoninTile) || tileType == typeof(SamuraiTile));
+                isImpact = board.getTileAt(this.currentPosition.x, this.currentPosition.y).Priority == 1;
 
                 if (tileType != null)
                 {
