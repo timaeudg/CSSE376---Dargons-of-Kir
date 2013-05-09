@@ -1,0 +1,9 @@
+{
+"name" = "TestTile",
+"priority" = 1,
+"Effects" = 
+	[
+		{"x" = 0, "y" = 0 ", [{"inDir" = "DOWN", "outDir" = "UP", "outX" = -1, "outY" = 0}]}
+		{}
+	]
+}
