@@ -312,7 +312,7 @@ namespace TestingDargons
             game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.LEFT, game.getNextPlayer().takeTileFromHand(0));
             game.makeNewGame();
             Assert.AreEqual(4, game.getDragons().Count);
-            Assert.AreEqual(56, game.getTilePile().Count);
+            Assert.AreEqual(64, game.getTilePile().Count);
             Assert.AreEqual(-1, game.getPlayerWon());
 
 

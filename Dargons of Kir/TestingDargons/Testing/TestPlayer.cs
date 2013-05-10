@@ -60,7 +60,7 @@ namespace TestingDargons
                 Assert.NotNull(player.getHand()[k]);
                 Assert.NotNull(player.getHand()[k].getPicture());
             }
-            Assert.AreEqual(48, game.getTilePile().Count);
+            Assert.AreEqual(56, game.getTilePile().Count);
         }
 
         [Test]
@@ -70,7 +70,7 @@ namespace TestingDargons
             Player player1 = new Player(twoGame);
             Player player2 = new Player(twoGame);
 
-            Assert.AreEqual(48, twoGame.getTilePile().Count);
+            Assert.AreEqual(56, twoGame.getTilePile().Count);
         }
 
         [Test]
