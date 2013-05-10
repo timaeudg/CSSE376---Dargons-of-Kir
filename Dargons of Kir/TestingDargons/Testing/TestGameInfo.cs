@@ -89,7 +89,7 @@ namespace TestingDargons
                 Assert.NotNull(t);
                 Assert.NotNull(t.getPicture());
             }
-            Assert.True(56 == pile.Count);
+            Assert.True(64 == pile.Count);
         }
 
         [Test]

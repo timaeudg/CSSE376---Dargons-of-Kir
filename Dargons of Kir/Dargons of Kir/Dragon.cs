@@ -157,7 +157,13 @@ namespace Dargons_of_Kir
             {
                 tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
             }
-            bool isImpact = board.getTileAt(this.currentPosition.x, this.currentPosition.y).Priority==1;
+
+            bool isImpact = false;
+
+            if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
+            {
+                isImpact = board.getTileAt(this.currentPosition.x, this.currentPosition.y).Priority == 1;
+            }
 
             if (tileType != null)
             {
@@ -215,7 +221,14 @@ namespace Dargons_of_Kir
                     tileType = board.getTileAt(this.currentPosition.x, this.currentPosition.y).GetType();
                 }
 
-                isImpact = board.getTileAt(this.currentPosition.x, this.currentPosition.y).Priority == 1;
+                if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
+                {
+                    isImpact = board.getTileAt(this.currentPosition.x, this.currentPosition.y).Priority == 1;
+                }
+                else
+                {
+                    isImpact = false;
+                }
 
                 if (tileType != null)
                 {

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 using Dargons_of_Kir.Tiles;
+using System.IO;
 
 
 
@@ -55,15 +56,32 @@ namespace Dargons_of_Kir
                     types.Add(c);
                     for (int k = 0; k < 4; k++)
                     {
-                        Tile tmp = (Tile)Activator.CreateInstance(c, null);
-                        if (tmp.getDrawable())
+                        if (c != typeof(JSONTile))
                         {
-                            pileOfTiles.Add(tmp);
-                            counter++;
+                            Tile tmp = (Tile)Activator.CreateInstance(c, null);
+                            if (tmp.getDrawable())
+                            {
+                                pileOfTiles.Add(tmp);
+                                counter++;
+                            }
                         }
                     }
                     counter++;
             }
+
+            string[] jsonFiles = Directory.GetFiles("..\\..\\..\\..\\JSON Tiles", "*.json")
+                                     .Select(path => Path.GetFileName(path))
+                                     .ToArray();
+
+            foreach (string file in jsonFiles)
+            {
+                for (int k = 0; k < 4; k++)
+                {
+                    pileOfTiles.Add(new JSONTile(file));
+                }
+            }
+
+
            return types;
         }
 
