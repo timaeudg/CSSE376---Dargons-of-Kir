@@ -26,6 +26,25 @@ namespace Dargons_of_Kir
             this.parentTile = parent;
         }
 
+        public override bool Equals(Object obj)
+        {
+            if (obj == null) return false;
+            Effect o = obj as Effect;
+            if (o == null) return false;
+            return this.Equals(o);
+        }
+
+        public bool Equals(Effect e)
+        {
+            if (e == null) return false;
+            return (destination.Equals(e.destination) &&
+                requiredStartingOrientation == e.requiredStartingOrientation &&
+                endingOrientaion == e.endingOrientaion &&
+                distance == e.distance &&
+                priority == e.priority &&
+                parentTile.Equals(e.parentTile));
+        }
+
         public bool activateCallback()
         {
            

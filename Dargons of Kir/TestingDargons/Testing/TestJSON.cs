@@ -78,37 +78,45 @@ namespace TestingDargons.Testing
         }
 
         [Test]
-        public static void TestTileEffects()
+        public static void TestJSONTileEffects()
         {
             GameInfo game = new GameInfo();
             JSONTile testTile = new JSONTile("TestTile.json");
 
             game.placeTileAtPosition(Board.makeBoardLocation(1, 1), Board.orientation.UP, testTile);
             Board board = game.getTileBoard();
-            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(1, 1));
-            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 1), Board.orientation.DOWN, Board.orientation.DOWN, 0, 1));
+            List<Effect> e = board.getBoard()[1,1].getEffectList();
+            Effect eff = new Effect(Board.makeBoardLocation(0, 1), Board.orientation.DOWN, Board.orientation.DOWN, 0, 1, testTile);
+            Assert.IsTrue(e.Count > 0);
+            Assert.AreEqual(eff,e[0]);
 
-            testTile = new JSONTile("TestTile.json");
             game.placeTileAtPosition(Board.makeBoardLocation(2, 2), Board.orientation.LEFT, testTile);
-            e = board.getEffectAt(Board.makeBoardLocation(2, 2));
-            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 3), Board.orientation.RIGHT, Board.orientation.RIGHT, 0, 1));
+            board = game.getTileBoard();
+            e = board.getBoard()[2, 2].getEffectList();
+            eff = new Effect(Board.makeBoardLocation(2, 3), Board.orientation.RIGHT, Board.orientation.RIGHT, 0, 1, testTile);
+            Assert.IsTrue(e.Count > 0);
+            Assert.AreEqual(eff, e[0]);
 
-            testTile = new JSONTile("TestTile.json");
-            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, testTile);
-            e = board.getEffectAt(Board.makeBoardLocation(3, 3));
-            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 2), Board.orientation.LEFT, Board.orientation.LEFT, 0, 1));
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.DOWN, testTile);
+            board = game.getTileBoard();
+            e = board.getBoard()[3, 3].getEffectList();
+            eff = new Effect(Board.makeBoardLocation(4, 3), Board.orientation.UP, Board.orientation.UP, 0, 1, testTile);
+            Assert.IsTrue(e.Count > 0);
+            Assert.AreEqual(eff, e[0]);
 
-            testTile = new JSONTile("TestTile.json");
-            game.placeTileAtPosition(Board.makeBoardLocation(5, 5), Board.orientation.DOWN, testTile);
-            e = board.getEffectAt(Board.makeBoardLocation(5, 5));
-            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(6, 5), Board.orientation.UP, Board.orientation.UP, 0, 1));
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 4), Board.orientation.RIGHT, testTile);
+            board = game.getTileBoard();
+            e = board.getBoard()[4, 4].getEffectList();
+            eff = new Effect(Board.makeBoardLocation(4, 3), Board.orientation.LEFT, Board.orientation.LEFT, 0, 1, testTile);
+            Assert.IsTrue(e.Count > 0);
+            Assert.AreEqual(eff, e[0]);
 
 
         }
 
 
         [Test]
-        public static void ExtendedSamuraiEffects()
+        public static void TestJSONExtendedSamuraiEffects()
         {
             GameInfo game = new GameInfo();
             JSONTile testTile = new JSONTile("extendedSamurai.json");
@@ -123,25 +131,25 @@ namespace TestingDargons.Testing
             game = new GameInfo();
             testTile = new JSONTile("extendedSamurai.json");
             game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.LEFT, testTile);
-            e = board.getEffectAt(Board.makeBoardLocation(5, 3));
+            e = board.getBoard()[5,3].getEffectList();
             Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(6, 3), Board.orientation.LEFT, Board.orientation.UP, 2, 2));
-            e = board.getEffectAt(Board.makeBoardLocation(3, 1));
+            e = board.getBoard()[3,1].getEffectList();
             Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 0), Board.orientation.DOWN, Board.orientation.LEFT, 2, 2));
 
             game = new GameInfo();
             testTile = new JSONTile("extendedSamurai.json");
             game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, testTile);
-            e = board.getEffectAt(Board.makeBoardLocation(1, 3));
+            e = board.getBoard()[1, 3].getEffectList();
             Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 3), Board.orientation.RIGHT, Board.orientation.DOWN, 2, 2));
-            e = board.getEffectAt(Board.makeBoardLocation(3, 5));
+            e = board.getBoard()[3, 5].getEffectList();
             Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 6), Board.orientation.UP, Board.orientation.RIGHT, 2, 2));
 
             game = new GameInfo();
             testTile = new JSONTile("extendedSamurai.json");
             game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.DOWN, testTile);
-            e = board.getEffectAt(Board.makeBoardLocation(1, 3));
+            e = board.getBoard()[1, 3].getEffectList();
             Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 3), Board.orientation.RIGHT, Board.orientation.DOWN, 2, 2));
-            e = board.getEffectAt(Board.makeBoardLocation(3, 1));
+            e = board.getBoard()[3, 1].getEffectList();
             Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 0), Board.orientation.DOWN, Board.orientation.LEFT, 2, 2));
 
 
