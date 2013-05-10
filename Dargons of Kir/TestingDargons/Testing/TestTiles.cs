@@ -1245,5 +1245,52 @@ namespace TestingDargons.Testing
 
         }
 
+        [Test]
+        public static void TestDragonLair()
+        {
+            GameInfo game = new GameInfo();
+            game.makeDragonsAndSetPositions();
+            DragonsLairTile lair = new DragonsLairTile();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(2, 2), Board.orientation.UP, lair);
+            game.moveDragons();
+            Assert.AreEqual(Board.makeBoardLocation(2, 2), game.getDragons()[0].getCurrentPosition());
+            Assert.AreEqual(Board.makeBoardLocation(4, 2), game.getDragons()[1].getCurrentPosition());
+            Assert.AreEqual(Board.makeBoardLocation(3, 5), game.getDragons()[2].getCurrentPosition());
+            Assert.AreEqual(Board.makeBoardLocation(5, 4), game.getDragons()[3].getCurrentPosition());
+
+        }
+
+        [Test]
+        public static void TestDragonFire()
+        {
+            GameInfo game = new GameInfo();
+            game.makeDragonsAndSetPositions();
+            MonkTile monk;
+
+            monk = new MonkTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(2, 3), Board.orientation.UP, monk);
+            monk = new MonkTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 2), Board.orientation.UP, monk);
+            monk = new MonkTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(1, 2), Board.orientation.UP, monk);
+            monk = new MonkTile();
+            game.placeTileAtPosition(Board.makeBoardLocation(2, 1), Board.orientation.UP, monk);
+
+            DragonBreathTile breath = new DragonBreathTile();
+
+            game.placeTileAtPosition(Board.makeBoardLocation(2,2), Board.orientation.UP, breath);
+
+            game.moveDragons();
+
+            Assert.AreEqual(Board.makeBoardLocation(2, 3), game.getDragons()[0].getCurrentPosition());
+            Assert.Null(game.getTileBoard().getTileAt(2, 3));
+            Assert.Null(game.getTileBoard().getTileAt(3, 2));
+            Assert.Null(game.getTileBoard().getTileAt(1, 2));
+            Assert.Null(game.getTileBoard().getTileAt(2, 1));
+
+
+        }
+
     }
 }

@@ -318,6 +318,18 @@ namespace TestingDargons
 
         }
 
+        [Test]
+        public static void testDragonTilePlace()
+        {
+            GameInfo game = new GameInfo();
+            game.makeDragonsAndSetPositions();
+            DragonBreathTile breath = new DragonBreathTile();
+
+            Assert.True(GameInfo.dragonTilePlace(breath, 2, 2, game));
+            Assert.False(GameInfo.dragonTilePlace(new MonkTile(), 5, 5, game));
+
+        }
+
 
     }
     
