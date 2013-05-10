@@ -1,0 +1,11 @@
+{
+'image' : "JSONA.jpg",
+'name' : "half-flip",
+'priority' : 2,
+'Effects' : 
+	[
+		{'x' : 0, 'y' : 2 , 'inDir' : "UP", 	'outDir' : "RIGHT", 'outX' : 0, 'outY' : 3},
+		{'x' : 2, 'y' : 0 , 'inDir' : "LEFT", 	'outDir' : "UP"   , 'outX' : 3, 'outY' : 0}
+		
+	]
+}

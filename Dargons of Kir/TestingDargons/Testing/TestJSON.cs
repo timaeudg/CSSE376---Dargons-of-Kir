@@ -76,7 +76,76 @@ namespace TestingDargons.Testing
 
 
         }
-        
+
+        [Test]
+        public static void TestTileEffects()
+        {
+            GameInfo game = new GameInfo();
+            JSONTile testTile = new JSONTile("TestTile.json");
+
+            game.placeTileAtPosition(Board.makeBoardLocation(1, 1), Board.orientation.UP, testTile);
+            Board board = game.getTileBoard();
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(1, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 1), Board.orientation.DOWN, Board.orientation.DOWN, 0, 1));
+
+            testTile = new JSONTile("TestTile.json");
+            game.placeTileAtPosition(Board.makeBoardLocation(2, 2), Board.orientation.LEFT, testTile);
+            e = board.getEffectAt(Board.makeBoardLocation(2, 2));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(2, 3), Board.orientation.RIGHT, Board.orientation.RIGHT, 0, 1));
+
+            testTile = new JSONTile("TestTile.json");
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, testTile);
+            e = board.getEffectAt(Board.makeBoardLocation(3, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 2), Board.orientation.LEFT, Board.orientation.LEFT, 0, 1));
+
+            testTile = new JSONTile("TestTile.json");
+            game.placeTileAtPosition(Board.makeBoardLocation(5, 5), Board.orientation.DOWN, testTile);
+            e = board.getEffectAt(Board.makeBoardLocation(5, 5));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(6, 5), Board.orientation.UP, Board.orientation.UP, 0, 1));
+
+
+        }
+
+
+        [Test]
+        public static void ExtendedSamuraiEffects()
+        {
+            GameInfo game = new GameInfo();
+            JSONTile testTile = new JSONTile("extendedSamurai.json");
+
+            game.placeTileAtPosition(Board.makeBoardLocation(1, 1), Board.orientation.UP, testTile);
+            Board board = game.getTileBoard();
+            List<Effect> e = board.getEffectAt(Board.makeBoardLocation(1, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(1, 4), Board.orientation.UP, Board.orientation.RIGHT, 2, 2));
+            e = board.getEffectAt(Board.makeBoardLocation(3, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(4, 1), Board.orientation.LEFT, Board.orientation.UP, 2, 2));
+
+            game = new GameInfo();
+            testTile = new JSONTile("extendedSamurai.json");
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.LEFT, testTile);
+            e = board.getEffectAt(Board.makeBoardLocation(5, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(6, 3), Board.orientation.LEFT, Board.orientation.UP, 2, 2));
+            e = board.getEffectAt(Board.makeBoardLocation(3, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 0), Board.orientation.DOWN, Board.orientation.LEFT, 2, 2));
+
+            game = new GameInfo();
+            testTile = new JSONTile("extendedSamurai.json");
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, testTile);
+            e = board.getEffectAt(Board.makeBoardLocation(1, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 3), Board.orientation.RIGHT, Board.orientation.DOWN, 2, 2));
+            e = board.getEffectAt(Board.makeBoardLocation(3, 5));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 6), Board.orientation.UP, Board.orientation.RIGHT, 2, 2));
+
+            game = new GameInfo();
+            testTile = new JSONTile("extendedSamurai.json");
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.DOWN, testTile);
+            e = board.getEffectAt(Board.makeBoardLocation(1, 3));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 3), Board.orientation.RIGHT, Board.orientation.DOWN, 2, 2));
+            e = board.getEffectAt(Board.makeBoardLocation(3, 1));
+            Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(3, 0), Board.orientation.DOWN, Board.orientation.LEFT, 2, 2));
+
+
+        }
 
     }
 }
