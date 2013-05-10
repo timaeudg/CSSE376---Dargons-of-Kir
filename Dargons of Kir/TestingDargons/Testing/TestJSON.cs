@@ -131,6 +131,7 @@ namespace TestingDargons.Testing
             game = new GameInfo();
             testTile = new JSONTile("extendedSamurai.json");
             game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.LEFT, testTile);
+            board = game.getTileBoard();
             e = board.getBoard()[5,3].getEffectList();
             Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(6, 3), Board.orientation.LEFT, Board.orientation.UP, 2, 2));
             e = board.getBoard()[3,1].getEffectList();
@@ -139,6 +140,7 @@ namespace TestingDargons.Testing
             game = new GameInfo();
             testTile = new JSONTile("extendedSamurai.json");
             game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.RIGHT, testTile);
+            board = game.getTileBoard();
             e = board.getBoard()[1, 3].getEffectList();
             Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 3), Board.orientation.RIGHT, Board.orientation.DOWN, 2, 2));
             e = board.getBoard()[3, 5].getEffectList();
@@ -147,6 +149,7 @@ namespace TestingDargons.Testing
             game = new GameInfo();
             testTile = new JSONTile("extendedSamurai.json");
             game.placeTileAtPosition(Board.makeBoardLocation(3, 3), Board.orientation.DOWN, testTile);
+            board = game.getTileBoard();
             e = board.getBoard()[1, 3].getEffectList();
             Assert.True(TestTiles.checkEffectListHas(e, Board.makeBoardLocation(0, 3), Board.orientation.RIGHT, Board.orientation.DOWN, 2, 2));
             e = board.getBoard()[3, 1].getEffectList();

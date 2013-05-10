@@ -40,12 +40,12 @@ namespace Dargons_of_Kir.Tiles
                 //Rotate the effect according to the tile orientation
                 switch (this.orientation)
                 {
-                    case Board.orientation.RIGHT: { t.x = e.y; t.y = e.x;
-                                                 t.outX = e.outY; t.outY = e.outX; break; }
+                    case Board.orientation.LEFT: { t.x = e.y; t.y = -e.x;
+                                                 t.outX = e.outY; t.outY = -e.outX; break; }
                     case Board.orientation.UP:    { t.x = e.x; t.y = e.y;
                                                  t.outX = e.outX; t.outY = e.outY; break; }
-                    case Board.orientation.LEFT:  { t.x = -e.y;        t.y = -e.x;
-                                                 t.outX = -e.outY; t.outY = -e.outX; break; }
+                    case Board.orientation.RIGHT:  { t.x = -e.y;        t.y = e.x;
+                                                 t.outX = -e.outY; t.outY = e.outX; break; }
                     case Board.orientation.DOWN:  { t.x = -e.x;       t.y = -e.y;
                                                  t.outX = -e.outX; t.outY = -e.outY; break; }
                 }
@@ -87,11 +87,24 @@ namespace Dargons_of_Kir.Tiles
                     case "DOWN" : endOrientation = Board.orientation.DOWN; break;
                 }
 
+                int startTemp;
+                int endTemp;
+
+                startTemp = ((int) startOrientation + (int)this.orientation - 1) %4;
+                endTemp =((int)endOrientation + (int)this.orientation - 1) %4;
+
+                if (startTemp < 0)
+                    startTemp = 3;
+                if (endTemp < 0)
+                    endTemp = 3;
+
+                startOrientation = (Board.orientation)startTemp;
+                endOrientation = (Board.orientation)endTemp;
 
                 board.getBoard()[t.x, t.y].getEffectList().Add(
                     new Effect(Board.makeBoardLocation(t.outX, t.outY),
-                    (Board.orientation)(((int)startOrientation+(int)this.orientation-1)%4),
-                    (Board.orientation)(((int)endOrientation+(int)this.orientation-1)%4),
+                    startOrientation,
+                    endOrientation,
                     distance,
                     this.Priority,
                     this));
