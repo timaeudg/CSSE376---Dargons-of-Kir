@@ -48,9 +48,15 @@ namespace Dargons_of_Kir
             return this.tileBoard;
         }
 
+        /*
+         * Creates the pile of tiles according
+         * to which tiles exist and then add them to 
+         * the pile. Uses reflection
+         */ 
         public List<Type> makePile(){
             List<Type> types = new List<Type>();
             int counter = 0;
+            //uses reflection to look at the assembly, then check to see if they should be made, and make the tiles
             foreach (Type c in Assembly.GetAssembly(typeof(Tile)).GetTypes().Where(myType => myType.IsClass && myType.IsSubclassOf(typeof(Tile))))
             {
                     types.Add(c);
@@ -69,6 +75,7 @@ namespace Dargons_of_Kir
                     counter++;
             }
 
+            //gets all the JSON files from the directory and creates tiles for them
             string[] jsonFiles = Directory.GetFiles("..\\..\\..\\..\\JSON Tiles", "*.json")
                                      .Select(path => Path.GetFileName(path))
                                      .ToArray();
@@ -85,6 +92,9 @@ namespace Dargons_of_Kir
            return types;
         }
 
+        /*
+         * sets a list of players to the list of the current players
+         */ 
         private void setPlayerList(List<Player> plyrs)
         {
             this.players = plyrs;
@@ -94,6 +104,9 @@ namespace Dargons_of_Kir
             this.placeTileAtPosition(Board.makeBoardLocation(7, 7), Board.orientation.UP, tent);
         }
 
+        /*
+         * add the players and make the tents for them
+         */ 
         public void setPlayersAndTents(List<Player> players)
         {
             this.setPlayerList(players);
@@ -124,7 +137,7 @@ namespace Dargons_of_Kir
             return toReturn;
         }
 
-
+        //Makes all the dragons and sets where they should be at the start
         public void makeDragonsAndSetPositions()
         {
             Board.location loc = new Board.location();
@@ -153,6 +166,7 @@ namespace Dargons_of_Kir
 
         }
 
+        //Checks to see if a tile can be placed at the location
         public bool canPlace(Board.location loc){
             if (this.tileBoard.getTileAt(loc.x, loc.y) == null)
             {
@@ -173,6 +187,7 @@ namespace Dargons_of_Kir
 
         }
 
+        //Places a tile at the given position
         public void placeTileAtPosition(Board.location place, Board.orientation orient, Tile tile)
         {
             if (playerWon < 0)
@@ -198,6 +213,11 @@ namespace Dargons_of_Kir
 
         }
 
+        /*
+         * Moves all the dragons and then removes all the tiles
+         * that they report should be destroyed. Then checks to see
+         * if a player has lost, if so it attempts to get a response from the players accordingly.
+         */ 
         public void moveDragons()
         {
             if (this.playerWon < 0)
@@ -296,7 +316,7 @@ namespace Dargons_of_Kir
                 }
             }
         }
-
+        //Resets all of the game info for a new game.
         public void makeNewGame()
         {
             this.playerWon = -1;

@@ -34,8 +34,7 @@ namespace Dargons_of_Kir
 
         public void drawTile()
         {
-            // tiles.Add(pile.draw());
-            // this will be fixed when devon tells me what frack is storing our tiles.
+            
 
             List<Tile> pile = this.gameInfo.getTilePile();
             for (int i = 0; i < 4; i++)

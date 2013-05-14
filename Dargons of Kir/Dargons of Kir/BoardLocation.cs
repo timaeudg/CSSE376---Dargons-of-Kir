@@ -28,6 +28,11 @@ namespace Dargons_of_Kir
         }
 
 
+        /* 
+         * Gets the effect that should be affecting the dragon
+         * based on the dragon's orientation, and which tiles it
+         * should be ignoring
+         */
         public Effect getActiveEffect(Board.orientation dragonOrient, List<Tile> dontEffect)
         {
             List<Effect> validEffects = new List<Effect>();  

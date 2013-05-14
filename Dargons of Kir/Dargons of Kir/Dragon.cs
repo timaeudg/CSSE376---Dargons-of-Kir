@@ -16,6 +16,13 @@ namespace Dargons_of_Kir
         private int previousEffectTileId;
         public Image image { get; set; }
 
+        /*
+         * Class to keep track of a combination
+         * of both the position on the board,
+         * and the orientation that a dragon is facing
+         * to check for repeats that would indicate a loop 
+         * in it's movement.
+         */
         public class trueposition
         {
             private Board.location location;
@@ -54,6 +61,7 @@ namespace Dargons_of_Kir
                 case (1): { image = Image.FromFile("..\\..\\..\\..\\images\\reddragon.jpg"); break; }
                 case (2): { image = Image.FromFile("..\\..\\..\\..\\images\\greendragon.jpg"); break; }
                 case (3): { image = Image.FromFile("..\\..\\..\\..\\images\\yellowdragon.jpg"); break; }
+                //This is just for in case something goes wrong, if we ever see that picture, something has gone horribly wrong
                 default: { image = Image.FromFile("..\\..\\..\\..\\images\\blue.png"); break; }
             }
             this.currentPosition = startingLocation;
@@ -77,6 +85,7 @@ namespace Dargons_of_Kir
 
             switch (this.orientation)
             {
+                //flips and rotates the picture according to the orientation value.
                 case (Board.orientation.UP):
                     return this.image;
                 case (Board.orientation.LEFT):
@@ -133,6 +142,7 @@ namespace Dargons_of_Kir
             Type tileType = null;
             bool effectNotImpact = false;
 
+            //Move the dragon forward one according to its current orientation
             switch (this.orientation)
             {
                 case Board.orientation.UP:
@@ -150,7 +160,9 @@ namespace Dargons_of_Kir
                     if (this.currentPosition.x == -1) this.currentPosition = Board.makeBoardLocation(7, this.currentPosition.y);
                     break;
             }
-//            PathList.Add(new trueposition(this.currentPosition, this.orientation));  
+            //Add the current position + orientation to a list to check for loops
+            //Also get the current effect that should be affecting the dragon at this time.
+            PathList.Add(new trueposition(this.currentPosition, this.orientation));  
             Effect currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation,toIgnore);
 
             if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
@@ -160,19 +172,24 @@ namespace Dargons_of_Kir
 
             bool isImpact = false;
 
+
             if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
             {
                 isImpact = board.getTileAt(this.currentPosition.x, this.currentPosition.y).Priority == 1;
             }
 
+            //if there is a tile
             if (tileType != null)
             {
+                //if the tile is not an impact tile
                 if (!isImpact)
                 {
+                    //we need to remove this tile
                     toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
                 }
                 else
                 {
+                    //we need to check and see if the current effect is actually from the tile we're touching
                     effectNotImpact = currentEffect == null;
                     if (!effectNotImpact)
                     {
@@ -180,6 +197,7 @@ namespace Dargons_of_Kir
                     }
                     if (movedSideways || effectNotImpact)
                     {
+                        //if it isn't or if we moved sideways over a tile, remove it
                         toRemove.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
                     }
                 }
@@ -189,18 +207,23 @@ namespace Dargons_of_Kir
             prevOrient = this.orientation;
             prevLoc = this.currentPosition;
 
+            //take the movement associated with the current effect
             if (currentEffect != null)
             {
                 this.currentPosition = currentEffect.destination;
                 this.orientation = currentEffect.endingOrientaion;
                 toIgnore.Add(currentEffect.parentTile);
+
+
             }
+            //check to see if the dragon has been moved sideways
             movedSideways = this.checkIfMovedSideways(prevLoc, this.currentPosition, prevOrient, this.orientation);
 
+            
             while (currentEffect != null)
             {
                 
-               // if (PathList.Contains(new trueposition(this.currentPosition, this.orientation)))
+               //if a loop is detected, then stop and return, otherwise add the current position and orientation to the list
                if(new trueposition(this.currentPosition, this.orientation).alreadyVisited(PathList))
                 {
                     PathList.Clear();
@@ -213,7 +236,9 @@ namespace Dargons_of_Kir
 
                 currentEffect = board.getBoard()[this.currentPosition.x, this.currentPosition.y].getActiveEffect(this.orientation,toIgnore);
 
-                if (toIgnore.Count > 1) toIgnore.RemoveAt(0);
+                //since we've gotten the effect, we can toss our tiles to ignore, since those are now valid to pay attention to again
+                toIgnore = new List<Tile>();
+                
                 if (currentEffect != null && currentEffect.parentTile != null) toIgnore.Add(currentEffect.parentTile); 
                 tileType = null;
                 if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
@@ -274,6 +299,7 @@ namespace Dargons_of_Kir
         public bool checkIfMovedSideways(Board.location prev, Board.location current, Board.orientation prevOrient, Board.orientation currentOrient)
         {
             bool movedSideways = false;
+            //if the orientation is not the same, then obviously, the dragon was not moved sideways
             if (prevOrient == currentOrient)
             {
                 //This means that at some point, the dragon was moved without being turned, and as such, should be checked to see if it moved sideways

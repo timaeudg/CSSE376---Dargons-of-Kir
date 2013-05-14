@@ -29,6 +29,12 @@ namespace Dargons_of_Kir
             return this.board;
         }
 
+        /*
+         * Creates a board location structure
+         * wrapping the values around the board
+         * accordingly to prevent invalid coordinates
+         * in the board.
+         */
         public static Board.location makeBoardLocation(int x, int y){
             Board.location toReturn = new Board.location();
             int newX = x;
@@ -52,6 +58,7 @@ namespace Dargons_of_Kir
             return this.board[x,y].tile;
         }
 
+        //Associates tile with a location
         public bool addPiece(Tile tile)
         {
             
@@ -66,6 +73,7 @@ namespace Dargons_of_Kir
             return true;
         }
 
+        //destroys the tile at a location & all of its effects
         public void destroyTileAt(int x, int y)
         {
             Tile removed = this.board[x, y].tile;
