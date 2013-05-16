@@ -219,6 +219,14 @@ namespace Dargons_of_Kir
             //check to see if the dragon has been moved sideways
             movedSideways = this.checkIfMovedSideways(prevLoc, this.currentPosition, prevOrient, this.orientation);
 
+            if (movedSideways)
+            {
+                if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
+                {
+                    toIgnore.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                }
+            }
+
             
             while (currentEffect != null)
             {
@@ -288,6 +296,14 @@ namespace Dargons_of_Kir
                 this.orientation = currentEffect.endingOrientaion;
 
                 movedSideways = this.checkIfMovedSideways(prevLoc, this.currentPosition, prevOrient, this.orientation);
+
+                if (movedSideways)
+                {
+                    if (board.getTileAt(this.currentPosition.x, this.currentPosition.y) != null)
+                    {
+                        toIgnore.Add(board.getTileAt(this.currentPosition.x, this.currentPosition.y));
+                    }
+                }
 
             }
 

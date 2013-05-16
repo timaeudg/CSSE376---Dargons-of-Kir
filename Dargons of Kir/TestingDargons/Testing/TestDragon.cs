@@ -344,6 +344,27 @@ namespace TestingDargons.Testing
             board.getBoard()[2, 4].tile = tile4;
             dragon.move(board);
             Assert.AreEqual(Board.makeBoardLocation(3, 3), dragon.currentPosition);
+            Assert.NotNull(board.getTileAt(2, 3));
+            Assert.NotNull(board.getTileAt(2, 4));
+            Assert.NotNull(board.getTileAt(3, 4));
+            Assert.NotNull(board.getTileAt(3, 3));
+        }
+        [Test]
+        public void testLoopDifferentTypes()
+        {
+            GameInfo game = new GameInfo();
+            game.makeDragonsAndSetPositions();
+            game.moveDragons();
+            game.placeTileAtPosition(Board.makeBoardLocation(2, 4), Board.orientation.LEFT, new ThreeRiversTile());
+            game.placeTileAtPosition(Board.makeBoardLocation(3, 4), Board.orientation.UP, new SingleRiverTile());
+            game.placeTileAtPosition(Board.makeBoardLocation(4, 5), Board.orientation.RIGHT, new WatchfireTile());
+            game.placeTileAtPosition(Board.makeBoardLocation(5, 5), Board.orientation.UP, new ThreeRiversTile());
+
+            game.moveDragons();
+            Board.location dragLoc = game.getDragons()[0].getCurrentPosition();
+
+            Assert.AreEqual(Board.makeBoardLocation(5, 6), dragLoc);
+
         }
     }
 }

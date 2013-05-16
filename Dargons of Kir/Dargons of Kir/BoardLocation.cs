@@ -38,7 +38,7 @@ namespace Dargons_of_Kir
             List<Effect> validEffects = new List<Effect>();  
             foreach (Effect e in this.effectList)
             {
-                if (e.parentTile != null && dontEffect != null && dontEffect.Contains(e.parentTile)) break;
+                if (e.parentTile != null && dontEffect != null && dontEffect.Contains(e.parentTile)) continue;
                 if (!e.activateCallback()) break;
                 if (e.requiredStartingOrientation == dragonOrient) validEffects.Add(e);
 
